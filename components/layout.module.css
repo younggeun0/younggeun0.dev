@@ -1,0 +1,45 @@
+.container {
+    max-width: 45rem;
+    padding: 0 1rem;
+    margin: 3rem auto 6rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #efefef;
+    padding: 16px 24px;
+    background: #161b22;
+}
+
+@media (max-width: 550px) {
+    .header {
+        flex-direction: column;
+    }
+    .container {
+        margin: 1rem auto 6rem;
+    }
+    
+}
+
+.menu {
+    color: #efefef;
+    margin-right: 16px;
+    padding: 16px 0;
+    text-decoration: none;
+}
+
+.menu:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.post_main {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 4rem 0 0;
+    /* font-weight: bold; */
+    color: #81BD8F;
+}
