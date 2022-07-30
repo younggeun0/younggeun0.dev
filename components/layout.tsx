@@ -12,7 +12,7 @@ import { Alert, Box, Snackbar, Tooltip, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-export const siteTitle = "younggeun0's devlog";
+export const siteTitle = "(younggeun0: 🐢) =>; dev";
 
 export default function Layout({ children, home, alertMessage = "" }: any) {
     const router = useRouter();
