@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps = async context => {
 
 export default function Post({ postData }: any) {
     return (
-        <Layout home={false}>
+        <Layout commentable>
             <Head>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-dark.min.css" />
                 <title>{postData.title}</title>

@@ -18,7 +18,7 @@ export async function getStaticProps() {
 
 export default function Home({ recentPostsData }: any) {
     return (
-        <Layout home>
+        <Layout>
             <Head>
                 <title>{siteTitle}</title>
             </Head>

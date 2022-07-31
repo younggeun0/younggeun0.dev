@@ -91,7 +91,7 @@ const EditPost = ({ postData, session }: any) => {
     };
 
     return (
-        <Layout home={false}>
+        <Layout>
             <Head>
                 <title>수정하기</title>
             </Head>

@@ -83,7 +83,7 @@ const CreatePost = ({ session }: any) => {
     };
 
     return (
-        <Layout home={false}>
+        <Layout>
             <Head>
                 <title>글쓰기</title>
             </Head>

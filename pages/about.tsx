@@ -12,14 +12,14 @@ export default function About() {
     const { data: session, status } = useSession();
     
     return (
-        <Layout home={true}>
+        <Layout>
             <Head>
                 <title>About younggeun0</title>
             </Head>
 
             <article>
                 <Box sx={{ margin: "3rem 0" }}>
-                    <span className={utilStyles.headingXl}>
+                    <span className={utilStyles.heading2Xl}>
                         안녕하세요! 🙋🏻‍♂️
                         <br /> 개발자 오영근입니다
                         {" "}

@@ -15,7 +15,7 @@ import { Comments } from "../components/comment";
 
 export const siteTitle = "(younggeun0: 🐢) =>; dev";
 
-export default function Layout({ children, home, alertMessage = "" }: any) {
+export default function Layout({ children, commentable = false, alertMessage = "" }: any) {
     const router = useRouter();
     const { data: session, status } = useSession();
     // TODO, open 코드 공통화(전역 상태 관리 사용)
@@ -82,7 +82,7 @@ export default function Layout({ children, home, alertMessage = "" }: any) {
             </header>
             <div className={styles.container}>
                 <main>{children}</main>
-                {!home && (
+                {commentable && (
                     <>
                         <Comments />
                         <Box className={styles.post_main}>

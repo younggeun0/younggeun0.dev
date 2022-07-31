@@ -19,7 +19,7 @@ export async function getStaticProps() {
 
 export default function Projects({ allProjectData }: any) {
     return (
-        <Layout home={false}>
+        <Layout>
             <Head>
                 <title>{siteTitle}</title>
             </Head>
