@@ -24,7 +24,6 @@ export default function About() {
                         <br /> 개발자 오영근입니다
                         {" "}
                         <span
-                            className={utilStyles.headingLg}
                             onClick={(e: any) => {
                                 e.preventDefault();
                                 if (session) {
