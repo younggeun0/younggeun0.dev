@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "./layout.module.css";
-import ShareIcon from '@mui/icons-material/Share';
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import ShareIcon from "@mui/icons-material/Share";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Alert, Box, Snackbar, Tooltip, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { Comments } from "../components/comment";
 
 export const siteTitle = "(younggeun0: 🐢) =>; dev";
 
@@ -82,45 +83,40 @@ export default function Layout({ children, home, alertMessage = "" }: any) {
             <div className={styles.container}>
                 <main>{children}</main>
                 {!home && (
-                    <Box className={styles.post_main}>
-                        <Box>
-                            <ArrowCircleLeftIcon fontSize="large" onClick={() => router.back()} />
+                    <>
+                        <Comments />
+                        <Box className={styles.post_main}>
+                            <Box>
+                                <ArrowCircleLeftIcon fontSize="large" onClick={() => router.back()} />
+                            </Box>
+                            <Box>
+                                <ShareIcon
+                                    fontSize="large"
+                                    onClick={() => {
+                                        const dummy = document.createElement("input");
+                                        const text = location.href;
+
+                                        document.body.appendChild(dummy);
+                                        dummy.value = text;
+                                        dummy.select();
+                                        document.execCommand("copy");
+                                        document.body.removeChild(dummy);
+                                        setOpen(true);
+                                    }}
+                                    sx={{
+                                        mr: "1rem",
+                                    }}
+                                />
+                                <ArrowCircleUpIcon
+                                    fontSize="large"
+                                    onClick={() => {
+                                        document.body.scrollTop = 0;
+                                        document.documentElement.scrollTop = 0;
+                                    }}
+                                />
+                            </Box>
                         </Box>
-                        <Box>
-                            <ShareIcon
-                                fontSize="large" 
-                                onClick={() => {
-                                    const dummy   = document.createElement("input");
-                                    const text    = location.href;
-                                    
-                                    document.body.appendChild(dummy);
-                                    dummy.value = text;
-                                    dummy.select();
-                                    document.execCommand("copy");
-                                    document.body.removeChild(dummy);
-                                    setOpen(true);
-                                }}
-                                sx={{
-                                    mr: "1rem",
-                                }}
-                            />
-                            <ArrowCircleUpIcon 
-                                fontSize="large"
-                                onClick={() => {
-                                    document.body.scrollTop = 0;
-                                    document.documentElement.scrollTop = 0;
-                                }}
-                            />
-                        </Box>
-                        <script src="https://utteranc.es/client.js"
-                            // @ts-ignore
-                            repo="younggeun0/younggeun0.dev"
-                            issue-term="pathname"
-                            theme="github-light"
-                            crossorigin="anonymous"
-                            async>
-                        </script>
-                    </Box>
+                    </>
                 )}
             </div>
             <Snackbar
