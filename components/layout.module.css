@@ -1,3 +1,7 @@
+.container pre code {
+    font-size: 12px;
+}
+
 .container {
     max-width: 45rem;
     padding: 0 1rem;
@@ -19,8 +23,11 @@
     }
     .container {
         margin: 1rem auto 6rem;
+        font-size: 12px;
     }
-    
+    .container pre code {
+        font-size: 10px;
+    }
 }
 
 .menu {
