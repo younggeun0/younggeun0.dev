@@ -17,19 +17,6 @@
     background: #161b22;
 }
 
-@media (max-width: 550px) {
-    .header {
-        flex-direction: column;
-    }
-    .container {
-        margin: 1rem auto 6rem;
-        font-size: 12px;
-    }
-    .container pre code {
-        font-size: 10px;
-    }
-}
-
 .menu {
     color: #efefef;
     margin-right: 16px;
@@ -49,4 +36,17 @@
     margin: 4rem 0 0;
     /* font-weight: bold; */
     color: #81BD8F;
+}
+
+@media (max-width: 550px) {
+    .header {
+        flex-direction: column;
+    }
+    .container {
+        margin: 1rem auto 6rem;
+        font-size: 12px;
+    }
+    .container pre code {
+        font-size: 10px;
+    }
 }
