@@ -13,8 +13,7 @@ import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Comments } from "../components/comment";
 
-export const siteTitle = "(younggeun0: 🐢) =>; dev";
-
+export const siteTitle = "(younggeun0: 🐢) => dev";
 export default function Layout({ children, commentable = false, alertMessage = "" }: any) {
     const router = useRouter();
     const { data: session, status } = useSession();
