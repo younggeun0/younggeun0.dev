@@ -27,7 +27,9 @@ export default function Home({ recentPostsData }: any) {
             <section
                 className={`${utilStyles.padding1px}`}
             >
-                <span className={`${utilStyles.headingXl}`}>[...recent_posts🔥]</span>
+                <div className={utilStyles.rotateTitleBy1Deg}>
+                    <span className={utilStyles.headingXl}>[...recent_posts🔥]</span>
+                </div>
                 <ul className={utilStyles.list} style={{ marginTop: "10px" }}>
                     {recentPostsData.map(({ id, date, title }: any) => (
                         <li className={utilStyles.listItem} key={id}>

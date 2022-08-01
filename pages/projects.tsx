@@ -25,10 +25,10 @@ export default function Projects({ allProjectData }: any) {
             </Head>
 
 
-            <section
-                className={`${utilStyles.padding1px}`}
-            >
-                <span className={`${utilStyles.headingXl}`}>[...projects]</span>
+            <section className={`${utilStyles.padding1px}`}>
+                <div className={utilStyles.rotateTitleBy1Deg}>
+                    <span className={`${utilStyles.headingXl}`}>[...projects🧑🏻‍💻]</span>
+                </div>
                 <ul className={utilStyles.list} style={{ marginTop: "10px" }}>
                     {allProjectData.map(({ id, date, title }: any) => (
                         <li className={utilStyles.listItem} key={id}>
