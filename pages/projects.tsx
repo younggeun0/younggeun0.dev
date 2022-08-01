@@ -28,8 +28,8 @@ export default function Projects({ allProjectData }: any) {
             <section
                 className={`${utilStyles.padding1px}`}
             >
-                <h2 className={utilStyles.headingLg}>🧑🏻‍💻 Projects</h2>
-                <ul className={utilStyles.list}>
+                <span className={`${utilStyles.headingXl}`}>[...projects]</span>
+                <ul className={utilStyles.list} style={{ marginTop: "10px" }}>
                     {allProjectData.map(({ id, date, title }: any) => (
                         <li className={utilStyles.listItem} key={id}>
                             <Link href={`/posts/${id}`}>
