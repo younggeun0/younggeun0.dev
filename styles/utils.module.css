@@ -65,7 +65,7 @@
     color: #757575;
 }
 
-.rotateOnHover:hover {
+.rotateTitleBy1Deg {
     transform: rotate(-1deg);
 }
 

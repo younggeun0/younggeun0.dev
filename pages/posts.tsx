@@ -67,7 +67,7 @@ export default function Posts({ allPostsDataSplitByYear }: any) {
                                         });
                                     }}
                                 >
-                                    <summary className={utilStyles.rotateOnHover}>
+                                    <summary className={openState[year] && utilStyles.rotateTitleBy1Deg}>
                                         <span className={`${utilStyles.headingXl}`}>[{openState[year] ? "..." : ""}posts_{year}]</span>
                                     </summary>
                                     <ul className={utilStyles.list} style={{ marginTop: "10px" }}>

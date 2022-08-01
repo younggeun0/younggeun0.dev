@@ -27,8 +27,8 @@ export default function Home({ recentPostsData }: any) {
             <section
                 className={`${utilStyles.padding1px}`}
             >
-                <h2 className={utilStyles.headingLg}>Recent Posts 🔥</h2>
-                <ul className={utilStyles.list}>
+                <span className={`${utilStyles.headingXl}`}>[...recent_posts🔥]</span>
+                <ul className={utilStyles.list} style={{ marginTop: "10px" }}>
                     {recentPostsData.map(({ id, date, title }: any) => (
                         <li className={utilStyles.listItem} key={id}>
                             <Link href={`/posts/${id}`}>
