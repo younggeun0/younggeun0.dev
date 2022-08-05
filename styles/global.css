@@ -33,3 +33,16 @@ details > summary {
 details > summary::-webkit-details-marker {
   display: none;
 }
+
+table, th, td {
+  border: 1px solid #C1C1C1;
+  border-collapse: collapse;
+}
+
+th {
+  background: #FAFAFA;
+}
+
+td {
+  padding: 0 5px;
+}
