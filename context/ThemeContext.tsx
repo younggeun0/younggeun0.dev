@@ -9,7 +9,7 @@ const ThemeContextProvider = ({ children }: any) => {
     useEffect(() => {
         if (theme == null) {
             const local = localStorage.getItem("theme");
-            setTheme(themes[local as "light" | "dark"] || themes.light);
+            setTheme(themes[local as "light" | "dark"] || themes.dark);
             return;
         }
 
