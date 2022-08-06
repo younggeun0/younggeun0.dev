@@ -1,6 +1,9 @@
-import React from "react";
+import { ThemeContext } from "context/ThemeContext";
+import React, { useContext } from "react";
 
 export const Comments = () => {
+    const { theme } = useContext(ThemeContext);
+
     return (
         <section
             style={{ width: "100%", marginTop: "50px" }}
@@ -14,7 +17,7 @@ export const Comments = () => {
                 scriptElem.setAttribute("repo", "younggeun0/younggeun0.dev");
                 scriptElem.setAttribute("issue-term", "pathname");
                 scriptElem.setAttribute('label', 'comment :speech_balloon:')
-                scriptElem.setAttribute("theme", "github-light");
+                scriptElem.setAttribute("theme", theme.type === "light" ? "github-light" : "github-dark");
                 scriptElem.setAttribute("crossorigin", "anonymous");
                 scriptElem.setAttribute("async", "true");
                 element.replaceChildren(scriptElem);

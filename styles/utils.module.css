@@ -54,7 +54,7 @@
 }
 
 .listItem:hover {
-    box-shadow: 2px 2px 15px -10px #000000;
+    transform: rotate(-1deg);
 }
 
 .lightText {

@@ -37,7 +37,7 @@ export default function Posts({ allPostsDataSplitByYear }: any) {
             .reduce((acc, year, idx) => {
                 return {
                     ...acc,
-                    [year]: idx === 0,
+                    [year]: false,
                 };
             }, {});
 
@@ -58,19 +58,17 @@ export default function Posts({ allPostsDataSplitByYear }: any) {
                             <Fragment key={year}>
                                 <details
                                     open={openState[year]}
-                                    onClick={(e: any) => {
-                                        e.preventDefault();
-
+                                    onToggle={(e: any) => {
                                         setOpenState({
                                             ...openState,
                                             [year]: !openState[year],
                                         });
                                     }}
                                 >
-                                    <summary className={openState[year] && utilStyles.rotateTitleBy1Deg}>
+                                    <summary className={openState[year] ? utilStyles.rotateTitleBy1Deg : ""}>
                                         <span className={`${utilStyles.headingXl}`}>[{openState[year] ? "..." : ""}posts_{year}]</span>
                                     </summary>
-                                    <ul className={utilStyles.list} style={{ marginTop: "10px" }}>
+                                    <ul onClick={e => e.preventDefault()} className={utilStyles.list} style={{ marginTop: "10px" }}>
                                         {allPostsDataSplitByYear[year].map(({ id, date, title }: any) => {
                                             return (
                                                 <li className={utilStyles.listItem} key={id}>

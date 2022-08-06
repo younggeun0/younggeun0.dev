@@ -7,6 +7,7 @@
     font-size: 12px;
 }
 .container code:not(pre code) {
+    color: black;
     background: #F5F7F9;
     padding: 2px 5px;
     border-radius: 5px;
@@ -37,7 +38,6 @@
 }
 
 .menu {
-    color: #efefef;
     margin-right: 16px;
     padding: 16px 0;
     text-decoration: none;

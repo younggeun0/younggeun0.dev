@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
@@ -7,10 +7,14 @@ import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { ThemeContext } from "context/ThemeContext";
 
 export default function About() {
     const { data: session, status } = useSession();
+    const { theme } = useContext(ThemeContext);
     
+    if (!theme) return null;
+
     return (
         <Layout>
             <Head>
@@ -79,13 +83,16 @@ export default function About() {
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
                         OZ연구소 리포트2팀 신입 팀원으로 OZReport HTML Viewer 솔루션 개발업무를 담당했습니다
-                        <ul style={{ paddingLeft: "20px" }}>
-                            <li>뷰어 접근성 개선(스크린 리더)</li>
-                            <li>MarkAny, SGA 바코드 솔루션 연동</li>
-                            <li>뷰어 내 WYSIWYG 편집기 연동</li>
-                            <li>opencv.js, zxing.js를 이용한 인감스캔 기능 개발</li>
-                            <li>뷰어간 동기화하는 중계서버 모듈 개발</li>
-                        </ul>
+                        <br/>
+                        ・ 스크린 리더로 뷰어 텍스트를 읽을 수 있도록 접근성을 개선했습니다
+                        <br/>
+                        ・ 전자문서 출력 시 MarkAny, SGA 솔루션 바코드가 같이 출력되는 연동작업을 했습니다
+                        <br/>
+                        ・ 뷰어 내용을 수정가능하도록 WYSIWYG 편집기(summernote.js)를 임배딩했습니다
+                        <br/>
+                        ・ webrtc, opencv.js, zxing.js를 이용하여 인감스캔 기능을 개발했습니다
+                        <br/>
+                        ・ 뷰어 동기화를 위한 중계서버 모듈을 개발했습니다
                     </Typography>
                 </Box>
 
@@ -147,6 +154,10 @@ export default function About() {
                         color="default"
                         aria-label="email"
                         component="label"
+                        sx={{
+                            color: theme.type === "light" ? "black" : "white",
+                            opacity: 0.5,
+                        }}
                         onClick={() => {
                             location.href = "mailto:dureng5@gmail.com";
                         }}
@@ -158,6 +169,10 @@ export default function About() {
                         color="default"
                         aria-label="github"
                         component="label"
+                        sx={{
+                            color: theme.type === "light" ? "black" : "white",
+                            opacity: 0.5,
+                        }}
                         onClick={() => {
                             location.href = "https://github.com/younggeun0";
                         }}

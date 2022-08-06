@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "./layout.module.css";
@@ -8,13 +8,15 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Alert, Box, Snackbar, Tooltip, Typography } from "@mui/material";
+import { Alert, Box, Snackbar, Tooltip } from "@mui/material";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Comments } from "../components/comment";
+import { ThemeContext } from "context/ThemeContext";
 
 export const siteTitle = "(younggeun0: 🐢) => dev";
 export default function Layout({ children, commentable = false, alertMessage = "" }: any) {
+    const { theme, toggleTheme } = useContext(ThemeContext);
     const router = useRouter();
     const { data: session, status } = useSession();
     // TODO, open 코드 공통화(전역 상태 관리 사용)
@@ -24,9 +26,10 @@ export default function Layout({ children, commentable = false, alertMessage = "
         if (reason === "clickaway") {
             return;
         }
-
         setOpen(false);
     };
+
+    if (!theme) return null;
 
     return (
         <>
@@ -54,6 +57,18 @@ export default function Layout({ children, commentable = false, alertMessage = "
                 </Box>
 
                 <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Tooltip title="Theme">
+                        <span
+                            className={styles.menu}
+                            onClick={e => {
+                                e.stopPropagation();
+                                toggleTheme();
+                            }}
+                        >
+                            {theme.type === "dark" ? "🌞" : "🌚"}
+                        </span>
+                    </Tooltip>
+
                     <Tooltip title="About">
                         <a className={styles.menu} href="/about">
                             🙋🏻‍♂️

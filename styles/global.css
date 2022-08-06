@@ -7,6 +7,23 @@ body {
   font-size: 18px;
 }
 
+body[data-theme="dark"]{
+  background: black;
+  color: white;
+}
+
+body[data-theme="light"]{
+  background: white;
+  color: black;
+}
+
+body[data-theme="dark"] .MuiCardContent-root {
+  background: #181818;
+}
+body[data-theme="dark"] .MuiPaper-root {
+  border: 1px solid #191818;
+}
+
 * {
   box-sizing: border-box;
 }
