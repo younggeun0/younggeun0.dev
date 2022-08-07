@@ -68,6 +68,17 @@ th {
   background: #FAFAFA;
 }
 
+html.dark th {
+  background: #202020;
+}
+
 td {
   padding: 0 5px;
+}
+
+@media (max-width: 550px) {
+  div.remark-highlight pre {
+    margin: 1rem -1rem;
+    border-radius: 0;
+  }
 }

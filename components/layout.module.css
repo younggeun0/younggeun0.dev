@@ -51,8 +51,7 @@
     justify-content: space-between;
     cursor: pointer;
     margin: 4rem 0 0;
-    /* font-weight: bold; */
-    color: #306F76;
+    color: #0482C6;
 }
 
 @media (max-width: 550px) {
@@ -62,8 +61,5 @@
     .container {
         margin: 1rem auto 6rem;
         font-size: 12px;
-    }
-    .container pre code {
-        font-size: 10px;
     }
 }

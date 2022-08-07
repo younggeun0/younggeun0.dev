@@ -30,12 +30,10 @@ export default function Document() {
                     dangerouslySetInnerHTML={{
                         __html: `
                     (function() {
-                        window.__onThemeChange = function(theme) { };
                         function setTheme(newTheme) {
                             window.__theme = newTheme;
                             preferredTheme = newTheme;
                             document.documentElement.className = newTheme;
-                            // window.__onThemeChange(newTheme);
                         }
                         var preferredTheme;
                         try {
