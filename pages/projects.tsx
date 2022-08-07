@@ -1,9 +1,7 @@
 import React from "react";
-import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
+import Layout from "../components/layout";
 import utilStyles from '../styles/utils.module.css';
-import { Box, Card, CardContent, Typography } from "@mui/material";
-import Image from "next/image";
+import { Card, CardContent, Typography } from "@mui/material";
 import { getProjectData } from "lib/posts";
 import Link from "next/link";
 import Date from "components/date";
@@ -20,11 +18,6 @@ export async function getStaticProps() {
 export default function Projects({ allProjectData }: any) {
     return (
         <Layout>
-            <Head>
-                <title>{siteTitle}</title>
-            </Head>
-
-
             <section className={`${utilStyles.padding1px}`}>
                 <div className={utilStyles.rotateTitleBy1Deg}>
                     <span className={`${utilStyles.headingXl}`}>[...projects🧑🏻‍💻]</span>

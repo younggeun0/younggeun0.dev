@@ -1,6 +1,6 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
-export const siteTitle = "(younggeun0: 🐢) => dev";
+const siteTitle = "(younggeun0: 🐢) => dev";
 export default function Document() {
     return (
         <Html>
