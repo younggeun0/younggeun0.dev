@@ -129,12 +129,6 @@ const EditPost = ({ postData, session }: any) => {
                 <Box sx={{ display: "flex", justifyContent: "end", mt: 3 }}>
                     <Button
                         variant="contained"
-                        sx={{
-                            background: "#81BD8F",
-                            ":hover": {
-                                background: "#6C9E77",
-                            },
-                        }}
                         endIcon={<CreateIcon />}
                         onClick={handleSubmit}
                     >
