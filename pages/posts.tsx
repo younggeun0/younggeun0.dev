@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from "react";
-import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
+import Layout from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { Card, CardContent } from "@mui/material";
 import { getSortedPostsData } from "lib/posts";
@@ -46,10 +45,6 @@ export default function Posts({ allPostsDataSplitByYear }: any) {
 
     return (
         <Layout>
-            <Head>
-                <title>{siteTitle}</title>
-            </Head>
-
             <section className={`${utilStyles.padding1px}`}>
                 {Object.keys(allPostsDataSplitByYear)
                     .reverse()

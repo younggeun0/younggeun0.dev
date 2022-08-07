@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
+import Layout from "../components/layout";
 import Link from "next/link";
 import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
@@ -19,11 +19,6 @@ export async function getStaticProps() {
 export default function Home({ recentPostsData }: any) {
     return (
         <Layout>
-            <Head>
-                <title>{siteTitle}</title>
-            </Head>
-
-
             <section
                 className={`${utilStyles.padding1px}`}
             >

@@ -4,6 +4,8 @@ import React, { useContext } from "react";
 export const Comments = () => {
     const { theme } = useContext(ThemeContext);
 
+    if (!theme) return null;
+
     return (
         <section
             style={{ width: "100%", marginTop: "50px" }}

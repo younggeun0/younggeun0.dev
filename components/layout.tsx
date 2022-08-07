@@ -1,6 +1,4 @@
 import React, { useContext, useState } from "react";
-import Head from "next/head";
-import Image from "next/image";
 import styles from "./layout.module.css";
 import ShareIcon from "@mui/icons-material/Share";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
@@ -14,7 +12,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { Comments } from "../components/comment";
 import { ThemeContext } from "context/ThemeContext";
 
-export const siteTitle = "(younggeun0: 🐢) => dev";
 export default function Layout({ children, commentable = false, alertMessage = "" }: any) {
     const { theme, toggleTheme } = useContext(ThemeContext);
     const router = useRouter();
@@ -29,26 +26,8 @@ export default function Layout({ children, commentable = false, alertMessage = "
         setOpen(false);
     };
 
-    if (!theme) return null;
-
     return (
         <>
-            <Head>
-                <link rel="icon" href="/favicon.ico" />
-                {/* <meta
-                    property="og:image"
-                    content={`https://og-image.vercel.app/${encodeURI(
-                        siteTitle
-                    )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-                /> */}
-                <meta name="og:title" content={siteTitle} />
-                <meta name="og:description" content={siteTitle} />
-                <link
-                    rel="stylesheet"
-                    as="style"
-                    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css"
-                />
-            </Head>
             <header className={styles.header}>
                 <Box sx={{ display: "flex", alignItems: "center", ":hover": { cursor: "pointer" } }}>
                     <Link href="/">
@@ -57,17 +36,19 @@ export default function Layout({ children, commentable = false, alertMessage = "
                 </Box>
 
                 <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Tooltip title="Theme">
-                        <span
-                            className={styles.menu}
-                            onClick={e => {
-                                e.stopPropagation();
-                                toggleTheme();
-                            }}
-                        >
-                            {theme.type === "dark" ? "🌞" : "🌚"}
-                        </span>
-                    </Tooltip>
+                    {theme && (
+                        <Tooltip title="Theme">
+                            <span
+                                className={styles.menu}
+                                onClick={e => {
+                                    e.stopPropagation();
+                                    toggleTheme();
+                                }}
+                            >
+                                {theme.type === "dark" ? "🌞" : "🌚"}
+                            </span>
+                        </Tooltip>
+                    )}
 
                     <Tooltip title="About">
                         <a className={styles.menu} href="/about">
@@ -94,6 +75,7 @@ export default function Layout({ children, commentable = false, alertMessage = "
                     </Tooltip>
                 </Box>
             </header>
+            <hr style={{ margin: 0 }} />
             <div className={styles.container}>
                 <main>{children}</main>
                 {commentable && (

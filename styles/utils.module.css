@@ -14,13 +14,6 @@
     margin: 1rem 0;
 }
 
-.headingGradient {
-    background: linear-gradient(45deg, #dfdfdf, #56B6C2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 0 10px 0 0;
-}
-
 .headingLg {
     font-size: 1.2rem;
     font-weight: 800;

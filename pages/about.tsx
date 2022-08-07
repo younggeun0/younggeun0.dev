@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
+import Layout from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { Box, IconButton, Typography } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
@@ -13,8 +13,6 @@ export default function About() {
     const { data: session, status } = useSession();
     const { theme } = useContext(ThemeContext);
     
-    if (!theme) return null;
-
     return (
         <Layout>
             <Head>
@@ -105,7 +103,7 @@ export default function About() {
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
-                        인턴 사원으로 개발중이던 솔루션 QA 테스트를 수행했습니다
+                        인턴 사원으로 개발중이던 솔루션 QA 업무를 수행했습니다
                     </Typography>
                 </Box>
 
@@ -129,10 +127,6 @@ export default function About() {
                         <br />
                         2015.06 - 2017.06
                     </Typography>
-                    <br />
-                    <Typography variant="body2" className={utilStyles.body2}>
-                        직무와는 무관하지만 다양한 경험을 할 수 있었고 영어에 대한 두려움을 없애는 계기가 됐습니다
-                    </Typography>
                 </Box>
 
                 <Box sx={{ margin: "5rem 0" }}>
@@ -148,38 +142,40 @@ export default function About() {
                     <span className={utilStyles.headingXl}>Contact</span>
                     <hr />
                 </Box>
-                <Box sx={{ display: "flex", margin: "3rem 0 5rem", justifyContent: "space-around" }}>
-                    <IconButton
-                        size="large"
-                        color="default"
-                        aria-label="email"
-                        component="label"
-                        sx={{
-                            color: theme.type === "light" ? "black" : "white",
-                            opacity: 0.5,
-                        }}
-                        onClick={() => {
-                            location.href = "mailto:dureng5@gmail.com";
-                        }}
-                    >
-                        <EmailIcon fontSize="large" />
-                    </IconButton>
-                    <IconButton
-                        size="large"
-                        color="default"
-                        aria-label="github"
-                        component="label"
-                        sx={{
-                            color: theme.type === "light" ? "black" : "white",
-                            opacity: 0.5,
-                        }}
-                        onClick={() => {
-                            location.href = "https://github.com/younggeun0";
-                        }}
-                    >
-                        <GitHubIcon fontSize="large" />
-                    </IconButton>
-                </Box>
+                {theme && (
+                    <Box sx={{ display: "flex", margin: "3rem 0 5rem", justifyContent: "space-around" }}>
+                        <IconButton
+                            size="large"
+                            color="default"
+                            aria-label="email"
+                            component="label"
+                            sx={{
+                                color: theme.type === "light" ? "black" : "white",
+                                opacity: 0.5,
+                            }}
+                            onClick={() => {
+                                location.href = "mailto:dureng5@gmail.com";
+                            }}
+                        >
+                            <EmailIcon fontSize="large" />
+                        </IconButton>
+                        <IconButton
+                            size="large"
+                            color="default"
+                            aria-label="github"
+                            component="label"
+                            sx={{
+                                color: theme.type === "light" ? "black" : "white",
+                                opacity: 0.5,
+                            }}
+                            onClick={() => {
+                                location.href = "https://github.com/younggeun0";
+                            }}
+                        >
+                            <GitHubIcon fontSize="large" />
+                        </IconButton>
+                    </Box>
+                )}
             </article>
         </Layout>
     );

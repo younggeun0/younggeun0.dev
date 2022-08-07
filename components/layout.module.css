@@ -32,9 +32,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #efefef;
-    padding: 16px 56px;
-    background: #141F27;
+    padding: 0 15px;
 }
 
 .menu {
