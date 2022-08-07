@@ -26,18 +26,16 @@ export default function Document() {
                     as="style"
                     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css"
                 />
-            </Head>
-            <body className="dark">
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
                     (function() {
-                        window.__onThemeChange = function(theme) {};
+                        window.__onThemeChange = function(theme) { };
                         function setTheme(newTheme) {
                             window.__theme = newTheme;
                             preferredTheme = newTheme;
-                            document.body.className = newTheme;
-                            window.__onThemeChange(newTheme);
+                            document.documentElement.className = newTheme;
+                            // window.__onThemeChange(newTheme);
                         }
                         var preferredTheme;
                         try {
@@ -61,6 +59,8 @@ export default function Document() {
                     `,
                     }}
                 />
+            </Head>
+            <body>
                 <Main />
                 <NextScript />
             </body>

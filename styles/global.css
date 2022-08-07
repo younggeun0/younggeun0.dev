@@ -12,17 +12,17 @@ body {
   font-size: 18px;
 }
 
-body {
+html {
   background: var(--background-color);
   color: var(--font-color);
   transition: background 1s;
 }
 
-body.dark {
+html.dark {
   --background-color: black;
   --font-color: white;
 }
-body.light {
+html.light {
   --background-color: white;
   --font-color: black;
 }

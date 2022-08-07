@@ -13,7 +13,7 @@ const ThemeContextProvider = ({ children }: any) => {
             return;
         }
 
-        document.body.className = theme.type;
+        document.documentElement.className = theme.type;
         localStorage.setItem("theme", theme.type);
     }, [theme]);
     
