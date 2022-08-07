@@ -76,6 +76,13 @@ td {
   padding: 0 5px;
 }
 
+blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: grey;
+  border-left: 0.25em solid #C1C1C1;
+}
+
 @media (max-width: 550px) {
   div.remark-highlight pre {
     margin: 1rem -1rem;
