@@ -27,6 +27,11 @@ html.light {
   --font-color: black;
 }
 
+html.dark .MuiInput-input {
+  background-color: white;
+  color: black;
+}
+
 body .MuiCardContent-root {
   background: var(--background-color);
   transition: background 1s;
