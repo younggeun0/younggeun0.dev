@@ -1,3 +1,3 @@
-## younggeun0.dev 🐢
+# [(younggeun0: 🐢) => dev](https://younggeun0.dev)
 
-next.js를 이용한 개인 블로그입니다
+next.js를 이용해 만든 개인 블로그입니다
