@@ -6,6 +6,7 @@ import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import { Card, CardContent } from "@mui/material";
+import { siteTitle } from "./_document";
 
 export async function getStaticProps() {
     const recentPostsData = getSortedPostsData(true);
@@ -19,6 +20,10 @@ export async function getStaticProps() {
 export default function Home({ recentPostsData }: any) {
     return (
         <Layout>
+            <Head>
+                <title>{siteTitle}</title>
+            </Head>
+
             <section
                 className={`${utilStyles.padding1px}`}
             >
