@@ -50,8 +50,8 @@ export default function Layout({ children, commentable = false, alertMessage = "
                         </Tooltip>
                     )}
 
-                    <Tooltip title="About">
-                        <a className={styles.menu} href="/about">
+                    <Tooltip title="Resume">
+                        <a className={styles.menu} href="/resume">
                             🙋🏻‍♂️
                         </a>
                     </Tooltip>

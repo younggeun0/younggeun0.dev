@@ -49,7 +49,7 @@ export default function About() {
                 <Box sx={{ margin: "3rem 0" }}>
                     <span className={utilStyles.headingLg}>에버온</span>
                     <Typography variant="body2" className={utilStyles.body2}>
-                        Frontend Developer
+                        Web Developer
                         <br />
                         2022.03 - 현재
                     </Typography>
@@ -57,7 +57,9 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         <strong>Tech Stacks</strong>
                         <br />
-                        React, NodeJS, PostgreSQL, Oracle
+                        FE : ReactJS(react-admin, mui)
+                        <br />
+                        BE : NodeJS(express), Spring, PostgreSQL, Oracle
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
