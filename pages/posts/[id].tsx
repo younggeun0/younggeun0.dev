@@ -28,6 +28,10 @@ export default function Post({ postData }: any) {
     return (
         <Layout commentable>
             <Head>
+                <meta name="description" content={postData.title} />
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={postData.title} />
+                <meta property="og:description" content={postData.title} />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-dark.min.css" />
                 <title>{postData.title}</title>
             </Head>
