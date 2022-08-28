@@ -75,7 +75,7 @@ export default function Layout({ children, commentable = false, alertMessage = "
                     </Tooltip>
                 </Box>
             </header>
-            <hr style={{ margin: 0 }} />
+            {/* <hr style={{ margin: 0 }} /> */}
             <div className={styles.container}>
                 <main>{children}</main>
                 {commentable && (
