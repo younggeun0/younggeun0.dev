@@ -52,7 +52,7 @@ export default function Layout({ children, commentable = false, alertMessage = "
 
                     <Tooltip title="Resume">
                         <a className={styles.menu} href="/resume">
-                            🙋🏻‍♂️
+                            🐢
                         </a>
                     </Tooltip>
                     <Tooltip title="Posts">

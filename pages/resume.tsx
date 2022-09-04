@@ -22,8 +22,8 @@ export default function About() {
             <article>
                 <Box sx={{ margin: "3rem 0" }}>
                     <span className={utilStyles.heading2Xl}>
-                        안녕하세요! 🙋🏻‍♂️
-                        <br /> 개발자 오영근입니다
+                        안녕하세요!
+                        <br />웹 개발자 오영근입니다
                         {" "}
                         <span
                             onClick={(e: any) => {
