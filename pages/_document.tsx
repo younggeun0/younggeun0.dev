@@ -13,6 +13,7 @@ export default function Document() {
                 />
                 <title>{siteTitle}</title>
                 <link rel="icon" href="/favicon.ico" />
+                <meta name="google-site-verification" content="JTXpGI48AchnhjFqLKv-MwGTrt8P-vXMHK2C54RJbE4" />
                 <meta property="og:site_name" content={siteTitle} />
                 {/* <meta
                     property="og:image"
