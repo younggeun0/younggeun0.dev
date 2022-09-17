@@ -5,6 +5,8 @@ import { Card, CardContent, Typography } from "@mui/material";
 import { getProjectData } from "lib/posts";
 import Link from "next/link";
 import Date from "components/date";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 export async function getStaticProps() {
     const allProjectData = getProjectData();
@@ -16,8 +18,14 @@ export async function getStaticProps() {
 }
 
 export default function Projects({ allProjectData }: any) {
+    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + useRouter().asPath;
+    
     return (
         <Layout>
+            <Head>
+                <title>Young's Projects</title>
+                <link rel="canonical" href={canonicalURL} />
+            </Head>
             <section className={`${utilStyles.padding1px}`}>
                 <div className={utilStyles.rotateTitleBy1Deg}>
                     <span className={`${utilStyles.headingXl}`}>[...projects🧑🏻‍💻]</span>

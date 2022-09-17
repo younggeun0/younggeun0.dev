@@ -8,15 +8,18 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { ThemeContext } from "context/ThemeContext";
+import { useRouter } from "next/router";
 
 export default function About() {
     const { data: session, status } = useSession();
     const { theme } = useContext(ThemeContext);
+    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + useRouter().asPath;
     
     return (
         <Layout>
             <Head>
-                <title>About younggeun0</title>
+                <title>about Young</title>
+                <link rel="canonical" href={canonicalURL} />
             </Head>
 
             <article>

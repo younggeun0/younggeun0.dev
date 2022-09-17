@@ -7,6 +7,8 @@ import Link from "next/link";
 import DateComponent from "components/date";
 import { format } from "date-fns";
 import { useEffect } from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 export async function getStaticProps() {
     const allPostsData = getSortedPostsData();
@@ -29,6 +31,7 @@ export async function getStaticProps() {
 
 export default function Posts({ allPostsDataSplitByYear }: any) {
     const [openState, setOpenState] = useState<any>({});
+    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + useRouter().asPath;
 
     useEffect(() => {
         const initOpenState = Object.keys(allPostsDataSplitByYear)
@@ -45,6 +48,10 @@ export default function Posts({ allPostsDataSplitByYear }: any) {
 
     return (
         <Layout>
+            <Head>
+                <title>Young's Posts</title>
+                <link rel="canonical" href={canonicalURL} />
+            </Head>
             <section className={`${utilStyles.padding1px}`}>
                 {Object.keys(allPostsDataSplitByYear)
                     .reverse()
