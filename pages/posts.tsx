@@ -10,12 +10,21 @@ import { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-export async function getStaticProps() {
+export async function getStaticProps(props: any) {
     const allPostsData = getSortedPostsData();
+    const allPostsDataSplitByTag = allPostsData.reduce((acc: any, post: any) => {
+        if (post.tags) {
+            post.tags.forEach((tag: string)=> {
+                if (!acc[tag]) acc[tag] = [];
 
+                acc[tag].push(post);
+            });
+        }
+        return acc;
+    }, {});
+    
     const allPostsDataSplitByYear = allPostsData.reduce((acc: any, post: any) => {
         const year = format(new Date(post.date), "yyyy");
-        // console.log(year);
         return {
             ...acc,
             [year]: acc[year] ? [...acc[year], post] : [post],
@@ -25,26 +34,33 @@ export async function getStaticProps() {
     return {
         props: {
             allPostsDataSplitByYear,
+            allPostsDataSplitByTag,
         },
     };
 }
 
-export default function Posts({ allPostsDataSplitByYear }: any) {
+export default function Posts({ allPostsDataSplitByYear, allPostsDataSplitByTag }: any) {
     const [openState, setOpenState] = useState<any>({});
-    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + useRouter().asPath;
+    const router = useRouter();
+    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + router.asPath;
+    const { tag } = router.query;
+    // const [theme, setTheme] = useState("light");
+    // useEffect(() => {
+    //     if (typeof window !== "undefined") {
+    //         setTheme((window as any).__theme);
+    //     }
+    // }, [(window as any).__theme]);
 
     useEffect(() => {
         const initOpenState = Object.keys(allPostsDataSplitByYear)
-            .reverse()
             .reduce((acc, year, idx) => {
                 return {
                     ...acc,
                     [year]: false,
                 };
             }, {});
-
         setOpenState(initOpenState);
-    }, [allPostsDataSplitByYear]);
+    }, []);
 
     return (
         <Layout>
@@ -52,8 +68,53 @@ export default function Posts({ allPostsDataSplitByYear }: any) {
                 <title>Young's Posts</title>
                 <link rel="canonical" href={canonicalURL} />
             </Head>
+            {/* TODO, Style 정리, 외부 스타일 라이브러리 사용해서 일관되게 수정할 것 */}
+            {/* TODO, 모바일 환경에서 게시글 그룹 메뉴 반응형 수정 필요 */}
+            <aside style={{ position: "fixed", left: "50px", height: "60%" }}>
+                <div style={{ borderBottom: `1px solid white` }}>
+                    <Link href={`/posts`}>
+                        All Posts
+                    </Link>
+                </div>
+                {Object.keys(allPostsDataSplitByTag).map((tag: string, idx: number) => {
+                    return (
+                        <div key={idx}>
+                            <Link href={`/posts?tag=${tag}`}>
+                                {tag}
+                            </Link>
+                        </div>
+                    );
+                })}
+            </aside>
             <section className={`${utilStyles.padding1px}`}>
-                {Object.keys(allPostsDataSplitByYear)
+                {tag && allPostsDataSplitByTag[tag as string] && (
+                    <>
+                        <div className={utilStyles.rotateTitleBy1Deg}>
+                            <span className={`${utilStyles.headingXl}`}>[...{tag}]</span>
+                        </div>
+                        <ul onClick={e => e.preventDefault()} className={utilStyles.list} style={{ marginTop: "10px" }}>
+                            {allPostsDataSplitByTag[tag as string].map(({ id, date, title }: any) => {
+                                return (
+                                    <li className={utilStyles.listItem} key={id}>
+                                        <Link href={`/posts/${id}`}>
+                                            <Card sx={{ boxShadow: "none", border: "1px solid #dfdfdf" }}>
+                                                <CardContent>
+                                                    <a className={utilStyles.headingMd}>{title}</a>
+                                                    <br />
+                                                    <small className={utilStyles.lightText}>
+                                                        <DateComponent dateString={date} />
+                                                    </small>
+                                                </CardContent>
+                                            </Card>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </>
+                )}
+            
+                {!tag && Object.keys(allPostsDataSplitByYear)
                     .reverse()
                     .map(year => {
                         return (
