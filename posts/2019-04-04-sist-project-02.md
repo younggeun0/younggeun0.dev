@@ -1,9 +1,8 @@
 ---
 layout: post
 title: SIST Project 02 - 👨‍💼👩‍💼 1949
-tags: [project]
+tags: [projects 🧑🏻‍💻]
 excerpt: "👨‍💼👩‍💼 구인구직 Java 프로그램"
-project: true
 date: 2019-04-04
 comments: true
 ---

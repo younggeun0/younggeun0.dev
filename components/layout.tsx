@@ -60,11 +60,6 @@ export default function Layout({ children, commentable = false, alertMessage = "
                             📝
                         </a>
                     </Tooltip>
-                    <Tooltip title="Projects">
-                        <a className={styles.menu} href="/projects">
-                            🧑🏻‍💻
-                        </a>
-                    </Tooltip>
                     <Tooltip title="younggeun0's Github">
                         <GitHubIcon
                             sx={{ marginRight: "16px", ":hover": { cursor: "pointer" } }}

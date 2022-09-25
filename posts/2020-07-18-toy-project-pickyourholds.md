@@ -1,9 +1,8 @@
 ---
 layout: post
 title: Pick Your Holds(a.k.a 찍볼) 🧗‍♂️🧗‍♀️
-tags: [project]
+tags: [projects 🧑🏻‍💻]
 excerpt: "HTML5 웹 애플리케이션"
-project: true
 date: 2020-07-18
 comments: true
 ---

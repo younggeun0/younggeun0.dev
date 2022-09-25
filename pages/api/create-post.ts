@@ -6,12 +6,12 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getPostString } from "lib/posts";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { title, category, markdown } = JSON.parse(req.body);
+    const { title, tags, markdown } = JSON.parse(req.body);
 
     if (title === "" || markdown === "") {
         res.status(400).end();
     }
-    const postData = getPostString(title, category, markdown);
+    const postData = getPostString(title, tags, markdown);
     const fileName = `posts/${format(new Date(), "yyyy-MM-dd")}-${title.split(" ")[0]}.md`;
     const postPath = path.resolve(path.join(process.cwd(), fileName));
 

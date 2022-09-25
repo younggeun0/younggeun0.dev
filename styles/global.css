@@ -28,8 +28,8 @@ html.light {
 }
 
 html.dark .MuiInput-input {
-  background-color: white;
-  color: black;
+  background-color: transparent;
+  color: white;
 }
 
 body .MuiCardContent-root {

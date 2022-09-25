@@ -1,9 +1,8 @@
 ---
 layout: post
 title: SIST Project 03 - 스터디 스토리📝
-tags: [SISTProject]
+tags: [projects 🧑🏻‍💻]
 excerpt: "📝 스터디 스토리 WEB 프로젝트"
-project: true
 date: 2019-05-15
 comments: true
 ---

@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 👨‍🎓 DGU(Dongguk University) Projects
-tags: [project]
+tags: [projects 🧑🏻‍💻]
 excerpt: "~2018 👨‍🎓 대학 프로젝트들"
-project: true
 date: 2018-11-07
 comments: true
 ---

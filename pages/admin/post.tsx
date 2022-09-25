@@ -41,7 +41,7 @@ const CreatePost = ({ session }: any) => {
     const router = useRouter();
     const [title, setTitle] = useState<string>("");
     const [markdown, setMarkdown] = useState<string>("");
-    const [category, setCategory] = useState<string>("post");
+    const [tags, setTags] = useState<string>("");
     const [open, setOpen] = useState<boolean>(false);
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
@@ -52,16 +52,12 @@ const CreatePost = ({ session }: any) => {
         setOpen(false);
     };
 
-    const handleChange = (e: any) => {
-        setCategory(e.target.value);
-    };
-
     const handleSubmit = async () => {
         const params: RequestInit = {
             method: "POST",
             body: JSON.stringify({
                 title,
-                category,
+                tags,
                 markdown,
             }),
         };
@@ -70,7 +66,7 @@ const CreatePost = ({ session }: any) => {
             .then((response: any) => {
                 setTitle("");
                 setMarkdown("");
-                setCategory("post");
+                setTags("");
                 setOpen(true);
                 return response.json();
             })
@@ -91,28 +87,21 @@ const CreatePost = ({ session }: any) => {
             <section className={`${utilStyles.padding1px}`}>
                 <Box>
                     <TextField
-                        label="제목"
                         name="title"
                         value={title}
                         variant="standard"
                         sx={{ width: "80%" }}
+                        placeholder="제목"
                         onChange={(e: any) => setTitle(e.target.value)}
                     />
-                    <FormControl sx={{ width: "20%" }}>
-                        <InputLabel id="category">구분</InputLabel>
-                        <Select
-                            labelId="category"
-                            name="category"
-                            id="demo-simple-select"
-                            value={category}
-                            label="구분"
-                            variant="standard"
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={"post"}>Post</MenuItem>
-                            <MenuItem value={"project"}>Project</MenuItem>
-                        </Select>
-                    </FormControl>
+                    <TextField
+                        name="tags"
+                        value={tags}
+                        variant="standard"
+                        sx={{ width: "20%" }}
+                        placeholder="구분"
+                        onChange={(e: any) => setTags(e.target.value)}
+                    />
                 </Box>
 
                 <MarkdownEditor markdown={markdown} setMarkdown={setMarkdown} />
