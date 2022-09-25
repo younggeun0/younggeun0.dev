@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Toy Projects - 🤖 Java SE Toy Projects
-tags: [ToyProject]
+tags: [project]
 excerpt: "🤖 Java SE 토이 프로젝트들"
 project: true
 date: 2019-04-04

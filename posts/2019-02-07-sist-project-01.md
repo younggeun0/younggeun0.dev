@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SIST Project 01 - 🐥 로그 분석 Java 프로그램
-tags: [SISTProject]
+tags: [project]
 excerpt: "🐥 로그 분석 Java 프로그램"
 project: true
 date: 2019-02-07

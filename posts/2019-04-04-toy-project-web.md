@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Toy Projects - 🤖 Web Toy ProjectsWeb
-tags: [ToyProject]
+tags: [project]
 excerpt: " 🤖 Web Toy Projects"
 project: true
 date: 2019-04-19

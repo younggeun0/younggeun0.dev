@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 리눅스 폰트 설치
-tags: [TIL, Linux]
+tags: [linux]
 excerpt: "TIL - Linux"
 date: 2020-07-16
 feature: https://github.com/younggeun0/younggeun0.github.io/blob/master/_posts/img/til/til.png?raw=true

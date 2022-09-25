@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 한 PC에 여러 개의 git 계정 설정하는 방법
-tags: [TIL, git]
+tags: [git]
 excerpt: "TIL - git"
 date: 2021-08-05
 feature: https://github.com/younggeun0/younggeun0.github.io/blob/master/_posts/img/til/til.png?raw=true

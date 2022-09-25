@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 리눅스 시스템 지역, 언어 설정 확인
-tags: [TIL, Linux]
+tags: [linux]
 excerpt: "TIL - Linux"
 date: 2020-07-15
 feature: https://github.com/younggeun0/younggeun0.github.io/blob/master/_posts/img/til/til.png?raw=true

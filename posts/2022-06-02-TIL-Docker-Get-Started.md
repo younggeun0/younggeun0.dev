@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Docker - Get Started 정리(Part 1 ~ 8)
-tags: [Docker]
+tags: [docker]
 excerpt: "Docker Document - Get Started 정리"
 date: 2022-06-02
 feature: https://images.velog.io/images/ragnarok_code/post/2e1dae94-5de0-4724-93d0-bb8eb0692b7a/docker_icon.png

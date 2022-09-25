@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JSP 파일로 JS 파일 캐시 지우기
-tags: [TIL, JS, JSP]
+tags: [javaScript]
 excerpt: "TIL - JavaScript, JSP"
 date: 2020-07-12
 feature: https://github.com/younggeun0/younggeun0.github.io/blob/master/_posts/img/til/til.png?raw=true

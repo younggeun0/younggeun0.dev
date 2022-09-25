@@ -1,7 +1,7 @@
 ---
 layout: post
 title: iOS 브라우저에서 input type=button인 경우 click해도 focus가 생기지 않는 문제
-tags: [TIL, iOS]
+tags: [web]
 excerpt: "TIL - iOS"
 date: 2020-07-19
 feature: https://github.com/younggeun0/younggeun0.github.io/blob/master/_posts/img/til/til.png?raw=true
