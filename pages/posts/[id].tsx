@@ -1,22 +1,23 @@
 import React from "react";
 import Head from "next/head";
 import Layout from "../../components/layout";
-import Date from "../../components/date";
+import DateComp from "../../components/date";
 import utilStyles from "../../styles/utils.module.css";
-import { getAllPostIds, getPostData } from "../../lib/posts";
+import { getAllNotionPostIds, getSingleNotionPost } from "../../lib/posts";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 
-export const getStaticPaths: GetStaticPaths = () => {
-    const paths = getAllPostIds();
+export const getStaticPaths: GetStaticPaths = async () => {
+    const ids = await getAllNotionPostIds();
+
     return {
-        paths,
+        paths: ids.map(id => `/posts/${id}`),
         fallback: false,
     };
 };
 
 export const getStaticProps: GetStaticProps = async context => {
     // Fetch necessary data for the blog post using params.id
-    const postData = await getPostData(context.params?.id as string);
+    const postData = await getSingleNotionPost(context.params?.id as string);
     return {
         props: {
             postData,
@@ -40,7 +41,7 @@ export default function Post({ postData }: any) {
                 <h1 className={utilStyles.headingXl}>{postData.title}</h1>
             </article>
             <div className={utilStyles.lightText}>
-                <Date dateString={postData.date} />
+                <DateComp dateString={postData.date} />
             </div>
             <div className={utilStyles.content} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </Layout>

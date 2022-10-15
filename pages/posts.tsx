@@ -70,7 +70,7 @@ export default function Posts({ allPostsDataSplitByYear, allPostsDataSplitByTag 
             </Head>
             {/* TODO, Style 정리, 외부 스타일 라이브러리 사용해서 일관되게 수정할 것 */}
             {/* TODO, 모바일 환경에서 게시글 그룹 메뉴 반응형 수정 필요 */}
-            <aside className={`${utilStyles.categoryMenu}`}>
+            {/* <aside className={`${utilStyles.categoryMenu}`}>
                 <div style={{ borderBottom: `1px solid white` }}>
                     <Link href={`/posts`}>
                         All Posts
@@ -85,7 +85,7 @@ export default function Posts({ allPostsDataSplitByYear, allPostsDataSplitByTag 
                         </div>
                     );
                 })}
-            </aside>
+            </aside> */}
             <section className={`${utilStyles.padding1px}`}>
                 {tag && allPostsDataSplitByTag[tag as string] && (
                     <>
