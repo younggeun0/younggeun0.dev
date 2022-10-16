@@ -4,20 +4,21 @@ import Layout from "../components/layout";
 import Link from "next/link";
 import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
+import { getNotionPosts, getSortedPostsData } from "../lib/posts";
 import { Card, CardContent } from "@mui/material";
 import { siteTitle } from "./_document";
 
 export async function getStaticProps() {
-    const recentPostsData = getSortedPostsData(true);
+    const recentPosts = await getNotionPosts(true);
+
     return {
         props: {
-            recentPostsData,
+            recentPosts,
         },
     };
 }
 
-export default function Home({ recentPostsData }: any) {
+export default function Home({ recentPosts }: any) {
     return (
         <Layout>
             <Head>
@@ -31,7 +32,7 @@ export default function Home({ recentPostsData }: any) {
                     <span className={utilStyles.headingXl}>[...recent_posts🔥]</span>
                 </div>
                 <ul className={utilStyles.list} style={{ marginTop: "10px" }}>
-                    {recentPostsData.map(({ id, date, title }: any) => (
+                    {recentPosts.map(({ id, date, title }: any) => (
                         <li className={utilStyles.listItem} key={id}>
                             <Link href={`/posts/${id}`}>
                                 <Card sx={{ boxShadow: 'none', border: "1px solid #dfdfdf" }}>

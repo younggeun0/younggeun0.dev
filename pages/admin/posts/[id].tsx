@@ -17,11 +17,9 @@ import {
 import { useEffect, useState } from "react";
 import MarkdownEditor from "../../../components/react-md-editor/MdEditor";
 import { RequestInit } from "next/dist/server/web/spec-extension/request";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { getAllPostIds, getPostData } from "lib/posts";
+import { getPostData } from "lib/posts";
 import { getSession, useSession } from "next-auth/react"
 import { useRouter } from "next/router";
-import AccessDenied from "components/accessDenied";
 
 export async function getServerSideProps(context: any) {
     const session = await getSession(context);

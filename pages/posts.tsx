@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import Layout from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { Card, CardContent } from "@mui/material";
-import { getSortedPostsData } from "lib/posts";
+import { getNotionPosts, getSortedPostsData } from "lib/posts";
 import Link from "next/link";
 import DateComponent from "components/date";
 import { format } from "date-fns";
@@ -11,19 +11,22 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 export async function getStaticProps(props: any) {
-    const allPostsData = getSortedPostsData();
-    const allPostsDataSplitByTag = allPostsData.reduce((acc: any, post: any) => {
-        if (post.tags) {
-            post.tags.forEach((tag: string)=> {
-                if (!acc[tag]) acc[tag] = [];
+    // posts 전체 목록 조회 로직 리팩토링 필요
+    // 1. 데이터베이스 내 모든 글을 조회, 날짜순 정렬해서 표시
 
-                acc[tag].push(post);
-            });
-        }
-        return acc;
-    }, {});
-    
-    const allPostsDataSplitByYear = allPostsData.reduce((acc: any, post: any) => {
+    const allPostsData = await getNotionPosts();
+    // const allPostsDataSplitByTag = allPostsData.reduce((acc: any, post: any) => {
+    //     if (post.tags) {
+    //         post.tags.forEach((tag: string)=> {
+    //             if (!acc[tag]) acc[tag] = [];
+
+    //             acc[tag].push(post);
+    //         });
+    //     }
+    //     return acc;
+    // }, {});
+
+    const allPostsDataSplitByYear = allPostsData!.reduce((acc: any, post: any) => {
         const year = format(new Date(post.date), "yyyy");
         return {
             ...acc,
@@ -34,7 +37,7 @@ export async function getStaticProps(props: any) {
     return {
         props: {
             allPostsDataSplitByYear,
-            allPostsDataSplitByTag,
+            // allPostsDataSplitByTag,
         },
     };
 }
@@ -70,7 +73,7 @@ export default function Posts({ allPostsDataSplitByYear, allPostsDataSplitByTag 
             </Head>
             {/* TODO, Style 정리, 외부 스타일 라이브러리 사용해서 일관되게 수정할 것 */}
             {/* TODO, 모바일 환경에서 게시글 그룹 메뉴 반응형 수정 필요 */}
-            <aside className={`${utilStyles.categoryMenu}`}>
+            {/* <aside className={`${utilStyles.categoryMenu}`}>
                 <div style={{ borderBottom: `1px solid white` }}>
                     <Link href={`/posts`}>
                         All Posts
@@ -85,7 +88,7 @@ export default function Posts({ allPostsDataSplitByYear, allPostsDataSplitByTag 
                         </div>
                     );
                 })}
-            </aside>
+            </aside> */}
             <section className={`${utilStyles.padding1px}`}>
                 {tag && allPostsDataSplitByTag[tag as string] && (
                     <>
