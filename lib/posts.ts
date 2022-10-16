@@ -12,7 +12,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-export async function getNotionPosts(recent: boolean) {
+export async function getNotionPosts(recent: boolean = false) {
     try {
         let posts = [];
         const response = await notion.databases.query({
@@ -37,7 +37,13 @@ export async function getNotionPosts(recent: boolean) {
                 };
             })
         } else {
-            posts = response.results;
+            posts = response.results.map((post: any) => {
+                return {
+                    id: post.id,
+                    date: post.created_time,
+                    title: post.properties.이름.title[0].plain_text,
+                };
+            });
         }
 
         return posts;

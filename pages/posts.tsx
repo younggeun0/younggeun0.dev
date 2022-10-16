@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import Layout from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { Card, CardContent } from "@mui/material";
-import { getSortedPostsData } from "lib/posts";
+import { getNotionPosts, getSortedPostsData } from "lib/posts";
 import Link from "next/link";
 import DateComponent from "components/date";
 import { format } from "date-fns";
@@ -11,19 +11,22 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 export async function getStaticProps(props: any) {
-    const allPostsData = getSortedPostsData();
-    const allPostsDataSplitByTag = allPostsData.reduce((acc: any, post: any) => {
-        if (post.tags) {
-            post.tags.forEach((tag: string)=> {
-                if (!acc[tag]) acc[tag] = [];
+    // posts 전체 목록 조회 로직 리팩토링 필요
+    // 1. 데이터베이스 내 모든 글을 조회, 날짜순 정렬해서 표시
 
-                acc[tag].push(post);
-            });
-        }
-        return acc;
-    }, {});
-    
-    const allPostsDataSplitByYear = allPostsData.reduce((acc: any, post: any) => {
+    const allPostsData = await getNotionPosts();
+    // const allPostsDataSplitByTag = allPostsData.reduce((acc: any, post: any) => {
+    //     if (post.tags) {
+    //         post.tags.forEach((tag: string)=> {
+    //             if (!acc[tag]) acc[tag] = [];
+
+    //             acc[tag].push(post);
+    //         });
+    //     }
+    //     return acc;
+    // }, {});
+
+    const allPostsDataSplitByYear = allPostsData!.reduce((acc: any, post: any) => {
         const year = format(new Date(post.date), "yyyy");
         return {
             ...acc,
@@ -34,7 +37,7 @@ export async function getStaticProps(props: any) {
     return {
         props: {
             allPostsDataSplitByYear,
-            allPostsDataSplitByTag,
+            // allPostsDataSplitByTag,
         },
     };
 }
