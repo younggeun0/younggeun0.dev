@@ -1,24 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import Head from "next/head";
-import Layout from "../components/layout";
+import Layout from "../components/layout/Layout";
 import utilStyles from "../styles/utils.module.css";
-import { Box, IconButton, Typography } from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { ThemeContext } from "context/ThemeContext";
 import { useRouter } from "next/router";
 
 export default function About() {
-    const { data: session, status } = useSession();
-    const { theme } = useContext(ThemeContext);
     const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + useRouter().asPath;
     
     return (
         <Layout>
             <Head>
-                <title>about Young</title>
+                <title>About Young</title>
                 <link rel="canonical" href={canonicalURL} />
             </Head>
 
@@ -26,20 +20,7 @@ export default function About() {
                 <Box sx={{ margin: "3rem 0" }}>
                     <span className={utilStyles.heading2Xl}>
                         안녕하세요!
-                        <br />웹 개발자 오영근입니다
-                        {" "}
-                        <span
-                            onClick={(e: any) => {
-                                e.preventDefault();
-                                if (session) {
-                                    signOut();
-                                } else {
-                                    signIn();
-                                }
-                            }}
-                        >
-                            🐢
-                        </span>
+                        <br />웹 개발자 오영근입니다 🐢
                     </span>
                 </Box>
                 <Box sx={{ textAlign: "center" }}>
@@ -158,45 +139,6 @@ export default function About() {
                         2010.03 - 2018.08
                     </Typography>
                 </Box>
-
-                <Box sx={{ margin: "5rem 0 0" }}>
-                    <span className={utilStyles.headingXl}>Contact</span>
-                    <hr />
-                </Box>
-                {theme && (
-                    <Box sx={{ display: "flex", margin: "3rem 0 5rem", justifyContent: "space-around" }}>
-                        <IconButton
-                            size="large"
-                            color="default"
-                            aria-label="email"
-                            component="label"
-                            sx={{
-                                color: theme.type === "light" ? "black" : "white",
-                                opacity: 0.5,
-                            }}
-                            onClick={() => {
-                                location.href = "mailto:dureng5@gmail.com";
-                            }}
-                        >
-                            <EmailIcon fontSize="large" />
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            color="default"
-                            aria-label="github"
-                            component="label"
-                            sx={{
-                                color: theme.type === "light" ? "black" : "white",
-                                opacity: 0.5,
-                            }}
-                            onClick={() => {
-                                location.href = "https://github.com/younggeun0";
-                            }}
-                        >
-                            <GitHubIcon fontSize="large" />
-                        </IconButton>
-                    </Box>
-                )}
             </article>
         </Layout>
     );

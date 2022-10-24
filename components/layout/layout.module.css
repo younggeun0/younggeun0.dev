@@ -16,27 +16,36 @@
     margin-bottom: 0;
 }
 .container h2 {
+    margin-top: 3rem;
     margin-bottom: 0;
 }
 .container h3 {
+    margin-top: 3rem;
     margin-bottom: 0;
 }
+.container ol {
+    margin-top: 0;
+}
 .container ul {
-    margin: 0;
+    margin-top: 0;
 }
 .container li {
     margin-top: 0;
 }
+.container p {
+    margin-bottom: 0;
+}
 
 .header {
+    font-size: 1.4rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 0 15px;
 }
 
 .menu {
-    margin-right: 16px;
+    margin-right: 24px;
     padding: 16px 0;
     text-decoration: none;
 }
@@ -48,7 +57,7 @@
 
 .post_main {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     cursor: pointer;
     margin: 4rem 0 0;
     color: #1976d2;

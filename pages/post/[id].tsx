@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import Layout from "../../components/layout";
-import DateComp from "../../components/date";
+import Layout from "../../components/layout/Layout";
+import DateComp from "../../components/DateComp";
 import utilStyles from "../../styles/utils.module.css";
 import { getAllNotionPostIds, getSingleNotionPost } from "../../lib/posts";
 import { GetStaticPaths, GetStaticProps } from "next/types";
@@ -10,7 +10,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const ids = await getAllNotionPostIds();
 
     return {
-        paths: ids.map(id => `/posts/${id}`),
+        paths: ids.map(id => `/post/${id}`),
         fallback: false,
     };
 };

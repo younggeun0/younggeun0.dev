@@ -1,5 +1,5 @@
 import React from "react";
-import { parseISO, format } from "date-fns";
+import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 
 export default function DateComp({ dateString }: { dateString: string }) {
