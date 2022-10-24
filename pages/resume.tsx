@@ -54,19 +54,35 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         Web Developer
                         <br />
-                        2022.03 - 현재
+                        2022.03 - 2022.10
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
                         <strong>Tech Stacks</strong>
                         <br />
-                        FE : ReactJS(react-admin, mui)
+                        Frontend : ReactJS(react-admin, mui)
                         <br />
-                        BE : NodeJS(express), Spring, PostgreSQL, Oracle
+                        Backend : Node.JS(Express.js), Spring
+                        <br />
+                        Database: PostgreSQL, Oracle
+                        <br />
+                        SCM: Gitlab
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
-                        차세대 관제 시스템을 개발중입니다
+                        사내에서 사용할 차세대 포털 서비스 개발을 담당했습니다
+                        <br />
+                        ・ Keycloak을 이용한 SSO 구현, Dooray! 그룹웨어 연동
+                        <br />
+                        ・ nivo를 이용한 통계 대시보드 구축
+                        <br />
+                        ・ 칸반보드 형태의 VOC 관리 서비스 개발
+                        <br />
+                        ・ Express.js 백앤드 서버 SpringBoot로 이관
+                        <br />
+                        ・ SCM을 SVN에서 Gitlab으로 이관
+                        <br />
+                        ・ 사내 스터디 개설, 운영
                     </Typography>
                 </Box>
                 {/* <hr style={{ color: "#333333"}} /> */}
@@ -87,15 +103,15 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         OZ연구소 리포트2팀 신입 팀원으로 OZReport HTML Viewer 솔루션 개발업무를 담당했습니다
                         <br/>
-                        ・ 스크린 리더로 뷰어 텍스트를 읽을 수 있도록 접근성을 개선했습니다
+                        ・ 뷰어 내용을 스크린 리더(센스리더)로 읽을 수 있도록 접근성 개선
                         <br/>
-                        ・ 전자문서 출력 시 MarkAny, SGA 솔루션 바코드가 같이 출력되는 연동작업을 했습니다
+                        ・ 전자문서 출력 시 인증 바코드 솔루션 연동(MarkAny, SGA)
                         <br/>
-                        ・ 뷰어 내용을 수정가능하도록 WYSIWYG 편집기(summernote.js)를 임배딩했습니다
+                        ・ 뷰어에 WYSIWYG 편집기(summernote.js) 임배딩 기능 개발
                         <br/>
-                        ・ webrtc, opencv.js, zxing.js를 이용하여 인감스캔 기능을 개발했습니다
+                        ・ WebRTC, opencv.js, zxing.js 라이브러리를 이용한 인감스캔, 카드스캔 기능 개발
                         <br/>
-                        ・ 뷰어 동기화를 위한 중계서버 모듈을 개발했습니다
+                        ・ 뷰어 동기화 중계서버 모듈을 개발
                     </Typography>
                 </Box>
 
