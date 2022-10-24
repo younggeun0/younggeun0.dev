@@ -1,6 +1,7 @@
 export type pageObj = {
     id: string;
     title: string;
+    subtitle: string;
     date: string;
     tags: tagObj[];
 };
