@@ -31,14 +31,14 @@ export default function Header() {
                     </Tooltip>
                 )}
                 <Tooltip title="About">
-                    <a className={styles.menu} href="/about">
-                        🐢
-                    </a>
+                    <Link href="/about">
+                        <span className={styles.menu}>🐢</span>
+                    </Link>
                 </Tooltip>
                 <Tooltip title="Posts">
-                    <a className={styles.menu} href="/posts">
-                        📝
-                    </a>
+                    <Link href="/posts">
+                        <span className={styles.menu}>📝</span>
+                    </Link>
                 </Tooltip>
             </Box>
         </header>

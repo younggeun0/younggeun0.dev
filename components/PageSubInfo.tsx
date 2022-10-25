@@ -9,7 +9,7 @@ export default function PageSubInfo({ page }: { page: pageObj }) {
             <small style={{ margin: "10px 0" }}>{page.subtitle}</small>
             <small>
                 {page.tags.map((tag: tagObj) => (
-                    <TagChip tag={tag} />
+                    <TagChip key={tag.id} tag={tag} />
                 ))}
             </small>
             <small style={{ marginTop: "5px" }}>
