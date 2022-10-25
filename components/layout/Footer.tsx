@@ -8,7 +8,7 @@ export default function Footer() {
     return (
         <footer style={{ marginTop: "70px", textAlign: "center" }}>
             <div>
-                <Tooltip title="younggeun0's Github">
+                <Tooltip title="young's Github">
                     <GitHubIcon
                         sx={{ marginRight: "16px", ":hover": { cursor: "pointer" } }}
                         onClick={() => {
@@ -16,7 +16,7 @@ export default function Footer() {
                         }}
                     />
                 </Tooltip>
-                <Tooltip title="younggeun0's Github">
+                <Tooltip title="young's Email">
                     <EmailIcon
                         sx={{ marginRight: "16px", ":hover": { cursor: "pointer" } }}
                         onClick={() => {

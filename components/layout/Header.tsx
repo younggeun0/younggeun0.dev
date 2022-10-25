@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Box, Tooltip } from "@mui/material";
 import styles from "./layout.module.css";
 import { ThemeContext } from "context/ThemeContext";
+import SearchPage from "./SearchPage";
 
 export default function Header() {
     const { theme, toggleTheme } = useContext(ThemeContext);
@@ -17,6 +18,17 @@ export default function Header() {
             </Box>
 
             <Box sx={{ display: "flex", alignItems: "center" }}>
+                <SearchPage />
+                <Tooltip title="About">
+                    <Link href="/about">
+                        <span className={styles.menu}>🐢</span>
+                    </Link>
+                </Tooltip>
+                <Tooltip title="Posts">
+                    <Link href="/posts">
+                        <span className={styles.menu}>📝</span>
+                    </Link>
+                </Tooltip>
                 {theme && (
                     <Tooltip title="Theme">
                         <span
@@ -30,16 +42,6 @@ export default function Header() {
                         </span>
                     </Tooltip>
                 )}
-                <Tooltip title="About">
-                    <Link href="/about">
-                        <span className={styles.menu}>🐢</span>
-                    </Link>
-                </Tooltip>
-                <Tooltip title="Posts">
-                    <Link href="/posts">
-                        <span className={styles.menu}>📝</span>
-                    </Link>
-                </Tooltip>
             </Box>
         </header>
     );

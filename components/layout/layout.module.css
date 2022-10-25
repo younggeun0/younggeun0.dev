@@ -40,7 +40,7 @@
 .container iframe {
     margin: 30px 0;
     width: 100%;
-    min-height: 500px;
+    /* min-height: 500px; */
 }
 
 .header {
@@ -52,7 +52,7 @@
 }
 
 .menu {
-    margin-right: 24px;
+    margin: 0 12px;
     padding: 16px 0;
     text-decoration: none;
 }
