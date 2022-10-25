@@ -8,6 +8,12 @@ const notion = new Client({ auth: process.env.NOTION_KEY });
 const databaseId = process.env.NOTION_DATABASE_ID;
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
+n2m.setCustomTransformer('embed', async (block) => {
+    const {embed} = block as any;
+    if (!embed?.url) return '';
+    return `<iframe src="${embed?.url}"></iframe>`;
+});
+
 export async function getRecentPages(): Promise<pageObj[]> {
     try {
         const response = await notion.databases.query({
