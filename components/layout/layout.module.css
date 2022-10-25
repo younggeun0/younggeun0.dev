@@ -59,7 +59,7 @@
 
 .post_main {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     cursor: pointer;
     margin: 4rem 0 0;
     color: #1976d2;
