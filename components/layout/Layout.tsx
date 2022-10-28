@@ -27,32 +27,30 @@ export default function Layout({ children, commentable = false, alertMessage = "
                     <>
                         <Comments />
                         <Box className={styles.post_main}>
-                            <Box>
-                                <ShareIcon
-                                    fontSize="large"
-                                    onClick={() => {
-                                        const dummy = document.createElement("input");
-                                        const text = location.href;
+                            <ShareIcon
+                                fontSize="large"
+                                onClick={() => {
+                                    const dummy = document.createElement("input");
+                                    const text = location.href;
 
-                                        document.body.appendChild(dummy);
-                                        dummy.value = text;
-                                        dummy.select();
-                                        document.execCommand("copy");
-                                        document.body.removeChild(dummy);
-                                        setOpen(true);
-                                    }}
-                                    sx={{
-                                        mr: "1rem",
-                                    }}
-                                />
-                                <ArrowCircleUpIcon
-                                    fontSize="large"
-                                    onClick={() => {
-                                        document.body.scrollTop = 0;
-                                        document.documentElement.scrollTop = 0;
-                                    }}
-                                />
-                            </Box>
+                                    document.body.appendChild(dummy);
+                                    dummy.value = text;
+                                    dummy.select();
+                                    document.execCommand("copy");
+                                    document.body.removeChild(dummy);
+                                    setOpen(true);
+                                }}
+                                sx={{
+                                    mr: "1rem",
+                                }}
+                            />
+                            <ArrowCircleUpIcon
+                                fontSize="large"
+                                onClick={() => {
+                                    document.body.scrollTop = 0;
+                                    document.documentElement.scrollTop = 0;
+                                }}
+                            />
                         </Box>
                     </>
                 )}
