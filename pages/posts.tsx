@@ -3,10 +3,10 @@ import Layout from "../components/layout/Layout";
 import utilStyles from "../styles/utils.module.css";
 import { getTags } from "lib/posts";
 import Link from "next/link";
-import Head from "next/head";
 
 import { useRouter } from "next/router";
 import { tagObj } from "types";
+import Opengraph from "components/Opengraph";
 
 export async function getStaticProps(props: any) {
     const tags = await getTags();
@@ -20,14 +20,11 @@ export async function getStaticProps(props: any) {
 
 export default function TagList({ tags }: any) {
     const router = useRouter();
-    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + router.asPath;
 
     return (
         <Layout>
-            <Head>
-                <title>Posts</title>
-                <link rel="canonical" href={canonicalURL} />
-            </Head>
+            <Opengraph title="Posts" description="태그별 게시글" />
+
             <section className={`${utilStyles.padding1px}`}>
                 {tags.map((tag: tagObj) => {
                     return (

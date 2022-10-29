@@ -1,20 +1,15 @@
 import React from "react";
-import Head from "next/head";
 import Layout from "../components/layout/Layout";
 import utilStyles from "../styles/utils.module.css";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Opengraph from "components/Opengraph";
 
 export default function About() {
-    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + useRouter().asPath;
     
     return (
         <Layout>
-            <Head>
-                <title>About Young</title>
-                <link rel="canonical" href={canonicalURL} />
-            </Head>
+            <Opengraph title="About Young" description="young's resume" />
 
             <article>
                 <Box sx={{ margin: "3rem 0" }}>

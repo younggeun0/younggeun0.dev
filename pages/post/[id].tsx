@@ -5,6 +5,7 @@ import utilStyles from "../../styles/utils.module.css";
 import { getAllNotionPostIds, getSinglePageById } from "../../lib/posts";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 import PageSubInfo from "components/PageSubInfo";
+import Opengraph from "components/Opengraph";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const ids = await getAllNotionPostIds();
@@ -28,13 +29,9 @@ export const getStaticProps: GetStaticProps = async context => {
 export default function Post({ page }: any) {
     return (
         <Layout commentable>
+            <Opengraph title={page.title} description={page.subtitle} />
             <Head>
-                <meta name="description" content={page.title} />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content={page.title} />
-                <meta property="og:description" content={page.title} />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-dark.min.css" />
-                <title>{page.title}</title>
             </Head>
 
             <header style={{ textAlign: "center" }}>

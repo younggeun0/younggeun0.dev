@@ -1,10 +1,10 @@
 import React from "react";
-import Head from "next/head";
 import Layout from "../../components/layout/Layout";
 import utilStyles from "../../styles/utils.module.css";
 import { getPagesByTag, getTags } from "../../lib/posts";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 import PageList from "components/PageList";
+import Opengraph from "components/Opengraph";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const tags = await getTags();
@@ -30,9 +30,7 @@ export const getStaticProps: GetStaticProps = async context => {
 export default function Post({ tagName, pages }: any) {
     return (
         <Layout commentable={false}>
-            <Head>
-                <title>{tagName}</title>
-            </Head>
+            <Opengraph title={`Posts about ${tagName}...`} description={`${tagName}관련 게시글`} />
             <section className={`${utilStyles.padding1px}`}>
                 <PageList title={`[...${tagName}]`} pages={pages} />
             </section>

@@ -1,10 +1,9 @@
 import React from "react";
-import Head from "next/head";
 import Layout from "../components/layout/Layout";
 import PageList from "../components/PageList";
 import utilStyles from "../styles/utils.module.css";
 import { getRecentPages } from "../lib/posts";
-import { siteTitle } from "./_document";
+import Opengraph from "components/Opengraph";
 
 export async function getStaticProps() {
     const recentPages = await getRecentPages();
@@ -19,9 +18,7 @@ export async function getStaticProps() {
 export default function Home({ recentPages }: any) {
     return (
         <Layout>
-            <Head>
-                <title>{siteTitle}</title>
-            </Head>
+            <Opengraph title="Recent Posts" description="최근 게시글" />
 
             <section className={`${utilStyles.padding1px}`}>
                 <PageList title="[...recent_posts🔥]" pages={recentPages} />

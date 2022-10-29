@@ -1,6 +1,6 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Opengraph from "../components/Opengraph";
 
-export const siteTitle = "(younggeun0: 🐢) => dev";
 export default function Document() {
     return (
         <Html>
@@ -9,13 +9,6 @@ export default function Document() {
                 <meta httpEquiv="x-ua-compatible" content="ie=edge" />
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="google-site-verification" content="JTXpGI48AchnhjFqLKv-MwGTrt8P-vXMHK2C54RJbE4" />
-                <meta property="og:site_name" content={siteTitle} />
-                {/* <meta
-                    property="og:image"
-                    content={`https://og-image.vercel.app/${encodeURI(
-                        siteTitle
-                    )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-                /> */}
                 <link
                     rel="stylesheet"
                     as="style"
