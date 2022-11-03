@@ -119,28 +119,33 @@ export async function getPagesByTag(tagName: string): Promise<pageObj[]> {
 }
 
 export async function getSinglePageById(id: string) {
-    const response: any = await notion.pages.retrieve({ page_id: id });
-    const mdblocks = await n2m.pageToMarkdown(id);
-    const mdString = n2m.toMarkdownString(mdblocks);
+    try {
+        const response: any = await notion.pages.retrieve({ page_id: id });
+        const mdblocks = await n2m.pageToMarkdown(id);
+        const mdString = n2m.toMarkdownString(mdblocks);
 
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(mdString);
+        // Use gray-matter to parse the post metadata section
+        const matterResult = matter(mdString);
 
-    // Use remark to convert markdown into HTML string
-    const contentHtml = await markdownToHtml(matterResult.content);
+        // Use remark to convert markdown into HTML string
+        const contentHtml = await markdownToHtml(matterResult.content);
 
-    // Combine the data with the id and contentHtml
-    return {
-        date: response.created_time,
-        title: response.properties.이름.title[0].plain_text,
-        subtitle: response.properties.subtitle.rich_text.reduce((str: string, { plain_text }: { plain_text: string }) => {
-            return str + plain_text;
-        }, ""),
-        tags: response.properties.tags.multi_select,
-        contentHtml,
-        // markdown: matterResult.content,
-        // ...matterResult.data,
-    };
+        // Combine the data with the id and contentHtml
+        return {
+            date: response.created_time,
+            title: response.properties.이름.title[0].plain_text,
+            subtitle: response.properties.subtitle.rich_text.reduce((str: string, { plain_text }: { plain_text: string }) => {
+                return str + plain_text;
+            }, ""),
+            tags: response.properties.tags.multi_select,
+            contentHtml,
+            // markdown: matterResult.content,
+            // ...matterResult.data,
+        };
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
 }
 
 export async function getAllNotionPostIds() {
