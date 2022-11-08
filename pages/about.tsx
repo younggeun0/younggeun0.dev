@@ -26,7 +26,43 @@ export default function About() {
                     <hr />
                 </Box>
                 <Box sx={{ margin: "3rem 0" }}>
-                    <span className={utilStyles.headingLg}>에버온</span>
+                    <span className={utilStyles.headingLg}>메디쿼터스 Mediquitous</span>
+                    <Typography variant="body2" className={utilStyles.body2}>
+                        Web Developer
+                        <br />
+                        2022.11 ~
+                    </Typography>
+                    <br />
+                    {/* <Typography variant="body2" className={utilStyles.body2}>
+                        <strong>Tech Stacks</strong>
+                        <br />
+                        Frontend : ReactJS(react-admin, mui)
+                        <br />
+                        Backend : Node.JS(Express.js), Spring
+                        <br />
+                        Database: PostgreSQL, Oracle
+                        <br />
+                        SCM: Gitlab
+                    </Typography>
+                    <br />
+                    <Typography variant="body2" className={utilStyles.body2}>
+                        사내에서 사용할 차세대 포털 서비스 개발을 담당했습니다
+                        <br />
+                        ・ Keycloak을 이용한 SSO 구현, Dooray! 그룹웨어 연동
+                        <br />
+                        ・ nivo를 이용한 통계 대시보드 구축
+                        <br />
+                        ・ 칸반보드 형태의 VOC 관리 서비스 개발
+                        <br />
+                        ・ Express.js 백앤드 서버 SpringBoot로 이관
+                        <br />
+                        ・ SCM을 SVN에서 Gitlab으로 이관
+                        <br />
+                        ・ 사내 스터디 개설, 운영
+                    </Typography> */}
+                </Box>
+                <Box sx={{ margin: "3rem 0" }}>
+                    <span className={utilStyles.headingLg}>에버온 everon</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Web Developer
                         <br />
@@ -61,9 +97,8 @@ export default function About() {
                         ・ 사내 스터디 개설, 운영
                     </Typography>
                 </Box>
-                {/* <hr style={{ color: "#333333"}} /> */}
                 <Box sx={{ margin: "5rem 0" }}>
-                    <span className={utilStyles.headingLg}>포시에스</span>
+                    <span className={utilStyles.headingLg}>포시에스 FORCS</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Software Engineer
                         <br />
