@@ -3,8 +3,11 @@ import React from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Tooltip } from "@mui/material";
+import { useRouter } from 'next/router'
 
 export default function Footer() {
+    const router = useRouter();
+    
     return (
         <footer style={{ marginTop: "70px", textAlign: "center" }}>
             <div>
@@ -12,7 +15,7 @@ export default function Footer() {
                     <GitHubIcon
                         sx={{ marginRight: "16px", ":hover": { cursor: "pointer" } }}
                         onClick={() => {
-                            location.href = "https://github.com/younggeun0";
+                            router.push("https://github.com/younggeun0");
                         }}
                     />
                 </Tooltip>
@@ -20,7 +23,7 @@ export default function Footer() {
                     <EmailIcon
                         sx={{ marginRight: "16px", ":hover": { cursor: "pointer" } }}
                         onClick={() => {
-                            location.href = "mailto:dureng5@gmail.com";
+                            router.push("mailto:dureng5@gmail.com");
                         }}
                     />
                 </Tooltip>
