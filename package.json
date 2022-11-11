@@ -19,7 +19,6 @@
     "gray-matter": "^4.0.3",
     "multer": "^1.4.5-lts.1",
     "next": "latest",
-    "next-auth": "^4.10.2",
     "next-remove-imports": "^1.0.6",
     "next-sitemap": "^3.1.29",
     "notion-to-md": "^2.5.5",
