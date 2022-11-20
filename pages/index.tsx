@@ -5,9 +5,8 @@ import utilStyles from "../styles/utils.module.css";
 import { getRecentPages } from "../lib/posts";
 import Opengraph from "components/Opengraph";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const recentPages = await getRecentPages();
-
     return {
         props: {
             recentPages,
