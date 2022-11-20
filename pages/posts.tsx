@@ -8,9 +8,8 @@ import { useRouter } from "next/router";
 import { tagObj } from "types";
 import Opengraph from "components/Opengraph";
 
-export async function getStaticProps(props: any) {
+export async function getServerSideProps() {
     const tags = await getTags();
-
     return {
         props: {
             tags,
