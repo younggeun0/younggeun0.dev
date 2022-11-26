@@ -1,6 +1,7 @@
 :root {
   --background-color: black;
   --font-color: white;
+  --link-color: #1976d2;
 }
 
 html,
@@ -42,7 +43,7 @@ body .MuiCardContent-root {
 }
 
 a {
-  color: #1976d2;
+  color: var(--link-color);
   text-decoration: none;
 }
 
