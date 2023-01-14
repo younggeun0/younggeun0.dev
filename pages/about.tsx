@@ -33,33 +33,21 @@ export default function About() {
                         2022.11 ~
                     </Typography>
                     <br />
-                    {/* <Typography variant="body2" className={utilStyles.body2}>
+                    <Typography variant="body2" className={utilStyles.body2}>
                         <strong>Tech Stacks</strong>
                         <br />
-                        Frontend : ReactJS(react-admin, mui)
+                        Frontend : React(Next.js), Svelte(SvelteKit)
                         <br />
-                        Backend : Node.JS(Express.js), Spring
+                        Backend : Django(DRF)
                         <br />
-                        Database: PostgreSQL, Oracle
+                        Database: PostgreSQL
                         <br />
-                        SCM: Gitlab
+                        SCM: Github
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
-                        사내에서 사용할 차세대 포털 서비스 개발을 담당했습니다
-                        <br />
-                        ・ Keycloak을 이용한 SSO 구현, Dooray! 그룹웨어 연동
-                        <br />
-                        ・ nivo를 이용한 통계 대시보드 구축
-                        <br />
-                        ・ 칸반보드 형태의 VOC 관리 서비스 개발
-                        <br />
-                        ・ Express.js 백앤드 서버 SpringBoot로 이관
-                        <br />
-                        ・ SCM을 SVN에서 Gitlab으로 이관
-                        <br />
-                        ・ 사내 스터디 개설, 운영
-                    </Typography> */}
+                        일본 스타일 커머스 플랫폼 NUGU 개발중입니다
+                    </Typography>
                 </Box>
                 <Box sx={{ margin: "3rem 0" }}>
                     <span className={utilStyles.headingLg}>에버온 everon</span>
@@ -72,9 +60,9 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         <strong>Tech Stacks</strong>
                         <br />
-                        Frontend : ReactJS(react-admin, mui)
+                        Frontend : React(react-admin, mui)
                         <br />
-                        Backend : Node.JS(Express.js), Spring
+                        Backend : Node(Express.js), Spring
                         <br />
                         Database: PostgreSQL, Oracle
                         <br />
