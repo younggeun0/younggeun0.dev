@@ -6,5 +6,6 @@
 	"printWidth": 120,
 	"arrowParens": "avoid",
 	"endOfLine": "auto",
-    "parser": "typescript"
+    "parser": "typescript",
+	"singleQuote": true
 }
