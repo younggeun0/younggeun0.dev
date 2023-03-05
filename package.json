@@ -17,6 +17,7 @@
     "date-fns": "^2.29.1",
     "dotenv": "^16.0.0",
     "gray-matter": "^4.0.3",
+    "jotai": "^2.0.3",
     "multer": "^1.4.5-lts.1",
     "next": "latest",
     "next-remove-imports": "^1.0.6",
