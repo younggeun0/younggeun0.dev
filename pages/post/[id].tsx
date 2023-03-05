@@ -27,20 +27,52 @@ export const getStaticProps: GetStaticProps = async context => {
 };
 
 export default function Post({ page }: any) {
+    const imgSize = 35
+
     return (
         <Layout commentable>
             <Opengraph title={page.title} description={page.subtitle} />
             <Head>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-dark.min.css" />
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-dark.min.css"
+                />
             </Head>
 
             <header style={{ textAlign: "center" }}>
-                <h1 className={utilStyles.headingXl}>{page.title}</h1>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    {page.icon?.type === "external" && (
+                        <img
+                            src={page.icon.external?.url}
+                            width={imgSize}
+                            height={imgSize}
+                            style={{
+                                display: "inline-flex",
+                                margin: 0,
+                                marginRight: "15px",
+                                minWidth: imgSize,
+                                maxWidth: imgSize,
+                                objectFit: "contain",
+                            }}
+                        />
+                    )}
+                    {page.icon?.type === "emoji" && (
+                        <div
+                            style={{
+                                fontSize: imgSize,
+                                marginRight: "15px",
+                            }}
+                        >
+                            {page.icon.emoji}
+                        </div>
+                    )}
+                    <h1 className={utilStyles.headingXl}>{page.title}</h1>
+                </div>
                 <PageSubInfo page={page} />
             </header>
             <article>
                 <div className={utilStyles.content} dangerouslySetInnerHTML={{ __html: page.contentHtml }} />
             </article>
         </Layout>
-    );
+    )
 }

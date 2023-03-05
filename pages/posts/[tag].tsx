@@ -10,9 +10,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const tags = await getTags();
 
     return {
-        paths: tags.map(tag => `/posts/${tag.name}`),
+        paths: tags.map(tag => `/posts/${encodeURIComponent(tag.name)}`),
         fallback: false,
-    };
+    }
 };
 
 export const getStaticProps: GetStaticProps = async context => {

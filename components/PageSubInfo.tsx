@@ -16,5 +16,5 @@ export default function PageSubInfo({ page }: { page: pageObj }) {
                 <Date dateString={page.date} />
             </small>
         </div>
-    );
+    )
 }

@@ -8,12 +8,13 @@ export default function TagChip({ tag }: { tag: tagObj }) {
             style={{
                 borderRadius: "4px",
                 border: "1px solid grey",
-                padding: "2px",
+                padding: "2px 6px",
                 marginRight: "5px",
                 color: "grey",
+                display: "inline-block",
             }}
         >
             {tag.name}
         </span>
-    );
+    )
 }
