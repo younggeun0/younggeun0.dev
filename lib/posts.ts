@@ -3,16 +3,38 @@ import markdownToHtml from "./markdown";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 import { pageObj, tagObj } from "types";
+import fs from 'fs'
+import fetch from 'node-fetch'
+import path from 'path'
+import { MdBlock } from 'notion-to-md/build/types'
 
-const notion = new Client({ auth: process.env.NOTION_KEY });
-const databaseId = process.env.NOTION_DATABASE_ID;
-const n2m = new NotionToMarkdown({ notionClient: notion });
+const notion = new Client({ auth: process.env.NOTION_KEY })
+const databaseId = process.env.NOTION_DATABASE_ID
+const n2m = new NotionToMarkdown({ notionClient: notion })
 
-n2m.setCustomTransformer('embed', async (block) => {
-    const {embed} = block as any;
-    if (!embed?.url) return '';
-    return `<iframe src="${embed?.url}"></iframe>`;
-});
+n2m.setCustomTransformer('embed', async block => {
+    const { embed } = block as any
+    if (!embed?.url) return ''
+    return `<iframe src="${embed?.url}"></iframe>`
+})
+
+async function saveImageToPublic(imgMarkdown: string, fileNameWithDir: string) {
+    const publicDir = path.join(process.cwd(), 'public/images')
+    const filePath = path.join(publicDir, fileNameWithDir)
+
+    if (fs.existsSync(filePath)) {
+        return
+    }
+    const url = imgMarkdown.substring(imgMarkdown.indexOf('(') + 1, imgMarkdown.length - 1)
+    const response = await fetch(url)
+    const buffer = await response.buffer()
+
+    const dir = path.dirname(filePath)
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true })
+    }
+    fs.writeFileSync(filePath, buffer)
+}
 
 function getPages(posts: any) {
     return posts.map((post: any) => {
@@ -24,7 +46,7 @@ function getPages(posts: any) {
             title: properties.이름.title[0].plain_text,
             subtitle: properties.subtitle.rich_text.reduce((str: string, { plain_text }: { plain_text: string }) => {
                 return str + plain_text
-            }, ""),
+            }, ''),
             tags: properties.tags.multi_select,
             icon,
         }
@@ -38,8 +60,8 @@ export async function getRecentPages(): Promise<pageObj[]> {
             page_size: 5,
             sorts: [
                 {
-                    timestamp: "created_time",
-                    direction: "descending",
+                    timestamp: 'created_time',
+                    direction: 'descending',
                 },
             ],
         })
@@ -67,8 +89,8 @@ export async function getNotionPosts(recent: boolean = false): Promise<pageObj[]
             database_id: databaseId as string,
             sorts: [
                 {
-                    timestamp: "created_time",
-                    direction: "descending",
+                    timestamp: 'created_time',
+                    direction: 'descending',
                 },
             ],
         })
@@ -86,12 +108,12 @@ export async function getPagesByTag(tagName: string): Promise<pageObj[]> {
             database_id: databaseId as string,
             sorts: [
                 {
-                    timestamp: "created_time",
-                    direction: "descending",
+                    timestamp: 'created_time',
+                    direction: 'descending',
                 },
             ],
             filter: {
-                property: "tags",
+                property: 'tags',
                 multi_select: {
                     contains: decodeURIComponent(tagName),
                 },
@@ -108,7 +130,16 @@ export async function getPagesByTag(tagName: string): Promise<pageObj[]> {
 export async function getSinglePageById(id: string) {
     try {
         const response: any = await notion.pages.retrieve({ page_id: id })
-        const mdblocks = await n2m.pageToMarkdown(id)
+        let mdblocks: any = await n2m.pageToMarkdown(id)
+
+        for (let i = 0; i < mdblocks.length; i++) {
+            if (mdblocks[i].type === 'image') {
+                const fileName = mdblocks[i].parent.split('/').pop()?.split('?')[0]
+                await saveImageToPublic(mdblocks[i].parent, `/${response.id}/${i}_${fileName}`)
+                mdblocks[i].parent = `![](/images/${response.id}/${i}_${fileName})`
+            }
+        }
+
         const mdString = n2m.toMarkdownString(mdblocks)
 
         // Use gray-matter to parse the post metadata section
@@ -125,7 +156,7 @@ export async function getSinglePageById(id: string) {
                 (str: string, { plain_text }: { plain_text: string }) => {
                     return str + plain_text
                 },
-                "",
+                '',
             ),
             tags: response.properties.tags.multi_select,
             contentHtml,
