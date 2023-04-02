@@ -57,6 +57,11 @@ export default function Header() {
                         <span className={styles.menu}>📝</span>
                     </Link>
                 </Tooltip>
+                <Tooltip title="Pomodoro">
+                    <Link href="/pomodoro">
+                        <span className={styles.menu}>🍅</span>
+                    </Link>
+                </Tooltip>
                 {theme && (
                     <Tooltip title="Theme">
                         <span
