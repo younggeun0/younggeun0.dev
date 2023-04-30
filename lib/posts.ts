@@ -2,7 +2,7 @@ import matter from "gray-matter";
 import markdownToHtml from "./markdown";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
-import { pageObj, tagObj } from "types";
+import { Page, Tag } from 'types'
 import fs from 'fs'
 import fetch from 'node-fetch'
 import path from 'path'
@@ -53,7 +53,7 @@ function getPages(posts: any) {
     })
 }
 
-export async function getRecentPages(): Promise<pageObj[]> {
+export async function getRecentPages(): Promise<Page[]> {
     try {
         const response = await notion.databases.query({
             database_id: databaseId as string,
@@ -73,7 +73,7 @@ export async function getRecentPages(): Promise<pageObj[]> {
     }
 }
 
-export async function getTags(): Promise<tagObj[]> {
+export async function getTags(): Promise<Tag[]> {
     try {
         const response = await notion.databases.retrieve({ database_id: databaseId as string })
         return (response.properties.tags as any).multi_select.options
@@ -83,7 +83,7 @@ export async function getTags(): Promise<tagObj[]> {
     }
 }
 
-export async function getNotionPosts(recent: boolean = false): Promise<pageObj[]> {
+export async function getNotionPosts(recent: boolean = false): Promise<Page[]> {
     try {
         const response = await notion.databases.query({
             database_id: databaseId as string,
@@ -102,7 +102,7 @@ export async function getNotionPosts(recent: boolean = false): Promise<pageObj[]
     }
 }
 
-export async function getPagesByTag(tagName: string): Promise<pageObj[]> {
+export async function getPagesByTag(tagName: string): Promise<Page[]> {
     try {
         const response = await notion.databases.query({
             database_id: databaseId as string,

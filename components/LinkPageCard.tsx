@@ -2,11 +2,11 @@ import React from "react";
 import Link from "next/link";
 import PageSubInfo from "./PageSubInfo";
 import { Card, CardContent } from "@mui/material";
-import { pageObj, tagObj } from "types";
+import { Page, Tag } from 'types'
 import { IMAGE_SIZE } from 'lib/constants'
 
 type linkPageCardProps = {
-    page: pageObj
+    page: Page
 }
 
 export default function LinkPageCard({ page }: linkPageCardProps) {

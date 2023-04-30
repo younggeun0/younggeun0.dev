@@ -4,7 +4,7 @@ import utilStyles from "../styles/utils.module.css";
 import { getTags } from "lib/posts";
 import Link from "next/link";
 
-import { tagObj } from "types"
+import { Tag } from 'types'
 import Opengraph from "components/Opengraph"
 
 export async function getStaticProps(props: any) {
@@ -23,9 +23,9 @@ export default function TagList({ tags }: any) {
             <Opengraph title="Posts" description="태그별 게시글" />
 
             <section className={`${utilStyles.padding1px}`}>
-                {tags.map((tag: tagObj) => {
+                {tags.map((tag: Tag) => {
                     return (
-                        <div key={tag.id} style={{ cursor: "pointer" }}>
+                        <div key={tag.id} style={{ cursor: 'pointer' }}>
                             <Link href={`/posts/${encodeURIComponent(tag.name)}`}>
                                 <span className={utilStyles.headingXl}>[{tag.name}]</span>
                             </Link>

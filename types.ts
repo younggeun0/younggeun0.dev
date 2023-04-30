@@ -1,16 +1,21 @@
-export type pageObj = {
+export interface Page {
     id: string
     title: string
     subtitle: string
     date: string
-    tags: tagObj[]
+    tags: Tag[]
     icon: {
-        type: "external" | "emoji"
+        type: 'external' | 'emoji'
         emoji: string | null
         external: {
-            url: "string"
+            url: 'string'
         } | null
     } | null
+    contentHtml: string
 }
 
-export type tagObj = { id: string; name: string; color: string };
+export interface Tag {
+    id: string
+    name: string
+    color: string
+}

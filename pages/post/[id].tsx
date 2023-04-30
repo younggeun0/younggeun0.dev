@@ -7,6 +7,7 @@ import { GetStaticPaths, GetStaticProps } from "next/types";
 import PageSubInfo from "components/PageSubInfo";
 import Opengraph from "components/Opengraph";
 import { IMAGE_SIZE } from 'lib/constants'
+import { Page } from 'types'
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const ids = await getAllNotionPostIds()
@@ -28,25 +29,10 @@ export const getStaticProps: GetStaticProps = async context => {
 }
 
 interface PostProps {
-    page: {
-        id: string
-        title: string
-        subtitle: string
-        icon: {
-            type: 'external' | 'emoji'
-            external?: {
-                url: string
-            }
-            emoji?: string
-        }
-        tags: string[]
-        date: string
-        content: string
-    }
+    page: Page
 }
 
 export default function Post({ page }: PostProps) {
-    console.log('🚀 ~ file: [id].tsx:48 ~ Post ~ page:', page)
     return (
         <Layout commentable>
             <Opengraph title={page.title} description={page.subtitle} />

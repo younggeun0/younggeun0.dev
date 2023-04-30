@@ -1,19 +1,23 @@
 import React from "react";
 import TagChip from "./TagChip";
 import Date from "./DateComp";
-import { tagObj, pageObj } from "../types";
+import { Tag, Page } from '../types'
 
-export default function PageSubInfo({ page }: { page: pageObj }) {
+interface PageSubInfoProps {
+    page: Page
+}
+
+export default function PageSubInfo({ page: { subtitle, tags, date } }: PageSubInfoProps) {
     return (
-        <div style={{ color: "grey", display: "flex", flexDirection: "column" }}>
-            <small style={{ margin: "10px 0" }}>{page.subtitle}</small>
+        <div style={{ color: 'grey', display: 'flex', flexDirection: 'column' }}>
+            <small style={{ margin: '10px 0' }}>{subtitle}</small>
             <small>
-                {page.tags.map((tag: tagObj) => (
+                {tags.map((tag: Tag) => (
                     <TagChip key={tag.id} tag={tag} />
                 ))}
             </small>
-            <small style={{ marginTop: "5px" }}>
-                <Date dateString={page.date} />
+            <small style={{ marginTop: '5px' }}>
+                <Date dateString={date} />
             </small>
         </div>
     )

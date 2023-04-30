@@ -1,26 +1,29 @@
 import React from "react";
 import utilStyles from "../styles/utils.module.css";
 import LinkPageCard from "./LinkPageCard";
-import { pageObj } from "../types";
+import { Page } from '../types'
 
-type pageListProps = {
-    title: string;
-    pages: pageObj[];
-};
+interface PageListProps {
+    title: string
+    pages: Page[]
+}
 
-export default function PageList({ title, pages }: pageListProps) {
+export default function PageList({ title, pages }: PageListProps) {
+    // console.log('🚀 ~ file: PageList.tsx:12 ~ PageList ~ pages:', pages)
+    // TODO: pagination
+
     return (
         <>
             <div className={utilStyles.rotateTitleBy1Deg}>
                 <span className={utilStyles.headingXl}>{title}</span>
             </div>
-            <ul className={utilStyles.list} style={{ marginTop: "10px" }}>
-                {pages.map((page: pageObj) => (
+            <ul className={utilStyles.list} style={{ marginTop: '10px' }}>
+                {pages.map((page: Page) => (
                     <li className={utilStyles.listItem} key={page.id}>
                         <LinkPageCard page={page} />
                     </li>
                 ))}
             </ul>
         </>
-    );
+    )
 }

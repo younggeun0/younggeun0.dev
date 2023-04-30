@@ -2,17 +2,21 @@ import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-type Opengraph = {
-    title?: string;
-    description?: string;
-    ogImg?: string;
-};
+interface OpengraphProps {
+    title?: string
+    description?: string
+    ogImg?: string
+}
 
-const siteTitle = "(younggeun0: 🐢) => dev";
+const siteTitle = '(younggeun0: 🐢) => dev'
 
-export default function Opengraph({ title = siteTitle, description = "young's blog", ogImg = "/images/opengraph.jpeg"}: Opengraph) {
-    const router = useRouter();
-    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + router.asPath;
+export default function Opengraph({
+    title = siteTitle,
+    description = "young's blog",
+    ogImg = '/images/opengraph.jpeg',
+}: OpengraphProps) {
+    const router = useRouter()
+    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + router.asPath
 
     return (
         <Head>
@@ -27,5 +31,5 @@ export default function Opengraph({ title = siteTitle, description = "young's bl
 
             <link rel="canonical" href={canonicalURL} />
         </Head>
-    );
+    )
 }
