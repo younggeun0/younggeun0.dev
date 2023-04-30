@@ -2,6 +2,9 @@ import React from "react";
 import utilStyles from "../styles/utils.module.css";
 import LinkPageCard from "./LinkPageCard";
 import { Page } from '../types'
+import Pagination from './Pagination'
+
+const PER_PAGE = 5
 
 interface PageListProps {
     title: string
@@ -9,8 +12,8 @@ interface PageListProps {
 }
 
 export default function PageList({ title, pages }: PageListProps) {
-    // console.log('🚀 ~ file: PageList.tsx:12 ~ PageList ~ pages:', pages)
-    // TODO: pagination
+    const [currentPage, setCurrentPage] = React.useState(1)
+    const startPageIdx = (currentPage - 1) * PER_PAGE
 
     return (
         <>
@@ -18,11 +21,16 @@ export default function PageList({ title, pages }: PageListProps) {
                 <span className={utilStyles.headingXl}>{title}</span>
             </div>
             <ul className={utilStyles.list} style={{ marginTop: '10px' }}>
-                {pages.map((page: Page) => (
+                {pages.slice(startPageIdx, startPageIdx + PER_PAGE).map((page: Page) => (
                     <li className={utilStyles.listItem} key={page.id}>
                         <LinkPageCard page={page} />
                     </li>
                 ))}
+                <Pagination
+                    currentPage={currentPage}
+                    changePage={setCurrentPage}
+                    lastPage={Math.ceil(pages.length / PER_PAGE)}
+                />
             </ul>
         </>
     )
