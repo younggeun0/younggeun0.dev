@@ -26,11 +26,13 @@ export default function PageList({ title, pages }: PageListProps) {
                         <LinkPageCard page={page} />
                     </li>
                 ))}
-                <Pagination
-                    currentPage={currentPage}
-                    changePage={setCurrentPage}
-                    lastPage={Math.ceil(pages.length / PER_PAGE)}
-                />
+                {title !== '[...recent_posts🔥]' && (
+                    <Pagination
+                        currentPage={currentPage}
+                        changePage={setCurrentPage}
+                        lastPage={Math.ceil(pages.length / PER_PAGE)}
+                    />
+                )}
             </ul>
         </>
     )
