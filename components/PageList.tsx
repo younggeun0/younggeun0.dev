@@ -3,6 +3,7 @@ import utilStyles from "../styles/utils.module.css";
 import LinkPageCard from "./LinkPageCard";
 import { Page } from '../types'
 import Pagination from './Pagination'
+import { useRouter } from 'next/router'
 
 const PER_PAGE = 5
 
@@ -12,7 +13,8 @@ interface PageListProps {
 }
 
 export default function PageList({ title, pages }: PageListProps) {
-    const [currentPage, setCurrentPage] = React.useState(1)
+    const router = useRouter()
+    const currentPage = router.query.page ? Number(router.query.page) : 1
     const startPageIdx = (currentPage - 1) * PER_PAGE
 
     return (
@@ -27,11 +29,7 @@ export default function PageList({ title, pages }: PageListProps) {
                     </li>
                 ))}
                 {title !== '[...recent_posts🔥]' && (
-                    <Pagination
-                        currentPage={currentPage}
-                        changePage={setCurrentPage}
-                        lastPage={Math.ceil(pages.length / PER_PAGE)}
-                    />
+                    <Pagination currentPage={currentPage} lastPage={Math.ceil(pages.length / PER_PAGE)} />
                 )}
             </ul>
         </>

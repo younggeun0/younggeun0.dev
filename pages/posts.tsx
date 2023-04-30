@@ -17,7 +17,11 @@ export async function getStaticProps(props: any) {
     }
 }
 
-export default function TagList({ tags }: any) {
+interface TagListProps {
+    tags: Tag[]
+}
+
+export default function TagList({ tags }: TagListProps) {
     return (
         <Layout>
             <Opengraph title="Posts" description="태그별 게시글" />
@@ -26,7 +30,7 @@ export default function TagList({ tags }: any) {
                 {tags.map((tag: Tag) => {
                     return (
                         <div key={tag.id} style={{ cursor: 'pointer' }}>
-                            <Link href={`/posts/${encodeURIComponent(tag.name)}`}>
+                            <Link href={`/posts/${encodeURIComponent(tag.name)}?page=1`}>
                                 <span className={utilStyles.headingXl}>[{tag.name}]</span>
                             </Link>
                         </div>
