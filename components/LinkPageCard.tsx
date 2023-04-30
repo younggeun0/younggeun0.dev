@@ -3,39 +3,38 @@ import Link from "next/link";
 import PageSubInfo from "./PageSubInfo";
 import { Card, CardContent } from "@mui/material";
 import { pageObj, tagObj } from "types";
+import { IMAGE_SIZE } from 'lib/constants'
 
 type linkPageCardProps = {
-    page: pageObj;
-};
+    page: pageObj
+}
 
 export default function LinkPageCard({ page }: linkPageCardProps) {
-    const imgSize = 35
-
     return (
         <Link href={`/post/${page.id}`}>
-            <Card sx={{ boxShadow: "none", border: "1px solid grey" }}>
+            <Card sx={{ boxShadow: 'none', border: '1px solid grey' }}>
                 <CardContent>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        {page.icon?.type === "external" && (
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        {page.icon?.type === 'external' && (
                             <img
                                 src={page.icon.external?.url}
-                                width={imgSize}
-                                height={imgSize}
+                                width={IMAGE_SIZE}
+                                height={IMAGE_SIZE}
                                 style={{
-                                    display: "inline-flex",
+                                    display: 'inline-flex',
                                     margin: 0,
-                                    marginRight: "15px",
-                                    minWidth: imgSize,
-                                    maxWidth: imgSize,
-                                    objectFit: "contain",
+                                    marginRight: '15px',
+                                    minWidth: IMAGE_SIZE,
+                                    maxWidth: IMAGE_SIZE,
+                                    objectFit: 'contain',
                                 }}
                             />
                         )}
-                        {page.icon?.type === "emoji" && (
+                        {page.icon?.type === 'emoji' && (
                             <div
                                 style={{
-                                    fontSize: imgSize,
-                                    marginRight: "15px",
+                                    fontSize: IMAGE_SIZE,
+                                    marginRight: '15px',
                                 }}
                             >
                                 {page.icon.emoji}

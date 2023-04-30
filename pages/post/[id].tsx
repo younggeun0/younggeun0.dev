@@ -6,29 +6,47 @@ import { getAllNotionPostIds, getSinglePageById } from "../../lib/posts";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 import PageSubInfo from "components/PageSubInfo";
 import Opengraph from "components/Opengraph";
+import { IMAGE_SIZE } from 'lib/constants'
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const ids = await getAllNotionPostIds();
+    const ids = await getAllNotionPostIds()
 
     return {
         paths: ids.map(id => `/post/${id}`),
         fallback: false,
-    };
-};
+    }
+}
 
 export const getStaticProps: GetStaticProps = async context => {
     // Fetch necessary data for the blog post using params.id
-    const page = await getSinglePageById(context.params?.id as string);
+    const page = await getSinglePageById(context.params?.id as string)
     return {
         props: {
             page,
         },
-    };
-};
+    }
+}
 
-export default function Post({ page }: any) {
-    const imgSize = 35
+interface PostProps {
+    page: {
+        id: string
+        title: string
+        subtitle: string
+        icon: {
+            type: 'external' | 'emoji'
+            external?: {
+                url: string
+            }
+            emoji?: string
+        }
+        tags: string[]
+        date: string
+        content: string
+    }
+}
 
+export default function Post({ page }: PostProps) {
+    console.log('🚀 ~ file: [id].tsx:48 ~ Post ~ page:', page)
     return (
         <Layout commentable>
             <Opengraph title={page.title} description={page.subtitle} />
@@ -39,28 +57,28 @@ export default function Post({ page }: any) {
                 />
             </Head>
 
-            <header style={{ textAlign: "center" }}>
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    {page.icon?.type === "external" && (
+            <header style={{ textAlign: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    {page.icon?.type === 'external' && (
                         <img
                             src={page.icon.external?.url}
-                            width={imgSize}
-                            height={imgSize}
+                            width={IMAGE_SIZE}
+                            height={IMAGE_SIZE}
                             style={{
-                                display: "inline-flex",
+                                display: 'inline-flex',
                                 margin: 0,
-                                marginRight: "15px",
-                                minWidth: imgSize,
-                                maxWidth: imgSize,
-                                objectFit: "contain",
+                                marginRight: '15px',
+                                minWidth: IMAGE_SIZE,
+                                maxWidth: IMAGE_SIZE,
+                                objectFit: 'contain',
                             }}
                         />
                     )}
-                    {page.icon?.type === "emoji" && (
+                    {page.icon?.type === 'emoji' && (
                         <div
                             style={{
-                                fontSize: imgSize,
-                                marginRight: "15px",
+                                fontSize: IMAGE_SIZE,
+                                marginRight: '15px',
                             }}
                         >
                             {page.icon.emoji}
