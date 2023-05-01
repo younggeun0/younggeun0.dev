@@ -25,7 +25,7 @@ export default function Header() {
                 return
             }
 
-            if (oldScrollTop > window.scrollY) {
+            if (oldScrollTop >= window.scrollY) {
                 setShowTopNav(true)
             } else {
                 setShowTopNav(false)
