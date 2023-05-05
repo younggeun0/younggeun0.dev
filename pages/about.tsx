@@ -4,28 +4,45 @@ import utilStyles from "../styles/utils.module.css";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Opengraph from "components/Opengraph";
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 export default function About() {
-    
+    const { data: session, status } = useSession()
+
     return (
         <Layout>
             <Opengraph title="About Young" description="young's resume" />
 
             <article>
-                <Box sx={{ margin: "3rem 0" }}>
+                <Box sx={{ margin: '3rem 0' }}>
                     <span className={utilStyles.heading2Xl}>
                         안녕하세요!
-                        <br />웹 개발자 오영근입니다 🐢
+                        <br />웹 개발자 오영근입니다{' '}
+                        <span
+                            className={utilStyles.heading2Xl}
+                            onClick={(e: any) => {
+                                e.preventDefault()
+
+                                if (status === 'unauthenticated') {
+                                    signIn()
+                                }
+                                if (session) {
+                                    signOut()
+                                }
+                            }}
+                        >
+                            🐢
+                        </span>
                     </span>
                 </Box>
-                <Box sx={{ textAlign: "center" }}>
-                    <Image priority src="/images/profile.jpeg" height={480} width={320} alt={"profile"} />
+                <Box sx={{ textAlign: 'center' }}>
+                    <Image priority src="/images/profile.jpeg" height={480} width={320} alt={'profile'} />
                 </Box>
-                <Box sx={{ margin: "5rem 0 0" }}>
+                <Box sx={{ margin: '5rem 0 0' }}>
                     <span className={utilStyles.headingXl}>Work Experience</span>
                     <hr />
                 </Box>
-                <Box sx={{ margin: "3rem 0" }}>
+                <Box sx={{ margin: '3rem 0' }}>
                     <span className={utilStyles.headingLg}>메디쿼터스 Mediquitous</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Web Developer
@@ -49,7 +66,7 @@ export default function About() {
                         일본 스타일 커머스 플랫폼 NUGU 개발중입니다
                     </Typography>
                 </Box>
-                <Box sx={{ margin: "3rem 0" }}>
+                <Box sx={{ margin: '3rem 0' }}>
                     <span className={utilStyles.headingLg}>에버온 everon</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Web Developer
@@ -81,11 +98,10 @@ export default function About() {
                         ・ Express.js 백앤드 서버 SpringBoot로 이관
                         <br />
                         ・ SCM을 SVN에서 Gitlab으로 이관
-                        <br />
-                        ・ 사내 스터디 개설, 운영
+                        <br />・ 사내 스터디 개설, 운영
                     </Typography>
                 </Box>
-                <Box sx={{ margin: "5rem 0" }}>
+                <Box sx={{ margin: '5rem 0' }}>
                     <span className={utilStyles.headingLg}>포시에스 FORCS</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Software Engineer
@@ -101,20 +117,19 @@ export default function About() {
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
                         OZ연구소 리포트2팀 신입 팀원으로 OZReport HTML Viewer 솔루션 개발업무를 담당했습니다
-                        <br/>
+                        <br />
                         ・ 뷰어 내용을 스크린 리더(센스리더)로 읽을 수 있도록 접근성 개선
-                        <br/>
+                        <br />
                         ・ 전자문서 출력 시 인증 바코드 솔루션 연동(MarkAny, SGA)
-                        <br/>
+                        <br />
                         ・ 뷰어에 WYSIWYG 편집기(summernote.js) 임배딩 기능 개발
-                        <br/>
+                        <br />
                         ・ WebRTC, opencv.js, zxing.js 라이브러리를 이용한 인감스캔, 카드스캔 기능 개발
-                        <br/>
-                        ・ 뷰어 동기화 중계서버 모듈을 개발
+                        <br />・ 뷰어 동기화 중계서버 모듈을 개발
                     </Typography>
                 </Box>
 
-                <Box sx={{ margin: "5rem 0" }}>
+                <Box sx={{ margin: '5rem 0' }}>
                     <span className={utilStyles.headingLg}>미래융합정보기술</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Intern
@@ -131,7 +146,7 @@ export default function About() {
                     <span className={utilStyles.headingXl}>Other Experiences</span>
                     <hr />
                 </Box>
-                <Box sx={{ margin: "3rem 0" }}>
+                <Box sx={{ margin: '3rem 0' }}>
                     <span className={utilStyles.headingLg}>쌍용교육센터</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Python&Java응용 SW실무개발자양성과정 수료
@@ -140,7 +155,7 @@ export default function About() {
                     </Typography>
                 </Box>
 
-                <Box sx={{ margin: "5rem 0" }}>
+                <Box sx={{ margin: '5rem 0' }}>
                     <span className={utilStyles.headingLg}>영국 워킹홀리데이</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         YMS(Youth Mobility Scheme) Visa로 외국 생활
@@ -149,7 +164,7 @@ export default function About() {
                     </Typography>
                 </Box>
 
-                <Box sx={{ margin: "5rem 0" }}>
+                <Box sx={{ margin: '5rem 0' }}>
                     <span className={utilStyles.headingLg}>동국대학교</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         멀티미디어공학과 졸업
@@ -159,5 +174,5 @@ export default function About() {
                 </Box>
             </article>
         </Layout>
-    );
+    )
 }

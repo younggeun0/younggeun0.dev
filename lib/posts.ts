@@ -6,10 +6,9 @@ import { Page, Tag } from 'types'
 import fs from 'fs'
 import fetch from 'node-fetch'
 import path from 'path'
-import { MdBlock } from 'notion-to-md/build/types'
 
 const notion = new Client({ auth: process.env.NOTION_KEY })
-const databaseId = process.env.NOTION_DATABASE_ID
+const postDatabaseId = process.env.NOTION_POST_DATABASE_ID // TODO FIX this name on vercel
 const n2m = new NotionToMarkdown({ notionClient: notion })
 
 n2m.setCustomTransformer('embed', async block => {
@@ -56,7 +55,7 @@ function getPages(posts: any) {
 export async function getRecentPages(): Promise<Page[]> {
     try {
         const response = await notion.databases.query({
-            database_id: databaseId as string,
+            database_id: postDatabaseId as string,
             page_size: 5,
             sorts: [
                 {
@@ -75,7 +74,7 @@ export async function getRecentPages(): Promise<Page[]> {
 
 export async function getTags(): Promise<Tag[]> {
     try {
-        const response = await notion.databases.retrieve({ database_id: databaseId as string })
+        const response = await notion.databases.retrieve({ database_id: postDatabaseId as string })
         return (response.properties.tags as any).multi_select.options
     } catch (error) {
         console.error(error)
@@ -86,7 +85,7 @@ export async function getTags(): Promise<Tag[]> {
 export async function getNotionPosts(recent: boolean = false): Promise<Page[]> {
     try {
         const response = await notion.databases.query({
-            database_id: databaseId as string,
+            database_id: postDatabaseId as string,
             sorts: [
                 {
                     timestamp: 'created_time',
@@ -105,7 +104,7 @@ export async function getNotionPosts(recent: boolean = false): Promise<Page[]> {
 export async function getPagesByTag(tagName: string): Promise<Page[]> {
     try {
         const response = await notion.databases.query({
-            database_id: databaseId as string,
+            database_id: postDatabaseId as string,
             sorts: [
                 {
                     timestamp: 'created_time',
@@ -172,14 +171,14 @@ export async function getSinglePageById(id: string) {
 
 export async function getAllNotionPostIds() {
     const response = await notion.databases.query({
-        database_id: databaseId as string,
+        database_id: postDatabaseId as string,
         sorts: [
             {
-                timestamp: "created_time",
-                direction: "descending",
+                timestamp: 'created_time',
+                direction: 'descending',
             },
         ],
-    });
+    })
 
-    return response.results.map(post => post.id);
+    return response.results.map(post => post.id)
 }

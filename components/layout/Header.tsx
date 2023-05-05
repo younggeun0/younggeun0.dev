@@ -7,8 +7,10 @@ import { ThemeContext } from 'context/ThemeContext'
 import { useRouter } from 'next/router'
 import { useAtom } from 'jotai'
 import { showTopNavAtom } from 'lib/jotaiStore'
+import { signOut, useSession } from 'next-auth/react'
 
 export default function Header() {
+    const { data: session } = useSession()
     const [showTopNav, setShowTopNav] = useAtom(showTopNavAtom)
     const { theme, toggleTheme } = useContext(ThemeContext)
     const headerHeight = useRef(0)
@@ -47,6 +49,11 @@ export default function Header() {
             </Box>
 
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                {session && (
+                    <span className={styles.menu} onClick={() => signOut()}>
+                        🔓
+                    </span>
+                )}
                 <Tooltip title="About">
                     <Link href="/about">
                         <span className={styles.menu}>🐢</span>

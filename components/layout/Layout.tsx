@@ -28,7 +28,7 @@ export default function Layout({ children, commentable = false, alertMessage = '
         <>
             <Header />
             <div className={styles.container}>
-                <main>{children}</main>
+                <main className={styles.main}>{children}</main>
                 {commentable && (
                     <>
                         <Comments />

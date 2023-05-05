@@ -19,6 +19,7 @@ body {
   margin: 0;
   line-height: 1.6;
   font-size: 18px;
+  color: var(--font-color);
 }
 
 html {
@@ -38,7 +39,7 @@ html.light {
 
 html.dark .MuiInput-input {
   background-color: transparent;
-  color: white;
+  color: var(--default-white);
 }
 
 body .MuiCardContent-root {
