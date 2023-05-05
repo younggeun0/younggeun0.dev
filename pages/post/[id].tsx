@@ -47,9 +47,9 @@ export default function Post({ page }: PostProps) {
             <header style={{ textAlign: 'center' }}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     {page.icon?.type === 'external' && (
-                        <Image
-                            alt={page.title}
-                            src={page.icon.external?.url || ''}
+                        <img
+                            alt={''}
+                            src={page.icon.external?.url}
                             width={IMAGE_SIZE}
                             height={IMAGE_SIZE}
                             style={{

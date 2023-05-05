@@ -17,9 +17,9 @@ export default function LinkPageCard({ page }: linkPageCardProps) {
                 <CardContent>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         {page.icon?.type === 'external' && (
-                            <Image
-                                src={page.icon.external?.url || ''}
-                                alt={page.title}
+                            <img
+                                src={page.icon.external?.url}
+                                alt={''}
                                 width={IMAGE_SIZE}
                                 height={IMAGE_SIZE}
                                 style={{
