@@ -1,63 +1,67 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Layout from '../components/layout/Layout'
 import utilStyles from '../styles/utils.module.css'
 import Opengraph from 'components/Opengraph'
-import PomodoroCounter from 'components/PomodoroCounter'
+import PomodoroTimer from 'components/PomodoroTimer'
 import { useSession } from 'next-auth/react'
-// import { Heatmap } from 'contribution-heatmap'
+import { getAllPomododoroInfo } from 'lib/pomodoro'
+import CalendarHeatmap from 'react-calendar-heatmap'
+import { PomodoroInfo } from 'types'
 
 export async function getServerSideProps() {
-    // TODO, 모든 뽀모도로 가져와서 히트맵으로 표현
-    // const allPomodoros = getAllPomododoro()
+    const pomodoroInfos = await getAllPomododoroInfo()
 
     return {
-        props: {},
+        props: {
+            pomodoroInfos,
+        },
     }
 }
 
-interface PomodoroProps {}
+interface PomodoroProps {
+    pomodoroInfos: PomodoroInfo[]
+}
 
-export default function Pomodoro(props: PomodoroProps) {
+export default function Pomodoro({ pomodoroInfos = [] }: PomodoroProps) {
     const { data: session } = useSession()
-
-    useEffect(() => {
-        ;(async () => {
-            try {
-                // await fetch('/api/pomodoro', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify({
-                //         type: 'work',
-                //     }),
-                // })
-                // TODO, 등록 성공하면 스낵바?로 표현하기
-            } catch (e) {
-                alert(e)
-            }
-        })()
-    }, [])
 
     return (
         <Layout>
-            <Opengraph title="Pomodoro" description="포모도로 로그" />
+            <Opengraph title="Pomodoro" description="뽀모도로 로그" />
             <section className={`${utilStyles.padding1px}`}>
-                <h1 className="utilStyles.heading2Xl">🍅 Logs</h1>
+                <h1 className="utilStyles.heading2Xl">[...🍅]</h1>
 
-                {/* TODO 노션에 작성된 포모도로 기록을 토대로 포모도로 페이지에 github contribution graph와 동일한 형태로 표현 */}
-                {/* <Heatmap
-                    colour={['#ebedf0', '#c6e48b', '#40c463', '#30a14e', '#216e39']}
-                    // squareNumber={5}
-                    count={[3, 2, 20, 1, 14]}
-                    squareGap="4px"
-                    squareSize="15px"
-                /> */}
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <div style={{ width: '70%' }}>
+                        <CalendarHeatmap
+                            startDate={new Date('2023-04-30')}
+                            endDate={new Date('2023-08-01')}
+                            onClick={(value: any) => {
+                                if (!value) return
 
-                {!session && <h1>404 🚧 작업중입니다</h1>}
+                                alert(`${value.date}  🍅 * ${value.count}`)
+                            }}
+                            classForValue={(value: any) => {
+                                let selectorNumber = 0
+                                if (!value || value.count === 0) {
+                                } else if (value.count > 8) {
+                                    selectorNumber = 4
+                                } else if (value.count > 6) {
+                                    selectorNumber = 3
+                                } else if (value.count > 4) {
+                                    selectorNumber = 2
+                                } else if (value.count > 0) {
+                                    selectorNumber = 1
+                                }
 
-                {/* 뽀모도로 등록 */}
-                {session && <PomodoroCounter />}
+                                return `color-github-${selectorNumber}`
+                            }}
+                            values={pomodoroInfos}
+                        />
+                    </div>
+                </div>
+
+                {session && <PomodoroTimer />}
             </section>
         </Layout>
     )

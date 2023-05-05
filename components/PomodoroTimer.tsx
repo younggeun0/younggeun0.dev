@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
-import { getAllPomododoro } from 'lib/pomodoro'
 
-// const DURATIONS = [60 * 25, 60 * 5]
-const DURATIONS = [5, 3] //[25, 5] // 웹앱 특성 상 계속 사용하지 않으므로 15분 쉬는건 우선 제외
+const DURATIONS = [60 * 25, 60 * 5] // 웹앱 특성 상 계속 사용하지 않으므로 15분 쉬는건 우선 제외
+// const DURATIONS = [5, 3] // for test
 
 function notifyFinished() {
-    const message = 'Pomodoro Added! 🍅'
+    const message = '🍅++'
+
     if (!('Notification' in window)) {
         alert(message)
     } else if (Notification.permission === 'granted') {
@@ -20,7 +20,7 @@ function notifyFinished() {
     }
 }
 
-export default function PomodoroCounter() {
+export default function PomodoroTimer() {
     const [seq, setSeq] = useState(0)
     const [status, setStatus] = useState<'play' | 'paused' | 'finished'>('paused')
 
@@ -39,7 +39,6 @@ export default function PomodoroCounter() {
                     'Content-Type': 'application/json',
                 },
             })
-            // TODO, web notification 동작 여부 확인
             notifyFinished()
         } catch (e) {
             alert(e)
@@ -55,7 +54,7 @@ export default function PomodoroCounter() {
                 justifyContent: 'center',
                 fontSize: '3rem',
                 alignItems: 'center',
-                minHeight: '50vh',
+                margin: '4rem 0 1rem 0',
             }}
         >
             <CountdownCircleTimer
