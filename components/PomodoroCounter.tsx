@@ -26,7 +26,7 @@ export default function PomodoroCounter() {
 
     useEffect(() => {
         if (status === 'finished') {
-            setSeq((seq + 1) % 2)
+            setSeq(s => (s + 1) % 2)
             setStatus('paused')
         }
     }, [status])

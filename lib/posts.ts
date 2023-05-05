@@ -25,6 +25,7 @@ async function saveImageToPublic(imgMarkdown: string, fileNameWithDir: string) {
         return
     }
     const url = imgMarkdown.substring(imgMarkdown.indexOf('(') + 1, imgMarkdown.length - 1)
+
     const response = await fetch(url)
     const buffer = await response.buffer()
 

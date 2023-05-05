@@ -15,30 +15,30 @@ export default function Header() {
     const { theme, toggleTheme } = useContext(ThemeContext)
     const headerHeight = useRef(0)
     const router = useRouter()
+    const oldScrollTop = useRef(0)
 
-    let oldScrollTop = 0
     useEffect(() => {
         headerHeight.current = parseInt(getComputedStyle(document.body).getPropertyValue('--header-height'))
 
         function setShowNavByCurrentScroll() {
             if (headerHeight.current > window.scrollY) {
                 setShowTopNav(true)
-                oldScrollTop = 0
+                oldScrollTop.current = 0
                 return
             }
 
-            if (oldScrollTop >= window.scrollY) {
+            if (oldScrollTop.current >= window.scrollY) {
                 setShowTopNav(true)
             } else {
                 setShowTopNav(false)
             }
-            oldScrollTop = window.scrollY
+            oldScrollTop.current = window.scrollY
         }
 
         window.addEventListener('load', setShowNavByCurrentScroll)
         window.addEventListener('scroll', setShowNavByCurrentScroll)
         router.events.on('routeChangeStart', setShowNavByCurrentScroll)
-    }, [])
+    }, [router.events, setShowTopNav])
 
     return (
         <header className={styles.header} style={{ top: showTopNav ? 0 : -headerHeight.current }}>

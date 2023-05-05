@@ -4,6 +4,7 @@ import PageSubInfo from "./PageSubInfo";
 import { Card, CardContent } from "@mui/material";
 import { Page, Tag } from 'types'
 import { IMAGE_SIZE } from 'lib/constants'
+import Image from 'next/image'
 
 type linkPageCardProps = {
     page: Page
@@ -16,8 +17,9 @@ export default function LinkPageCard({ page }: linkPageCardProps) {
                 <CardContent>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         {page.icon?.type === 'external' && (
-                            <img
-                                src={page.icon.external?.url}
+                            <Image
+                                src={page.icon.external?.url || ''}
+                                alt={page.title}
                                 width={IMAGE_SIZE}
                                 height={IMAGE_SIZE}
                                 style={{

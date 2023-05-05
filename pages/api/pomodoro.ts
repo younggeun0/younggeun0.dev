@@ -5,7 +5,7 @@ import { authOptions } from './auth/[...nextauth]'
 const notion = new Client({ auth: process.env.NOTION_KEY })
 const pomodoroDatabaseId = process.env.NOTION_POMODORO_DATABASE_ID as string
 
-export default async (req: any, res: any) => {
+export default async function handler(req: any, res: any) {
     const session = await getServerSession(req, res, authOptions)
 
     if (!session) {
