@@ -25,20 +25,26 @@ export default function Pagination({ currentPage, lastPage }: PagenationProps) {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <FirstPageIcon
-                role="button"
                 onClick={() => {
                     if (isFirstPage) return
                     changePage(1)
                 }}
-                style={{ marginRight: '15px', ...(isFirstPage ? { color: 'grey' } : {}) }}
+                style={{
+                    cursor: isFirstPage ? 'default' : 'pointer',
+                    marginRight: '15px',
+                    ...(isFirstPage ? { color: 'grey' } : {}),
+                }}
             />
             <ChevronLeftIcon
-                role="button"
                 onClick={() => {
                     if (isFirstPage) return
                     changePage(currentPage - 1)
                 }}
-                style={{ marginRight: '15px', ...(isFirstPage ? { color: 'grey' } : {}) }}
+                style={{
+                    cursor: isFirstPage ? 'default' : 'pointer',
+                    marginRight: '15px',
+                    ...(isFirstPage ? { color: 'grey' } : {}),
+                }}
             />
             <span
                 style={{
@@ -48,20 +54,26 @@ export default function Pagination({ currentPage, lastPage }: PagenationProps) {
                 {currentPage}
             </span>
             <ChevronRightIcon
-                role="button"
                 onClick={() => {
                     if (isLastPage) return
                     changePage(currentPage + 1)
                 }}
-                style={{ marginLeft: '15px', ...(isLastPage ? { color: 'grey' } : {}) }}
+                style={{
+                    cursor: isLastPage ? 'default' : 'pointer',
+                    marginLeft: '15px',
+                    ...(isLastPage ? { color: 'grey' } : {}),
+                }}
             />
             <LastPageIcon
-                role="button"
                 onClick={() => {
                     if (isLastPage) return
                     changePage(lastPage)
                 }}
-                style={{ marginLeft: '15px', ...(isLastPage ? { color: 'grey' } : {}) }}
+                style={{
+                    cursor: isLastPage ? 'default' : 'pointer',
+                    marginLeft: '15px',
+                    ...(isLastPage ? { color: 'grey' } : {}),
+                }}
             />
         </div>
     )
