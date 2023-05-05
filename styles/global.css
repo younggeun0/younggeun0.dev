@@ -1,6 +1,9 @@
 :root {
-  --background-color: black;
-  --font-color: white;
+  --default-black: #21252B;
+  --default-white: #eaeaea;
+
+  --background-color: var(--default-black);
+  --font-color: var(--default-white);
   --link-color: #1976d2;
   --header-height: 60px;
 }
@@ -21,12 +24,12 @@ html {
 }
 
 html.dark {
-  --background-color: black;
-  --font-color: white;
+  --background-color: var(--default-black);
+  --font-color: var(--default-white);
 }
 html.light {
-  --background-color: white;
-  --font-color: black;
+  --background-color: var(--default-white);
+  --font-color: var(--default-black);
 }
 
 html.dark .MuiInput-input {
