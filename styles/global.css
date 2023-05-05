@@ -2,6 +2,10 @@
   --default-black: #21252B;
   --default-white: #eaeaea;
 
+  --code-font-color: #EB5757;
+  --light-code-bg: #d8d8d8;
+  --dark-code-bg: #292927;
+
   --background-color: var(--default-black);
   --font-color: var(--default-white);
   --link-color: #1976d2;

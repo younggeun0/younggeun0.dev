@@ -71,13 +71,21 @@
 .content pre code {
     font-size: 12px;
 }
+
 .content code:not(pre code) {
-    color: white;
-    background: #ffa57b;
+    color: var(--code-font-color);
     padding: 2px 3px;
     margin: 0 2px;
     border-radius: 5px;
 }
+
+html.dark .content code:not(pre code) {
+    background: var(--dark-code-bg);
+}
+html.light .content code:not(pre code) {
+    background: var(--light-code-bg);
+}
+
 .content h1 {
     margin-bottom: 0;
 }
