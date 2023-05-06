@@ -4,12 +4,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { PomodoroInfo } from 'types'
 
-// const DURATIONS = [60 * 25, 60 * 5] // 웹앱 특성 상 계속 사용하지 않으므로 15분 쉬는건 우선 제외
-const DURATIONS = [5, 3] // for test
-
-function notifyFinished() {
-    alert('🍅++') // TODO, Web Notification
-}
+const DURATIONS = [60 * 25, 60 * 5] // 웹앱 특성 상 계속 사용하지 않으므로 15분 쉬는건 우선 제외
+// const DURATIONS = [5, 3] // for test
 
 interface PomodoroTimerProps {
     todayInfo: PomodoroInfo | null | undefined
@@ -48,7 +44,7 @@ export default function PomodoroTimer({ todayInfo, setTodayInfo }: PomodoroTimer
                     count: 1,
                 })
             }
-            notifyFinished()
+            alert('🍅++') // TODO, Web Notification
         } catch (e) {
             alert(e)
         }
@@ -98,14 +94,17 @@ export default function PomodoroTimer({ todayInfo, setTodayInfo }: PomodoroTimer
                 {({ remainingTime }) => {
                     if (status === 'paused') {
                         return (
-                            <span
-                                style={{ cursor: 'pointer' }}
-                                onClick={() => {
-                                    setStatus('play')
-                                }}
-                            >
-                                ▶️
-                            </span>
+                            <>
+                                <span
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => {
+                                        setStatus('play')
+                                    }}
+                                >
+                                    {isRest ? '☕️ ' : '🔥 '}
+                                    ⏯️
+                                </span>
+                            </>
                         )
                     } else {
                         const minutes = Math.floor(remainingTime / 60)
