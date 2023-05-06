@@ -7,23 +7,46 @@ import { useSession } from 'next-auth/react'
 import { getAllPomododoroInfo } from 'lib/pomodoro'
 import CalendarHeatmap from 'react-calendar-heatmap'
 import { PomodoroInfo } from 'types'
+import dayjs from 'dayjs'
 
 export async function getServerSideProps() {
-    const pomodoroInfos = await getAllPomododoroInfo()
+    const allPomodoroInfos = await getAllPomododoroInfo()
 
     return {
         props: {
-            pomodoroInfos,
+            allPomodoroInfos,
         },
     }
 }
 
 interface PomodoroProps {
-    pomodoroInfos: PomodoroInfo[]
+    allPomodoroInfos: PomodoroInfo[]
 }
 
-export default function Pomodoro({ pomodoroInfos = [] }: PomodoroProps) {
+export default function Pomodoro({ allPomodoroInfos = [] }: PomodoroProps) {
     const { data: session } = useSession()
+    const [todayInfo, setTodayInfo] = React.useState<PomodoroInfo | null | undefined>(null)
+    const [pomodoroInfos, setPomodoroInfos] = React.useState<PomodoroInfo[]>(allPomodoroInfos)
+
+    React.useEffect(() => {
+        const today = dayjs().format('YYYY-MM-DD')
+        const todayInfo = pomodoroInfos.find(info => info.date === today)
+        setTodayInfo(todayInfo)
+    }, [])
+
+    React.useEffect(() => {
+        if (!todayInfo) return
+
+        const idx = pomodoroInfos.findIndex(info => info.date === todayInfo?.date)
+
+        if (idx !== -1) {
+            const newPomodoroInfos = [...pomodoroInfos]
+            newPomodoroInfos[idx] = todayInfo
+            setPomodoroInfos(newPomodoroInfos)
+        } else {
+            setPomodoroInfos([...pomodoroInfos, todayInfo])
+        }
+    }, [todayInfo])
 
     return (
         <Layout>
@@ -31,7 +54,7 @@ export default function Pomodoro({ pomodoroInfos = [] }: PomodoroProps) {
             <section className={`${utilStyles.padding1px}`}>
                 <h1 className="utilStyles.heading2Xl">[...🍅]</h1>
 
-                {session && <PomodoroTimer />}
+                {session && <PomodoroTimer todayInfo={todayInfo} setTodayInfo={setTodayInfo} />}
 
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <div style={{ width: '70%' }}>
@@ -39,7 +62,7 @@ export default function Pomodoro({ pomodoroInfos = [] }: PomodoroProps) {
                             startDate={new Date('2023-04-30')}
                             endDate={new Date('2023-08-01')}
                             onClick={(value: any) => {
-                                if (!value) return
+                                if (!value || !session) return
 
                                 alert(`${value.date}  🍅 * ${value.count}`)
                             }}

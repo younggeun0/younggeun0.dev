@@ -1,27 +1,22 @@
 import { ThemeContext } from 'context/ThemeContext'
+import dayjs from 'dayjs'
 import React, { useContext, useEffect, useState } from 'react'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import { PomodoroInfo } from 'types'
 
-const DURATIONS = [60 * 25, 60 * 5] // 웹앱 특성 상 계속 사용하지 않으므로 15분 쉬는건 우선 제외
-// const DURATIONS = [5, 3] // for test
+// const DURATIONS = [60 * 25, 60 * 5] // 웹앱 특성 상 계속 사용하지 않으므로 15분 쉬는건 우선 제외
+const DURATIONS = [5, 3] // for test
 
 function notifyFinished() {
-    const message = '🍅++'
-
-    if (!('Notification' in window)) {
-        alert(message)
-    } else if (Notification.permission === 'granted') {
-        new Notification(message)
-    } else if (Notification.permission !== 'denied') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                new Notification(message)
-            }
-        })
-    }
+    alert('🍅++') // TODO, Web Notification
 }
 
-export default function PomodoroTimer() {
+interface PomodoroTimerProps {
+    todayInfo: PomodoroInfo | null | undefined
+    setTodayInfo: React.Dispatch<React.SetStateAction<PomodoroInfo | null | undefined>>
+}
+
+export default function PomodoroTimer({ todayInfo, setTodayInfo }: PomodoroTimerProps) {
     const [seq, setSeq] = useState(0)
     const [status, setStatus] = useState<'play' | 'paused' | 'finished'>('paused')
     const { theme } = useContext(ThemeContext)
@@ -41,6 +36,18 @@ export default function PomodoroTimer() {
                     'Content-Type': 'application/json',
                 },
             })
+
+            if (todayInfo) {
+                setTodayInfo({
+                    date: todayInfo.date,
+                    count: todayInfo.count + 1,
+                })
+            } else {
+                setTodayInfo({
+                    date: dayjs().format('YYYY-MM-DD'),
+                    count: 1,
+                })
+            }
             notifyFinished()
         } catch (e) {
             alert(e)
@@ -63,12 +70,12 @@ export default function PomodoroTimer() {
                 <defs>
                     <linearGradient id="pomodoro-timer" x1="1" y1="0" x2="0" y2="0">
                         {isRest ? (
+                            <stop offset="100%" stopColor={theme === 'dark' ? '#478476' : '#42b883'} />
+                        ) : (
                             <>
                                 <stop offset="5%" stopColor="gold" />
                                 <stop offset="95%" stopColor="red" />
                             </>
-                        ) : (
-                            <stop offset="100%" stopColor={theme === 'dark' ? '#478476' : '#42b883'} />
                         )}
                     </linearGradient>
                 </defs>

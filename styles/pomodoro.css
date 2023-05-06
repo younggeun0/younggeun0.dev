@@ -1,10 +1,6 @@
 /*
- * react-calendar-heatmap styles
- *
- * All of the styles in this file are optional and configurable!
- * The github and gitlab color scales are provided for reference.
+ * Pomodoro color scale
  */
-
 .react-calendar-heatmap text {
   font-size: 10px;
   fill: #aaa;
@@ -18,22 +14,6 @@
   stroke: #555;
   stroke-width: 1px;
 }
-
-/*
- * Default color scale
- */
-
-/* .react-calendar-heatmap .color-empty {
-  fill: #eaeaea;
-}
-
-.react-calendar-heatmap .color-filled {
-  fill: #8cc665;
-} */
-
-/*
- * Pomodoro color scale
- */
 
 html.dark .react-calendar-heatmap .color-github-0 {
   fill: #373d47;
