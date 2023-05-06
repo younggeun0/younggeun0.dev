@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { ThemeContext } from 'context/ThemeContext'
+import React, { useContext, useEffect, useState } from 'react'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 const DURATIONS = [60 * 25, 60 * 5] // 웹앱 특성 상 계속 사용하지 않으므로 15분 쉬는건 우선 제외
@@ -23,6 +24,7 @@ function notifyFinished() {
 export default function PomodoroTimer() {
     const [seq, setSeq] = useState(0)
     const [status, setStatus] = useState<'play' | 'paused' | 'finished'>('paused')
+    const { theme } = useContext(ThemeContext)
 
     useEffect(() => {
         if (status === 'finished') {
@@ -54,19 +56,36 @@ export default function PomodoroTimer() {
                 justifyContent: 'center',
                 fontSize: '3rem',
                 alignItems: 'center',
-                margin: '4rem 0 1rem 0',
+                margin: '3rem 0 4rem 0',
             }}
         >
+            <svg style={{ position: 'absolute' }}>
+                <defs>
+                    <linearGradient id="pomodoro-timer" x1="1" y1="0" x2="0" y2="0">
+                        {isRest ? (
+                            <>
+                                <stop offset="5%" stopColor="gold" />
+                                <stop offset="95%" stopColor="red" />
+                            </>
+                        ) : (
+                            <stop offset="100%" stopColor={theme === 'dark' ? '#478476' : '#42b883'} />
+                        )}
+                    </linearGradient>
+                </defs>
+            </svg>
             <CountdownCircleTimer
                 key={seq}
                 isPlaying={status === 'play'}
                 duration={DURATIONS[seq]}
-                colors={isRest ? '#303134' : '#DF3137'}
+                colors="url(#pomodoro-timer)"
                 onComplete={_totalElapsedTime => {
                     if (!isRest) updateOrCreatePomodoro()
                     setStatus('finished')
                 }}
+                trailStrokeWidth={30}
+                trailColor={theme.type === 'dark' ? '#373d47' : '#d3d3d3'}
                 strokeWidth={20}
+                isGrowing={true}
                 size={250}
             >
                 {({ remainingTime }) => {

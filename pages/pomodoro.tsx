@@ -31,6 +31,8 @@ export default function Pomodoro({ pomodoroInfos = [] }: PomodoroProps) {
             <section className={`${utilStyles.padding1px}`}>
                 <h1 className="utilStyles.heading2Xl">[...🍅]</h1>
 
+                {session && <PomodoroTimer />}
+
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <div style={{ width: '70%' }}>
                         <CalendarHeatmap
@@ -60,8 +62,6 @@ export default function Pomodoro({ pomodoroInfos = [] }: PomodoroProps) {
                         />
                     </div>
                 </div>
-
-                {session && <PomodoroTimer />}
             </section>
         </Layout>
     )
