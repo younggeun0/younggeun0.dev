@@ -7,8 +7,9 @@ const pomodoroDatabaseId = process.env.NOTION_POMODORO_DATABASE_ID as string
 
 export default async function handler(req: any, res: any) {
     const session = await getServerSession(req, res, authOptions)
+    const isYoung = session?.user?.email === 'dureng5@gmail.com'
 
-    if (!session) {
+    if (!isYoung) {
         res.statusCode = 401
         res.send({
             error: 'Unauthorized',
@@ -16,7 +17,6 @@ export default async function handler(req: any, res: any) {
         return
     }
 
-    // TODO, 다른 계정으로 로그인 시 작성안되게 막히는지 확인 필요
     if (req.method === 'POST') {
         try {
             const today = new Date()

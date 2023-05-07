@@ -25,6 +25,8 @@ interface PomodoroProps {
 
 export default function Pomodoro({ allPomodoroInfos = [] }: PomodoroProps) {
     const { data: session } = useSession()
+    const isYoung = session?.user?.email === 'dureng5@gmail.com'
+
     const [todayInfo, setTodayInfo] = React.useState<PomodoroInfo | null | undefined>(null)
     const [pomodoroInfos, setPomodoroInfos] = React.useState<PomodoroInfo[]>(allPomodoroInfos)
 
@@ -54,7 +56,7 @@ export default function Pomodoro({ allPomodoroInfos = [] }: PomodoroProps) {
             <section className={`${utilStyles.padding1px}`}>
                 <h1 className="utilStyles.heading2Xl">[...🍅]</h1>
 
-                {session && <PomodoroTimer todayInfo={todayInfo} setTodayInfo={setTodayInfo} />}
+                {isYoung && <PomodoroTimer todayInfo={todayInfo} setTodayInfo={setTodayInfo} />}
 
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <div style={{ width: '70%' }}>
@@ -62,7 +64,7 @@ export default function Pomodoro({ allPomodoroInfos = [] }: PomodoroProps) {
                             startDate={new Date('2023-04-30')}
                             endDate={new Date('2023-08-01')}
                             onClick={(value: any) => {
-                                if (!value || !session) return
+                                if (!value || !isYoung) return
 
                                 alert(`${value.date}  🍅 * ${value.count}`)
                             }}
