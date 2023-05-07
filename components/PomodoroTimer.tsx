@@ -88,7 +88,7 @@ export default function PomodoroTimer({ todayInfo, setTodayInfo }: PomodoroTimer
                 trailStrokeWidth={30}
                 trailColor={theme.type === 'dark' ? '#373d47' : '#d3d3d3'}
                 strokeWidth={20}
-                isGrowing={true}
+                isGrowing={isRest ? true : false}
                 size={250}
             >
                 {({ remainingTime }) => {
@@ -107,6 +107,7 @@ export default function PomodoroTimer({ todayInfo, setTodayInfo }: PomodoroTimer
                             </>
                         )
                     } else {
+                        // TODO, 브라우저 종료 시 remainingTime을 로컬 스토리지에 백업하고 다시 불러오는 기능
                         const minutes = Math.floor(remainingTime / 60)
                         const seconds = remainingTime % 60
 
