@@ -26,6 +26,7 @@ export default function PomodoroTimer({ todayInfo, setTodayInfo }: PomodoroTimer
 
     async function updateOrCreatePomodoro() {
         try {
+            new Audio('chime.mp3').play()
             await fetch('/api/pomodoro', {
                 method: 'POST',
                 headers: {
@@ -44,9 +45,9 @@ export default function PomodoroTimer({ todayInfo, setTodayInfo }: PomodoroTimer
                     count: 1,
                 })
             }
-            alert('🍅++') // TODO, Web Notification
         } catch (e) {
             alert(e)
+            console.error(e)
         }
     }
 
@@ -124,6 +125,7 @@ export default function PomodoroTimer({ todayInfo, setTodayInfo }: PomodoroTimer
                     }
                 }}
             </CountdownCircleTimer>
+            <audio id="audio" src="/chime.mp3" />
         </div>
     )
 }
