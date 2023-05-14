@@ -51,6 +51,11 @@ export default function PomodoroTimer({ todayInfo, setTodayInfo }: PomodoroTimer
         }
     }
 
+    function start() {
+        setSeq(s => (s = 0))
+        setStatus('play')
+    }
+
     const isRest = seq === 1
 
     return (
@@ -89,21 +94,24 @@ export default function PomodoroTimer({ todayInfo, setTodayInfo }: PomodoroTimer
                 trailStrokeWidth={30}
                 trailColor={theme.type === 'dark' ? '#373d47' : '#d3d3d3'}
                 strokeWidth={20}
-                isGrowing={isRest ? true : false}
                 size={250}
             >
                 {({ remainingTime }) => {
                     if (status === 'paused') {
                         return (
                             <>
-                                <span
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={() => {
-                                        setStatus('play')
-                                    }}
-                                >
-                                    {isRest ? '☕️ ' : '🔥 '}
-                                    ⏯️
+                                {isRest && (
+                                    <span
+                                        style={{ cursor: 'pointer', marginRight: '1rem' }}
+                                        onClick={() => {
+                                            setStatus('play')
+                                        }}
+                                    >
+                                        ☕️
+                                    </span>
+                                )}
+                                <span style={{ cursor: 'pointer' }} onClick={start}>
+                                    🔥
                                 </span>
                             </>
                         )
