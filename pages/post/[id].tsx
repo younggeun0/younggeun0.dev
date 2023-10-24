@@ -8,7 +8,6 @@ import PageSubInfo from "components/PageSubInfo";
 import Opengraph from "components/Opengraph";
 import { IMAGE_SIZE } from 'lib/constants'
 import { Page } from 'types'
-import Image from 'next/image'
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const ids = await getAllNotionPostIds()
@@ -47,9 +46,10 @@ export default function Post({ page }: PostProps) {
             <header style={{ textAlign: 'center' }}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     {page.icon?.type === 'external' && (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img
                             alt={''}
-                            src={page.icon.external?.url}
+                            src={page.icon.external?.url!}
                             width={IMAGE_SIZE}
                             height={IMAGE_SIZE}
                             style={{

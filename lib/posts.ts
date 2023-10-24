@@ -13,8 +13,13 @@ const n2m = new NotionToMarkdown({ notionClient: notion })
 
 n2m.setCustomTransformer('embed', async block => {
     const { embed } = block as any
-    if (!embed?.url) return ''
-    return `<iframe src="${embed?.url}"></iframe>`
+    if (!embed?.url) return '';
+
+    // for embeded codepen
+    if (embed.url.includes('codepen')) {
+        embed.url = embed.url.replace('/pen/', '/embed/')
+    }
+    return `<iframe src="${embed?.url}" frameborder="no" loading="lazy"></iframe>`
 })
 
 async function saveImageToPublic(imgMarkdown: string, fileNameWithDir: string) {
