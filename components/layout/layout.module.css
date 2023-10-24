@@ -4,10 +4,6 @@
     margin: 4rem auto 6rem;
 }
 
-.main {
-    min-height: 60vh;
-}
-
 .header {
     font-size: 1.4rem;
     display: flex;
