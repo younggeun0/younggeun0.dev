@@ -34,7 +34,7 @@ export default function Pomodoro({ allPomodoroInfos = [] }: PomodoroProps) {
         const today = dayjs().format('YYYY-MM-DD')
         const todayInfo = pomodoroInfos.find(info => info.date === today)
         setTodayInfo(todayInfo)
-    }, [])
+    }, [pomodoroInfos])
 
     React.useEffect(() => {
         if (!todayInfo) return
@@ -48,7 +48,7 @@ export default function Pomodoro({ allPomodoroInfos = [] }: PomodoroProps) {
         } else {
             setPomodoroInfos([...pomodoroInfos, todayInfo])
         }
-    }, [todayInfo])
+    }, [pomodoroInfos, todayInfo])
 
     return (
         <Layout>
