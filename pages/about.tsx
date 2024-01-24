@@ -4,11 +4,8 @@ import utilStyles from "../styles/utils.module.css";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Opengraph from "components/Opengraph";
-import { signIn, signOut, useSession } from 'next-auth/react'
 
 export default function About() {
-    const { data: session, status } = useSession()
-
     return (
         <Layout>
             <Opengraph title="About Young" description="young's resume" />
@@ -20,16 +17,6 @@ export default function About() {
                         <br />웹 개발자 오영근입니다{' '}
                         <span
                             className={utilStyles.heading2Xl}
-                            onClick={(e: any) => {
-                                e.preventDefault()
-
-                                if (status === 'unauthenticated') {
-                                    signIn()
-                                }
-                                if (session) {
-                                    signOut()
-                                }
-                            }}
                         >
                             🐢
                         </span>
@@ -63,10 +50,18 @@ export default function About() {
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
-                        일본 스타일 커머스 플랫폼 NUGU 개발중입니다
+                        일본 스타일 커머스 플랫폼 NUGU 개발중입니다.
+                        <br/>
+                        <br/>
+
+                        <strong>2023</strong>
+                        <br/>
+                        ・ cafe24에서 자사 플랫폼으로 이관 후 상품관리 기능 개발 <br/>
+                        ・ 셀메이트 상품동기화를 cafe24에서 자사어드민으로 이관 <br/>
+                        ・ NUGUPRO 퍼블리싱 작업 <br/>
                     </Typography>
                 </Box>
-                <Box sx={{ margin: '3rem 0' }}>
+                <Box sx={{ margin: '5rem 0' }}>
                     <span className={utilStyles.headingLg}>에버온 everon</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Web Developer
@@ -87,7 +82,7 @@ export default function About() {
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
-                        사내에서 사용할 차세대 포털 서비스 개발을 담당했습니다
+                        사내에서 사용할 차세대 포털 서비스 개발을 담당했습니다.
                         <br />
                         ・ Keycloak을 이용한 SSO 구현, Dooray! 그룹웨어 연동
                         <br />
@@ -116,7 +111,7 @@ export default function About() {
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
-                        OZ연구소 리포트2팀 신입 팀원으로 OZReport HTML Viewer 솔루션 개발업무를 담당했습니다
+                        OZ연구소 리포트2팀 신입 팀원으로 OZReport HTML Viewer 솔루션 개발업무를 담당했습니다.
                         <br />
                         ・ 뷰어 내용을 스크린 리더(센스리더)로 읽을 수 있도록 접근성 개선
                         <br />
@@ -138,7 +133,7 @@ export default function About() {
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
-                        인턴 사원으로 개발중이던 솔루션 QA 업무를 수행했습니다
+                        인턴 사원으로 개발중이던 솔루션 QA 업무를 수행했습니다.
                     </Typography>
                 </Box>
 

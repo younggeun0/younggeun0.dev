@@ -19,8 +19,3 @@ export interface Tag {
     name: string
     color: string
 }
-
-export interface PomodoroInfo {
-    date: string
-    count: number
-}
