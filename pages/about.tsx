@@ -1,25 +1,49 @@
-import React from "react";
-import Layout from "../components/layout/Layout";
-import utilStyles from "../styles/utils.module.css";
-import { Box, Typography } from "@mui/material";
-import Image from "next/image";
-import Opengraph from "components/Opengraph";
+import React, { useEffect } from 'react'
+import Layout from '../components/layout/Layout'
+import utilStyles from '../styles/utils.module.css'
+import { Box, Typography } from '@mui/material'
+import Image from 'next/image'
+import Opengraph from 'components/Opengraph'
+import Confetti from 'react-confetti'
+import GitHubIcon from '@mui/icons-material/GitHub'
+
+function GitHubLink({ url, name }: { url: string; name: string }) {
+    return (
+        <div style={{ display: 'inline-block' }}>
+            <a href={url} target="_blank" rel="noopener noreferrer">
+                <GitHubIcon fontSize="inherit" style={{ marginRight: '0.2rem' }} />
+                {name}
+            </a>
+        </div>
+    )
+}
 
 export default function About() {
+    const [showConfetti, setShowConfetti] = React.useState(false)
+
+    function handleShowConfetti() {
+        setShowConfetti(true)
+
+        setTimeout(() => {
+            setShowConfetti(false)
+        }, 5000)
+    }
+
+    useEffect(() => {
+        handleShowConfetti()
+    }, [])
+
     return (
         <Layout>
             <Opengraph title="About Young" description="young's resume" />
 
+            {showConfetti && <Confetti recycle={false} />}
+
             <article>
                 <Box sx={{ margin: '3rem 0' }}>
-                    <span className={utilStyles.heading2Xl}>
+                    <span className={utilStyles.heading2Xl} style={{ cursor: 'pointer' }} onClick={handleShowConfetti}>
                         안녕하세요!
-                        <br />웹 개발자 오영근입니다{' '}
-                        <span
-                            className={utilStyles.heading2Xl}
-                        >
-                            🐢
-                        </span>
+                        <br />웹 개발자 오영근입니다 <span className={utilStyles.heading2Xl}>🐢</span>
                     </span>
                 </Box>
                 <Box sx={{ textAlign: 'center' }}>
@@ -40,28 +64,43 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         <strong>Tech Stacks</strong>
                         <br />
-                        Frontend : React(Next.js), Svelte(SvelteKit)
+                        React(
+                        <GitHubLink name="next.js" url="https://github.com/vercel/next.js" />
+                        ), Svelte(
+                        <GitHubLink name="sveltekit" url="https://github.com/sveltejs/kit" />)
                         <br />
-                        Backend : Django(DRF)
+                        Django(
+                        <GitHubLink
+                            name="django-rest-framework"
+                            url="https://github.com/encode/django-rest-framework"
+                        />
+                        )
                         <br />
-                        Database: PostgreSQL
+                        Django ORM(PostgreSQL)
                         <br />
-                        SCM: Github
+                        Github
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
-                        일본 스타일 커머스 플랫폼 NUGU 개발중입니다.
-                        <br/>
-                        <br/>
-
-                        <strong>2023</strong>
-                        <br/>
-                        ・ cafe24에서 자사 플랫폼으로 이관 후 상품관리 기능 개발 <br/>
-                        ・ 셀메이트 상품동기화를 cafe24에서 자사어드민으로 이관 <br/>
-                        ・ NUGUPRO 퍼블리싱 작업 <br/>
+                        일본 커머스 플랫폼 <a href="https://nugu.jp/">nugu</a> 개발중입니다.
+                        <br />
+                        ・ cafe24에서 자사 플랫폼으로 이관 <br />
+                        &nbsp;&nbsp; ・ 어드민 게시물관리 기능 개발(
+                        <GitHubLink url="https://github.com/tinymce/tinymce" name="tinymce" />,{' '}
+                        <GitHubLink url="https://github.com/ajaxorg/ace" name="ace" />,{' '}
+                        <GitHubLink url="https://github.com/dropzone/dropzone" name="dropzone" />) <br />
+                        &nbsp;&nbsp; ・ 어드민 카테고리관리 기능 개발(
+                        <GitHubLink url="https://github.com/mar10/fancytree" name="fancytree" />) <br />
+                        &nbsp;&nbsp; ・ 어드민 상품관리 기능 개발 <br />
+                        &nbsp;&nbsp; ・ 어드민 - 셀메이트 상품동기화 기능 개발
+                        <br />・ NUGU PRO 퍼블리싱(
+                        <a href="https://www.nugu.jp/product?displaygroup=3572">Bibiy</a>,{' '}
+                        <a href="https://www.nugu.jp/product?displaygroup=4103">ADAM ET ROPE</a>,{' '}
+                        <a href="https://www.nugu.jp/product?displaygroup=4461">DISCOAT</a>,{' '}
+                        <a href="https://www.nugu.jp/product?displaygroup=5397">AMUSE</a>) <br />
                     </Typography>
                 </Box>
-                <Box sx={{ margin: '5rem 0' }}>
+                <Box sx={{ margin: '3rem 0' }}>
                     <span className={utilStyles.headingLg}>에버온 everon</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Web Developer
@@ -72,13 +111,17 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         <strong>Tech Stacks</strong>
                         <br />
-                        Frontend : React(react-admin, mui)
+                        React(
+                        <GitHubLink name="react-admin" url="https://github.com/marmelab/react-admin" />,{' '}
+                        <GitHubLink name="mui" url="https://mui.com/" />)
                         <br />
-                        Backend : Node(Express.js), Spring
+                        Node(
+                        <GitHubLink name="express" url="https://github.com/expressjs/express" />
+                        ), Spring
                         <br />
-                        Database: PostgreSQL, Oracle
+                        PostgreSQL, Oracle
                         <br />
-                        SCM: Gitlab
+                        GitLab
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
@@ -86,9 +129,9 @@ export default function About() {
                         <br />
                         ・ Keycloak을 이용한 SSO 구현, Dooray! 그룹웨어 연동
                         <br />
-                        ・ nivo를 이용한 통계 대시보드 구축
+                        ・ <GitHubLink url="https://github.com/plouc/nivo" name="nivo" />를 이용한 통계 대시보드 구축
                         <br />
-                        ・ 칸반보드 형태의 VOC 관리 서비스 개발
+                        ・ 칸반보드 형태의 고객문의관리 서비스 개발
                         <br />
                         ・ Express.js 백앤드 서버 SpringBoot로 이관
                         <br />
@@ -96,7 +139,7 @@ export default function About() {
                         <br />・ 사내 스터디 개설, 운영
                     </Typography>
                 </Box>
-                <Box sx={{ margin: '5rem 0' }}>
+                <Box sx={{ margin: '3rem 0' }}>
                     <span className={utilStyles.headingLg}>포시에스 FORCS</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Software Engineer
@@ -117,14 +160,18 @@ export default function About() {
                         <br />
                         ・ 전자문서 출력 시 인증 바코드 솔루션 연동(MarkAny, SGA)
                         <br />
-                        ・ 뷰어에 WYSIWYG 편집기(summernote.js) 임배딩 기능 개발
+                        ・ 뷰어에 WYSIWYG 편집기(
+                        <GitHubLink name="summernote" url="https://github.com/summernote/summernote" />) 임배딩 기능
+                        개발
                         <br />
-                        ・ WebRTC, opencv.js, zxing.js 라이브러리를 이용한 인감스캔, 카드스캔 기능 개발
+                        ・ WebRTC, <GitHubLink name="opencv-js" url="https://github.com/TechStark/opencv-js" />,{' '}
+                        <GitHubLink name="zxing" url="https://github.com/zxing/zxing" /> 라이브러리를 이용한 인감스캔,
+                        카드스캔 기능 개발
                         <br />・ 뷰어 동기화 중계서버 모듈을 개발
                     </Typography>
                 </Box>
 
-                <Box sx={{ margin: '5rem 0' }}>
+                <Box sx={{ margin: '3rem 0' }}>
                     <span className={utilStyles.headingLg}>미래융합정보기술</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         Intern
@@ -150,7 +197,7 @@ export default function About() {
                     </Typography>
                 </Box>
 
-                <Box sx={{ margin: '5rem 0' }}>
+                <Box sx={{ margin: '3rem 0' }}>
                     <span className={utilStyles.headingLg}>영국 워킹홀리데이</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         YMS(Youth Mobility Scheme) Visa로 외국 생활
@@ -159,7 +206,7 @@ export default function About() {
                     </Typography>
                 </Box>
 
-                <Box sx={{ margin: '5rem 0' }}>
+                <Box sx={{ margin: '3rem 0' }}>
                     <span className={utilStyles.headingLg}>동국대학교</span>
                     <Typography variant="body2" className={utilStyles.body2}>
                         멀티미디어공학과 졸업
