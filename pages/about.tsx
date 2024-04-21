@@ -4,7 +4,6 @@ import utilStyles from '../styles/utils.module.css'
 import { Box, Typography } from '@mui/material'
 import Image from 'next/image'
 import Opengraph from 'components/Opengraph'
-import Confetti from 'react-confetti'
 import GitHubIcon from '@mui/icons-material/GitHub'
 
 function GitHubLink({ url, name }: { url: string; name: string }) {
@@ -19,35 +18,61 @@ function GitHubLink({ url, name }: { url: string; name: string }) {
 }
 
 export default function About() {
-    const [showConfetti, setShowConfetti] = React.useState(false)
-
-    function handleShowConfetti() {
-        setShowConfetti(true)
-
-        setTimeout(() => {
-            setShowConfetti(false)
-        }, 5000)
-    }
-
     useEffect(() => {
-        handleShowConfetti()
+        const style = document.createElement('style')
+        style.innerHTML = `
+            @keyframes moveRight {
+                0% {
+                    left: -100%;
+                }
+                100% {
+                    left: 0%;
+                }
+            }
+        `
+        document.head.appendChild(style)
+        return () => {
+            document.head.removeChild(style)
+        }
     }, [])
 
     return (
         <Layout>
             <Opengraph title="About Young" description="young's resume" />
 
-            {showConfetti && <Confetti recycle={false} />}
-
             <article>
                 <Box sx={{ margin: '3rem 0' }}>
-                    <span className={utilStyles.heading2Xl} style={{ cursor: 'pointer' }} onClick={handleShowConfetti}>
+                    <span className={utilStyles.heading2Xl} style={{ cursor: 'pointer' }}>
                         안녕하세요!
                         <br />웹 개발자 오영근입니다 <span className={utilStyles.heading2Xl}>🐢</span>
                     </span>
                 </Box>
-                <Box sx={{ textAlign: 'center' }}>
-                    <Image priority src="/images/profile.jpeg" height={480} width={320} alt={'profile'} />
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <div style={{ width: '320px', height: '480px', position: 'relative', overflow: 'hidden' }}>
+                        <Image priority src="/images/profile.jpeg" height={480} width={320} alt={'profile'} />
+                        {true && (
+                            <div
+                                style={{
+                                    position: 'absolute',
+                                    bottom: '15px',
+                                    padding: '8px 0',
+                                    width: '100%',
+                                    background: 'rgba(255, 250, 160, 0.5)',
+                                }}
+                            >
+                                <strong
+                                    style={{
+                                        position: 'relative',   
+                                        display: 'inline-block',
+                                        whiteSpace: 'nowrap',
+                                        animation: 'moveRight 5s linear infinite',
+                                    }}
+                                >
+                                    {'HIRE ME '.repeat(15)}
+                                </strong>
+                            </div>
+                        )}
+                    </div>
                 </Box>
                 <Box sx={{ margin: '5rem 0 0' }}>
                     <span className={utilStyles.headingXl}>Work Experience</span>
