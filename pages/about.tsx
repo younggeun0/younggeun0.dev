@@ -50,7 +50,7 @@ export default function About() {
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     <div style={{ width: '320px', height: '480px', position: 'relative', overflow: 'hidden' }}>
                         <Image priority src="/images/profile.jpeg" height={480} width={320} alt={'profile'} />
-                        {true && (
+                        {false && (
                             <div
                                 style={{
                                     position: 'absolute',
