@@ -5,6 +5,33 @@ import { Box, Typography } from '@mui/material'
 import Image from 'next/image'
 import Opengraph from 'components/Opengraph'
 import GitHubIcon from '@mui/icons-material/GitHub'
+import dayjs from 'dayjs'
+import duration from 'dayjs/plugin/duration'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import customPraseFormat from 'dayjs/plugin/customParseFormat'
+
+dayjs.extend(duration)
+dayjs.extend(relativeTime)
+dayjs.extend(customPraseFormat)
+
+function calculateYearMonthDiff(from: string, to: string) {
+    const startDate = dayjs(from, 'YYYY.MM')
+    let endDate = null
+    if (to === '현재') {
+        endDate = dayjs()
+    } else {
+        endDate = dayjs(to, 'YYYY.MM')
+    }
+
+    const years = endDate.diff(startDate, 'year')
+    const months = endDate.diff(startDate, 'month') % 12
+
+    let message = ''
+    if (years !== 0) message += `${years}년`
+    if (months !== 0) message += `${months}개월`
+
+    return message
+}
 
 function GitHubLink({ url, name }: { url: string; name: string }) {
     return (
@@ -62,7 +89,7 @@ export default function About() {
                             >
                                 <strong
                                     style={{
-                                        position: 'relative',   
+                                        position: 'relative',
                                         display: 'inline-block',
                                         whiteSpace: 'nowrap',
                                         animation: 'moveRight 5s linear infinite',
@@ -83,7 +110,7 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         Web Developer
                         <br />
-                        2022.11 ~
+                        2022.11 ~ 현재 ({calculateYearMonthDiff('2022.11', '현재')})
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
@@ -130,7 +157,7 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         Web Developer
                         <br />
-                        2022.03 - 2022.10
+                        2022.03 - 2022.10 ({calculateYearMonthDiff('2022.03', '2022.10')})
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
@@ -169,7 +196,7 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         Software Engineer
                         <br />
-                        2019.06 - 2022.02
+                        2019.06 - 2022.02 ({calculateYearMonthDiff('2019.06', '2022.02')})
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
@@ -201,7 +228,7 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         Intern
                         <br />
-                        2018.01 - 2018.06
+                        2018.01 - 2018.06 ({calculateYearMonthDiff('2018.01', '2018.06')})
                     </Typography>
                     <br />
                     <Typography variant="body2" className={utilStyles.body2}>
@@ -218,7 +245,7 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         Python&Java응용 SW실무개발자양성과정 수료
                         <br />
-                        2018.10 - 2019.05
+                        2018.10 - 2019.05 ({calculateYearMonthDiff('2018.10', '2019.05')})
                     </Typography>
                 </Box>
 
@@ -227,7 +254,7 @@ export default function About() {
                     <Typography variant="body2" className={utilStyles.body2}>
                         YMS(Youth Mobility Scheme) Visa로 외국 생활
                         <br />
-                        2015.06 - 2017.06
+                        2015.06 - 2017.06 ({calculateYearMonthDiff('2015.06', '2017.06')})
                     </Typography>
                 </Box>
 
