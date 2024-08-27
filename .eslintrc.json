@@ -1,3 +1,23 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "plugins": ["import"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin", // 내장 모듈 (예: fs, path)
+          "external", // 외부 모듈 (예: react, lodash)
+          "internal", // 내부 모듈 (예: src/utils, components 등)
+          "parent", // 상위 디렉토리에서 가져온 모듈
+          "sibling", // 같은 디렉토리 내의 모듈
+          "index", // index 파일
+          "object", // import 문에서 구조 분해된 객체
+          "type" // 타입 임포트 (타입스크립트의 경우)
+        ],
+        "newlines-between": "always", // 그룹 간에 빈 줄 추가
+        "alphabetize": { "order": "asc", "caseInsensitive": true } // 알파벳 순서로 정렬
+      }
+    ]
+  }
 }
