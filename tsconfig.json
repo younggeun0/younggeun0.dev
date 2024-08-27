@@ -20,7 +20,11 @@
     "noEmit": true,
     "moduleResolution": "node",
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@/*": ["./*"],
+      "@/components/*": ["./components/*"],
+    }
   },
   "include": [
     "next-env.d.ts",

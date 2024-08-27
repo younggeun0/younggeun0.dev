@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Tag } from '../types'
 
 export default function TagChip({ tag }: { tag: Tag }) {

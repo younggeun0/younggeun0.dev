@@ -1,11 +1,12 @@
-import React from "react";
-import Layout from "../components/layout/Layout";
-import utilStyles from "../styles/utils.module.css";
-import { getTags } from "lib/posts";
-import Link from "next/link";
+import Link from 'next/link'
+import React from 'react'
 
+import Opengraph from 'components/Opengraph'
+import { getTags } from 'lib/posts'
 import { Tag } from 'types'
-import Opengraph from "components/Opengraph"
+
+import Layout from '../components/layout/Layout'
+import utilStyles from '../styles/utils.module.css'
 
 export async function getStaticProps(props: any) {
     const tags = await getTags()

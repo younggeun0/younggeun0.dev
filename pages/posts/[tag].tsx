@@ -1,11 +1,13 @@
-import React from "react";
-import Layout from "../../components/layout/Layout";
-import utilStyles from "../../styles/utils.module.css";
-import { getPagesByTag, getTags } from "../../lib/posts";
-import { GetStaticPaths, GetStaticProps } from "next/types";
-import PageList from "components/PageList";
-import Opengraph from "components/Opengraph";
+import { GetStaticPaths, GetStaticProps } from 'next/types'
+import React from 'react'
+
+import Opengraph from 'components/Opengraph'
+import PageList from 'components/PageList'
 import { Page } from 'types'
+
+import Layout from '../../components/layout/Layout'
+import { getPagesByTag, getTags } from '../../lib/posts'
+import utilStyles from '../../styles/utils.module.css'
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const tags = await getTags()

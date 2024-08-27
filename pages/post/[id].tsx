@@ -1,13 +1,15 @@
-import React from "react";
 import Head from "next/head";
-import Layout from "../../components/layout/Layout";
-import utilStyles from "../../styles/utils.module.css";
-import { getAllNotionPostIds, getSinglePageById } from "../../lib/posts";
 import { GetStaticPaths, GetStaticProps } from "next/types";
-import PageSubInfo from "components/PageSubInfo";
+import React from "react";
+
 import Opengraph from "components/Opengraph";
+import PageSubInfo from "components/PageSubInfo";
 import { IMAGE_SIZE } from 'lib/constants'
 import { Page } from 'types'
+
+import Layout from "../../components/layout/Layout";
+import { getAllNotionPostIds, getSinglePageById } from "../../lib/posts";
+import utilStyles from "../../styles/utils.module.css";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const ids = await getAllNotionPostIds()

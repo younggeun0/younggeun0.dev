@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import styles from "./layout.module.css";
-import ShareIcon from "@mui/icons-material/Share";
-import Header from "./Header";
-import Footer from "./Footer";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import ShareIcon from "@mui/icons-material/Share";
 import { Alert, Box, Snackbar } from "@mui/material";
+import React, { useState } from "react";
+
 import { Comments } from "../Comments";
+
+import Footer from "./Footer";
+import Header from "./Header";
+import styles from "./layout.module.css";
 
 interface LayoutProps {
     children: React.ReactNode

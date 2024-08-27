@@ -1,9 +1,9 @@
 
-import React from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Tooltip } from "@mui/material";
 import { useRouter } from 'next/router'
+import React from "react";
 
 export default function Footer() {
     const router = useRouter();

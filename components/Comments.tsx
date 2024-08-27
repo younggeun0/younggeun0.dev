@@ -1,5 +1,6 @@
-import { ThemeContext } from "context/ThemeContext";
 import React, { useContext } from "react";
+
+import { ThemeContext } from "context/ThemeContext";
 
 export const Comments = () => {
     const { theme } = useContext(ThemeContext);

@@ -1,7 +1,9 @@
 import React from "react";
-import TagChip from "./TagChip";
-import Date from "./DateComp";
+
 import { Tag, Page } from '../types'
+
+import Date from "./DateComp";
+import TagChip from "./TagChip";
 
 interface PageSubInfoProps {
     page: Page

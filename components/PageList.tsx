@@ -1,9 +1,11 @@
-import React from "react";
-import utilStyles from "../styles/utils.module.css";
-import LinkPageCard from "./LinkPageCard";
-import { Page } from '../types'
-import Pagination from './Pagination'
 import { useRouter } from 'next/router'
+import React from "react";
+
+import utilStyles from "../styles/utils.module.css";
+import { Page } from '../types'
+
+import LinkPageCard from "./LinkPageCard";
+import Pagination from './Pagination'
 
 const PER_PAGE = 5
 

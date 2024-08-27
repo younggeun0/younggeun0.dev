@@ -1,5 +1,6 @@
-import { Html, Head, Main, NextScript } from "next/document";
-import Opengraph from "../components/Opengraph";
+import { Html, Head, Main, NextScript } from 'next/document'
+
+import Opengraph from '../components/Opengraph'
 
 export default function Document() {
     return (
@@ -51,5 +52,5 @@ export default function Document() {
                 <NextScript />
             </body>
         </Html>
-    );
+    )
 }

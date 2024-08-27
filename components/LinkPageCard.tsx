@@ -1,9 +1,13 @@
-import React from "react";
-import Link from "next/link";
-import PageSubInfo from "./PageSubInfo";
 import { Card, CardContent } from "@mui/material";
-import { Page } from 'types'
+import Link from "next/link";
+import React from "react";
+
 import { IMAGE_SIZE } from 'lib/constants'
+import { Page } from 'types'
+
+import PageSubInfo from "./PageSubInfo";
+
+
 
 type linkPageCardProps = {
     page: Page

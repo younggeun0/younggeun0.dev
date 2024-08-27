@@ -1,11 +1,14 @@
-import matter from "gray-matter";
-import markdownToHtml from "./markdown";
-import { Client } from "@notionhq/client";
-import { NotionToMarkdown } from "notion-to-md";
-import { Page, Tag } from 'types'
 import fs from 'fs'
-import fetch from 'node-fetch'
 import path from 'path'
+
+import { Client } from '@notionhq/client'
+import matter from 'gray-matter'
+import fetch from 'node-fetch'
+import { NotionToMarkdown } from 'notion-to-md'
+
+import { Page, Tag } from 'types'
+
+import markdownToHtml from './markdown'
 
 const notion = new Client({ auth: process.env.NOTION_KEY })
 const postDatabaseId = process.env.NOTION_POST_DATABASE_ID // TODO FIX this name on vercel
@@ -13,7 +16,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion })
 
 n2m.setCustomTransformer('embed', async block => {
     const { embed } = block as any
-    if (!embed?.url) return '';
+    if (!embed?.url) return ''
 
     // for embeded codepen
     if (embed.url.includes('codepen')) {
