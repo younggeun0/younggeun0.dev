@@ -32,19 +32,18 @@
     },
     vcs: ['git', 'github'],
   },
-  done: [
+  doing: [
     'nugu 플랫폼 UI 개발',
+  ],
+  done: [
     'nugu PRO 기획전 퍼블리싱': [
       'grid, flexbox를 활용한 다양한 레이아웃 구성',
     ],
     'cafe24에서 자사 플랫폼으로 이관': [
-      '기존 데이터 마이그레이션',
+      '스크래핑을 통한 cafe24 데이터 마이그레이션',
       'Back Office 기능 개발': [
+        '기능 구현을 위한 데이터 모델링(게시물, 상품, 카테고리, 발주 관리 기능)',
         'WYSIWYG 편집기 연동(tinymce editor, ace editor, dropzone)',
-        '게시물관리',
-        '상품관리',
-        '발주관리',
-        '카테고리관리(fancytree)',
       ]
       '자사 플랫폼과 셀메이트 상품동기화 기능 연동': [
         'TDD로 셀메이트 스펙 리버스 엔지니어링',
