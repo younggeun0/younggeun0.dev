@@ -3,12 +3,7 @@ import React from 'react'
 
 export default function Header() {
     return (
-        <header
-            className="sticky z-50 flex justify-between items-center p-2 top-0 w-full text-lg"
-            style={{
-                backgroundColor: 'var(--background-color)',
-            }}
-        >
+        <header className="sticky z-50 flex justify-between items-center p-2 top-0 w-full text-lg">
             <Link href="/">
                 <h1>
                     <span

@@ -32,10 +32,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <link rel="stylesheet" href="https://statics.goorm.io/fonts/GoormSans/v1.0.0/GoormSans.min.css" />
             </head>
             <body>
-                <div className="mx-auto w-full md:w-3/4 lg:w-[50%] p-2">
+                <div className="mx-auto w-full md:w-3/4 lg:w-[50%]">
                     <Header />
-                    <main>{children}</main>
-                    <Footer />
+                    <div className="p-2">
+                        <main>{children}</main>
+                        <Footer />
+                    </div>
                 </div>
             </body>
         </html>
