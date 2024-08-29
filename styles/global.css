@@ -71,6 +71,7 @@ blockquote {
   }
 }
 
-pre {
+div.remark-highlight pre {
   white-space: pre-wrap;
+  font-size: 0.8rem;
 }
