@@ -1,0 +1,41 @@
+import { ReactNode } from 'react'
+import React from 'react'
+
+import Footer from '@/app/Footer'
+import Header from '@/app/Header'
+import '@/styles/global.css'
+
+export const metadata = {
+    title: 'younggeun0.dev',
+    description: "young's blog",
+}
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+    return (
+        <html lang="en">
+            <head>
+                <meta charSet="utf-8" />
+                <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+                <link rel="icon" href="/favicon.ico" />
+                <meta name="google-site-verification" content="JTXpGI48AchnhjFqLKv-MwGTrt8P-vXMHK2C54RJbE4" />
+                <link
+                    rel="stylesheet"
+                    as="style"
+                    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css"
+                />
+                <link rel="preconnect" href="https://statics.goorm.io" />
+                <link
+                    rel="preload"
+                    as="style"
+                    href="https://statics.goorm.io/fonts/GoormSans/v1.0.0/GoormSans.min.css"
+                />
+                <link rel="stylesheet" href="https://statics.goorm.io/fonts/GoormSans/v1.0.0/GoormSans.min.css" />
+            </head>
+            <body>
+                <Header />
+                <main className="mx-auto w-full md:w-3/4 lg:w-[75%] p-2">{children}</main>
+                <Footer />
+            </body>
+        </html>
+    )
+}

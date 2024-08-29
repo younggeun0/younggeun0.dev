@@ -22,15 +22,31 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./components/*"],
-    }
+      "@/*": [
+        "./*"
+      ],
+      "@/components/*": [
+        "./components/*"
+      ],
+      "@/assets/*": [
+        "./public/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "global.d.ts",
+    "svgr.d.ts",
+    "app",
     "pages",
-    "lib"
+    "components",
+    "lib",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

@@ -1,6 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --default-black: #21252B;
-  --default-white: #eaeaea;
+  --default-black: #282c34;
+  --default-white: hsl(220, 14%, 71%);;
 
   --code-font-color: #EB5757;
   --light-code-bg: #d8d8d8;
@@ -8,45 +12,48 @@
 
   --background-color: var(--default-black);
   --font-color: var(--default-white);
-  --link-color: #1976d2;
+  --link-color: #61AFEF;
   --header-height: 60px;
 
   font-size: calc(1rem + 0.25vw);
+
+
+  /* One Dark colurs */
+ --mono-1: hsl(220, 14%, 71%);
+ --mono-2: hsl(220, 9%, 55%);
+ --mono-3: hsl(220, 10%, 40%);
+ --hue-1: hsl(187, 47%, 55%);
+ --hue-2: hsl(207, 82%, 66%);
+ --hue-3: hsl(286, 60%, 67%);
+ --hue-4: hsl(95, 38%, 62%);
+ --hue-5: hsl(355, 65%, 65%);
+ --hue-5-2: hsl(5, 48%, 51%);
+ --hue-6: hsl(29, 54%, 61%);
+ --hue-6-2: hsl(39, 67%, 69%);
+ --syntax-fg: hsl(220, 14%, 71%);
+ --syntax-bg: hsl(220, 13%, 18%);
+ --syntax-gutter: hsl(220, 14%, 45%);
+ --syntax-guide: hsla(220, 14%, 71%, 0.15);
+ --syntax-accent: hsl(220, 100%, 66%);
+
+ --syntax-selection-color: hsl(220, 13%, 28%);
+ --syntax-gutter-background-color-selected: hsl(220, 13%, 26%);
+ --syntax-cursor-line: hsla(220, 100%, 80%, 0.04);
 }
 
 html,
 body {
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Goorm Sans Code", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   padding: 0;
   margin: 0;
   line-height: 1.6;
-  font-size: 18px;
   color: var(--font-color);
-}
-
-html {
   background: var(--background-color);
-  color: var(--font-color);
-  transition: background 1s;
-}
-
-html.dark {
-  --background-color: var(--default-black);
-  --font-color: var(--default-white);
-}
-html.light {
-  --background-color: var(--default-white);
-  --font-color: var(--default-black);
-}
-
-html.dark .MuiInput-input {
-  background-color: transparent;
   color: var(--default-white);
 }
 
-body .MuiCardContent-root {
-  background: var(--background-color);
-  transition: background 1s;
+a {
+  color: var(--link-color);
 }
 
 * {
@@ -104,4 +111,8 @@ blockquote {
     margin: 1rem -1rem;
     border-radius: 0;
   }
+}
+
+pre {
+  white-space: pre-wrap;
 }

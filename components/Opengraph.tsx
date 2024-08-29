@@ -1,22 +1,20 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
-import React from "react";
-
+'use client'
+import Head from 'next/head'
+import { usePathname } from 'next/navigation'
+import React from 'react'
 interface OpengraphProps {
     title?: string
     description?: string
     ogImg?: string
 }
 
-const siteTitle = '(younggeun0: 🐢) => dev'
-
 export default function Opengraph({
-    title = siteTitle,
-    description = "young's blog",
+    title = '(younggeun0: 🐢) => dev',
+    description = "developer young's webpage",
     ogImg = '/images/opengraph.jpeg',
 }: OpengraphProps) {
-    const router = useRouter()
-    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + router.asPath
+    const pathname = usePathname()
+    const canonicalURL = process.env.NEXT_PUBLIC_HOME_URL + pathname
 
     return (
         <Head>
