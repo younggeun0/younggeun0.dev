@@ -3,20 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --default-black: #282c34;
-  --default-white: hsl(220, 14%, 71%);;
-
-  --code-font-color: #EB5757;
-  --light-code-bg: #d8d8d8;
-  --dark-code-bg: #292927;
-
-  --background-color: var(--default-black);
-  --font-color: var(--default-white);
-  --link-color: #61AFEF;
-  --header-height: 60px;
-
   font-size: calc(1rem + 0.25vw);
-
 
   /* One Dark colurs */
  --mono-1: hsl(220, 14%, 71%);
@@ -47,22 +34,18 @@ body {
   padding: 0;
   margin: 0;
   line-height: 1.6;
-  color: var(--font-color);
-  background: var(--background-color);
-  color: var(--default-white);
+
+  color: var(--mono-1);
+  background: var(--syntax-bg);
 }
 
 a {
-  color: var(--link-color);
+  color: var(--hue-2);
+  text-decoration: none;
 }
 
 * {
   box-sizing: border-box;
-}
-
-a {
-  color: var(--link-color);
-  text-decoration: none;
 }
 
 img {
@@ -70,33 +53,6 @@ img {
   border-radius: 10px;
   display: block;
   margin: 30px auto;
-}
-
-details > summary {
-  padding: 2px 6px;
-  cursor: pointer;
-  list-style: none;
-}
-
-details > summary::-webkit-details-marker {
-  display: none;
-}
-
-table, th, td {
-  border: 1px solid #C1C1C1;
-  border-collapse: collapse;
-}
-
-th {
-  background: #FAFAFA;
-}
-
-html.dark th {
-  background: #202020;
-}
-
-td {
-  padding: 0 5px;
 }
 
 blockquote {
