@@ -13,11 +13,16 @@
 {
   skills: {
     fe: {
-      react: [
-        'Next.js(12)',
+      react: [ // nugu
+        'Next.js(12) SSR',
         'react-bootstrap',
-        'testing-library/react'
-      ], // nugu
+        'jotai',
+        'react-query',
+        testing: [
+          'vitest',
+          'testing-library/react',
+        ],
+      ],
       svelte: ['Svelte Kit'], // back office
     },
     be: {
@@ -28,13 +33,9 @@
     vcs: ['git', 'github'],
   },
   done: [
-    'nugu 플랫폼 개발': [
-      '컴포넌트 TDD(vitest)',
-      'UI 기능 개발',
-    ],
+    'nugu 플랫폼 UI 개발',
     'nugu PRO 기획전 퍼블리싱': [
       'grid, flexbox를 활용한 다양한 레이아웃 구성',
-      'vimeo player embedding',
     ],
     'cafe24에서 자사 플랫폼으로 이관': [
       '기존 데이터 마이그레이션',
@@ -46,7 +47,7 @@
         '카테고리관리(fancytree)',
       ]
       '자사 플랫폼과 셀메이트 상품동기화 기능 연동': [
-        'TDD로 테스트 코드 작성하며 셀메이트 스펙 리버스 엔지니어링',
+        'TDD로 셀메이트 스펙 리버스 엔지니어링',
       ],
     ],
   ],
@@ -63,7 +64,7 @@
   skills: {
     fe: {
       js: ['typescript', 'es6'],
-      react: ['react-admin', 'mui'], // back office
+      react: ['react-admin (CSR)', 'mui'], // back office
     },
     be: {
       node: ['express'],
