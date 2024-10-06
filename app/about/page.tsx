@@ -6,7 +6,9 @@ import remarkPrism from 'remark-prism'
 
 import { getReadmeMarkmdown } from '@/lib/markdown'
 import Opengraph from 'components/Opengraph'
+
 import '../../styles/prism-one-dark.css'
+import TiltClientComponent from './TiltClientComponent'
 
 export default async function About() {
     const readme = await getReadmeMarkmdown()
@@ -14,8 +16,10 @@ export default async function About() {
     return (
         <>
             <Opengraph title="About Young" description="young's resume" />
-            <ReactMarkdown remarkPlugins={[remarkGfm, remarkPrism]}>{readme ?? ''}</ReactMarkdown>
-            <Image priority src="/profile.jpeg" height={480} width={320} alt={'profile'} />
+            <TiltClientComponent tiltSelector="h2,blockquote,.remark-highlight">
+                <ReactMarkdown remarkPlugins={[remarkGfm, remarkPrism]}>{readme ?? ''}</ReactMarkdown>
+                <Image priority src="/profile.jpeg" height={480} width={320} alt={'profile'} />
+            </TiltClientComponent>
         </>
     )
 }
