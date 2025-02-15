@@ -13,8 +13,11 @@
 {
   skills: {
     fe: {
-      react: [ // nugu
-        'Next.js(12) SSR',
+      // nugu
+      react: [
+        'Next.js(14)',
+        'Next.js(12)',
+        'storybook',
         'react-bootstrap',
         'jotai',
         'react-query',
@@ -23,7 +26,12 @@
           'testing-library/react',
         ],
       ],
-      svelte: ['Svelte Kit'], // back office
+      // back office
+      svelte: [
+        'SvelteKit'
+        'svelte5',
+        'svelte4',
+      ],
     },
     be: {
       python: {
@@ -33,19 +41,27 @@
     vcs: ['git', 'github'],
   },
   doing: [
-    'nugu 플랫폼 UI 개발',
+    'nugu 플랫폼 개발',
   ],
   done: [
-    'nugu PRO 기획전 퍼블리싱': [
-      'grid, flexbox를 활용한 다양한 레이아웃 구성',
+    'nugu 스타일링 서비스 개발': [
+      'hls.js를 이용한 동영상 스트리밍 서비스 개발',
     ],
-    'cafe24에서 자사 플랫폼으로 이관': [
+    'nugu UI 고도화': [
+      '일부 컴포넌트 storybook 도입',
+      '컴포넌트 테스트 코드 작성',
+    ],
+    'nugu 기획전 퍼블리싱': [
+      '다양한 레이아웃, 스타일링 적용',
+      'vimeo player, AOS(Animate On Scroll Library) 사용',
+    ],
+    'cafe24에서 자사 back office 이관 작업': [
       '스크래핑을 통한 cafe24 데이터 마이그레이션',
-      'Back Office 기능 개발': [
-        '기능 구현을 위한 데이터 모델링(게시물, 상품, 카테고리, 발주 관리 기능)',
+      'back office 기능 개발': [
+        '데이터 모델링(게시물, 상품, 카테고리, 발주 관리 기능)',
         'WYSIWYG 편집기 연동(tinymce editor, ace editor, dropzone)',
-      ]
-      '자사 플랫폼과 셀메이트 상품동기화 기능 연동': [
+      ],
+      'back office와 셀메이트 상품동기화 기능 연동': [
         'TDD로 셀메이트 스펙 리버스 엔지니어링',
       ],
     ],
