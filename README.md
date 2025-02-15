@@ -21,14 +21,16 @@
         'react-bootstrap',
         'jotai',
         'react-query',
-        testing: [
-          'vitest',
-          'testing-library/react',
-        ],
+        {
+          testing: [
+            'vitest',
+            'testing-library/react',
+          ]
+        },
       ],
       // back office
       svelte: [
-        'SvelteKit'
+        'SvelteKit',
         'svelte5',
         'svelte4',
       ],
@@ -36,14 +38,14 @@
     be: {
       python: {
         django: ['django-rest-framework'],
-      }
+      },
     },
     vcs: ['git', 'github'],
   },
   doing: [
     'nugu 플랫폼 개발',
   ],
-  done: [
+  done: {
     'nugu 스타일링 서비스 개발': [
       'hls.js를 이용한 동영상 스트리밍 서비스 개발',
     ],
@@ -55,17 +57,17 @@
       '다양한 레이아웃, 스타일링 적용',
       'vimeo player, AOS(Animate On Scroll Library) 사용',
     ],
-    'cafe24에서 자사 back office 이관 작업': [
-      '스크래핑을 통한 cafe24 데이터 마이그레이션',
+    'cafe24에서 자사 back office 이관 작업': {
+      'cafe24 데이터 마이그레이션': '스크래핑을 통한 데이터 수집',
       'back office 기능 개발': [
         '데이터 모델링(게시물, 상품, 카테고리, 발주 관리 기능)',
         'WYSIWYG 편집기 연동(tinymce editor, ace editor, dropzone)',
-      ],
-      'back office와 셀메이트 상품동기화 기능 연동': [
-        'TDD로 셀메이트 스펙 리버스 엔지니어링',
-      ],
+      ]
+    },
+    'back office와 셀메이트 상품동기화 기능 연동': [
+      'TDD로 셀메이트 스펙 리버스 엔지니어링',
     ],
-  ],
+  },
 }
 ```
 
@@ -87,7 +89,7 @@
     },
     vcs: ['git', 'gitlab'],
   },
-  done: [
+  done: {
     '차세대 Back Office 개발': [
       'Keycloak을 이용한 SSO 구현, Dooray! 그룹웨어 연동',
       'nivo를 이용한 통계 대시보드 구축',
@@ -95,7 +97,7 @@
       'Express.js 기반 백앤드 서버를 SpringBoot로 이관',
       'SVN에서 Gitlab으로 이관',
     ],
-  ],
+  },
 }
 ```
 
@@ -109,13 +111,13 @@
     fe: {
       html5: {
         js: ['vanila js(es5)', 'jQuery']
-      }
+      },
       flash: ['ActionScript'],
       java: ['Applet'],
     },
     vcs: ['git', 'gitlab'],
   },
-  done: [
+  done: {
     'OZReportViewer 기능 개발': [
       '레거시 제약 속에서 호환성을 염두하며 개발(IE8까지 지원)',
       '뷰어 내용을 스크린 리더(센스리더)로 읽을 수 있도록 접근성 개선',
@@ -124,7 +126,7 @@
       'WebRTC, opencv-js, zxing 라이브러리를 이용한 인감스캔, 카드스캔 기능 개발',
       '뷰어 동기화 중계서버 모듈 개발',
     ],
-  ],
+  },
 }
 ```
 
