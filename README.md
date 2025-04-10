@@ -1,8 +1,15 @@
 # 안녕하세요!
-# 웹 개발자 `오영근`입니다
+# FE 웹 개발자 `오영근`입니다
+
+
 
 ```js
 'Work Experience'
+
+/*
+  풀스택으로 일해본 경험이 있어 BE와 원활한 협업이 가능합니다.
+  소통을 중요시 생각하며 코드리뷰, 페어 프로그래밍을 좋아합니다.
+*/
 ```
 
 ##  [메디쿼터스 Mediquitous](https://mediquitous.com/NUGU)
@@ -10,30 +17,21 @@
 > 일본 커머스 플랫폼 nugu 개발중입니다.
 
 ```js
-{
   skills: {
     fe: {
       // nugu
       react: [
-        'Next.js(14)',
-        'Next.js(12)',
+        'Next.js 14 page router',
         'storybook',
         'react-bootstrap',
         'jotai',
         'react-query',
         {
-          testing: [
-            'vitest',
-            'testing-library/react',
-          ]
+          testing: ['vitest', 'testing-library/react'],
         },
       ],
       // back office
-      svelte: [
-        'SvelteKit',
-        'svelte5',
-        'svelte4',
-      ],
+      svelte: ['SvelteKit', 'svelte4'],
     },
     be: {
       python: {
@@ -42,30 +40,29 @@
     },
     vcs: ['git', 'github'],
   },
-  doing: [
-    'nugu 플랫폼 개발',
-  ],
+  doing: ['nugu 몰 플랫폼 개발'],
   done: {
-    'nugu 스타일링 서비스 개발': [
-      'hls.js를 이용한 동영상 스트리밍 서비스 개발',
+    'nugu 몰 스타일링 서비스 개발 - 2025': [
+      'hls.js를 이용한 동영상 스트리밍',
+      'react-virtualized를 이용한 부분 렌더링 구현',
     ],
-    'nugu UI 고도화': [
-      '일부 컴포넌트 storybook 도입',
-      '컴포넌트 테스트 코드 작성',
+    'nugu 몰 UI 고도화 - 2024': [
+      'nextjs12에서 14로 버전업',
+      'Figma 디자인 기반 디자인 리뉴얼',
+      'Storybook을 도입하여 일부 공용 컴포넌트들을 스토리로 추출',
+      'vitest, react testing library로 리팩터링 진행한 일부 컴포넌트들 TDD 진행',
     ],
-    'nugu 기획전 퍼블리싱': [
-      '다양한 레이아웃, 스타일링 적용',
-      'vimeo player, AOS(Animate On Scroll Library) 사용',
+    'nugu 기획전 퍼블리싱 - 2023-2024': [
+      'flex, grid 를 이용하여 다양한 레이아웃을 구성',
+      '영상, 애니메이션등 요구사항을 맞추기 위해 vimeo sdk, aos 등 모듈을 사용',
     ],
-    'cafe24에서 자사 back office 이관 작업': {
-      'cafe24 데이터 마이그레이션': '스크래핑을 통한 데이터 수집',
-      'back office 기능 개발': [
-        '데이터 모델링(게시물, 상품, 카테고리, 발주 관리 기능)',
-        'WYSIWYG 편집기 연동(tinymce editor, ace editor, dropzone)',
-      ]
-    },
-    'back office와 셀메이트 상품동기화 기능 연동': [
-      'TDD로 셀메이트 스펙 리버스 엔지니어링',
+    'nugu 몰, 어드민(Back Office) 개발 - 2022-2023': [
+      'cafe24 몰과 어드민을 자사 몰, 어드민으로 이관',
+      '스크래핑을 통해 cafe24 데이터 마이그레이션',
+      '게시물관리 기능(tinymce, ace editor, dropzone) 구현',
+      '카테고리관리 기능 (fancytree) 구현',
+      '상품관리 기능 구현',
+      '셀메이트 상품 동기화 기능 개발',
     ],
   },
 }
@@ -74,7 +71,7 @@
 
 ## [에버온 everon](https://www.everon.co.kr/)
 > Web Developer 2022.03 - 2022.10 (7개월) \
-> 차세대 백오피스 기능 개발했습니다.
+> 차세대 백오피스 일부 기능 개발을 담당했습니다.
 
 ```js
 {
@@ -89,15 +86,14 @@
     },
     vcs: ['git', 'gitlab'],
   },
-  done: {
-    '차세대 Back Office 개발': [
-      'Keycloak을 이용한 SSO 구현, Dooray! 그룹웨어 연동',
-      'nivo를 이용한 통계 대시보드 구축',
-      '칸반보드 형태의 고객문의관리 서비스 개발',
-      'Express.js 기반 백앤드 서버를 SpringBoot로 이관',
-      'SVN에서 Gitlab으로 이관',
-    ],
-  },
+  done: [
+    'react-admin 프레임워크를 이용한 어드민 페이지 구현',
+    'Keycloak을 이용한 RBAC SSO 구현',
+    'Dooray! 그룹웨어 연동',
+    'nivo 그래프 모듈을 이용한 통계 대시보드 구현',
+    '칸반보드 UI의 고객문의관리 기능 구현',
+    'SVN에서 Gitlab으로 소스코드 이관',
+  ],
 }
 ```
 
@@ -118,13 +114,14 @@
     vcs: ['git', 'gitlab'],
   },
   done: {
-    'OZReportViewer 기능 개발': [
-      '레거시 제약 속에서 호환성을 염두하며 개발(IE8까지 지원)',
+    '오즈리포트 HTML5뷰어 솔루션 개발': [
+      '다양한 브라우저 호환성(IE8~)을 고려하는 개발경험',
+      '동일 로직을 사용하는 다양한 언어(C++, C#, Applet, ActionScript)의 제품들이 있어 다양한 개발 언어로 기능 포팅 경험',
       '뷰어 내용을 스크린 리더(센스리더)로 읽을 수 있도록 접근성 개선',
       '전자문서 출력 시 인증 바코드 솔루션 연동(MarkAny, SGA)',
-      '뷰어에 WYSIWYG 편집기(summernote) 임배딩 기능 개발',
-      'WebRTC, opencv-js, zxing 라이브러리를 이용한 인감스캔, 카드스캔 기능 개발',
+      'opencv-js, zxing 라이브러리를 이용하여 인감 스캔, 카드스캔 기능 구현',
       '뷰어 동기화 중계서버 모듈 개발',
+      'WYSIWYG 편집기(summernote) 임배딩 기능 개발',
     ],
   },
 }
