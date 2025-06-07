@@ -9,8 +9,9 @@ export default async function About() {
         <>
             <Opengraph />
 
-            <div className="py-10 grid text-center">
+            <div className="py-10 grid text-center gap-2">
                 <Link href="/about">/about</Link>
+                <Link href="https://wedding-invitation-silk.vercel.app/">/mobile-wedding-invitation</Link>
             </div>
         </>
     )
