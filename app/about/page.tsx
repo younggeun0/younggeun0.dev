@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkPrism from 'remark-prism'

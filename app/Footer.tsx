@@ -1,6 +1,5 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import React from 'react'
 
 import GithubIcon from '@/assets/icon/github-mark.svg'
 

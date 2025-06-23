@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-import React from 'react'
 
 import Footer from '@/app/Footer'
 import Header from '@/app/Header'

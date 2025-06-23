@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import React from 'react'
 
 import Opengraph from '@/components/Opengraph'
 import '../styles/prism-one-dark.css'
