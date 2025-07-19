@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="https://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="https://www.w3.org/1999/xhtml" xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="https://www.google.com/schemas/sitemap-image/1.1" xmlns:video="https://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://younggeun0.dev</loc><lastmod>2025-06-07T06:16:10.360Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://younggeun0.dev/about</loc><lastmod>2025-06-07T06:16:10.361Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://younggeun0.dev</loc><lastmod>2025-07-19T09:10:03.129Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://younggeun0.dev/project-experience</loc><lastmod>2025-07-19T09:10:03.129Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://younggeun0.dev/about</loc><lastmod>2025-07-19T09:10:03.129Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

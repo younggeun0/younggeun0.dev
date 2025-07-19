@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import Opengraph from '@/components/Opengraph'
-import '../styles/prism-one-dark.css'
+import '../styles/prism-one-light.css'
 
 export default async function About() {
   return (
@@ -10,7 +10,7 @@ export default async function About() {
 
       <div className="py-10 grid text-center gap-2">
         <Link href="/about">/about</Link>
-        <Link href="https://wedding-invitation-silk.vercel.app/">/mobile-wedding-invitation</Link>
+        <Link href="/project-experience">/project-experience</Link>
       </div>
     </>
   )

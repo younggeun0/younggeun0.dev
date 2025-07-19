@@ -3,23 +3,24 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkPrism from 'remark-prism'
 
-import { getReadmeMarkmdown } from '@/lib/markdown'
+import { getMarkmdown } from '@/lib/markdown'
 import Opengraph from 'components/Opengraph'
 
-import '../../styles/prism-one-dark.css'
-
-import TiltClientComponent from './TiltClientComponent'
+import '../../styles/prism-one-light.css'
+import StickyClassAdder from '../../components/StickyClassAdder'
 
 export default async function About() {
-  const readme = await getReadmeMarkmdown()
+  const readme = await getMarkmdown()
 
   return (
     <>
       <Opengraph title="About Young" description="young's resume" />
-      <TiltClientComponent tiltSelector="h2,blockquote,.remark-highlight">
-        <ReactMarkdown remarkPlugins={[remarkGfm, remarkPrism]}>{readme ?? ''}</ReactMarkdown>
-        <Image priority src="/profile.jpeg" height={480} width={320} alt={'profile'} />
-      </TiltClientComponent>
+      <ReactMarkdown remarkPlugins={[remarkGfm, remarkPrism]}>{readme ?? ''}</ReactMarkdown>
+
+      <Image priority src="/profile.jpeg" height={480} width={320} alt={'profile'} />
+
+      <StickyClassAdder />
     </>
   )
 }
+
