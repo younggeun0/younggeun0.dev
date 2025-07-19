@@ -41,6 +41,7 @@ UI의 미묘한 차이를 발견하고 개선하는 것에 보람을 느껴 현�
         'react-bootstrap',
         'jotai',
         'react-query',
+        'tanstack-virtual',
         {
           testing: ['vitest', 'testing-library/react'],
         },
