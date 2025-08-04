@@ -12,6 +12,10 @@ export default function StickyClassAdder() {
         h2s.forEach(h2 => {
             h2.classList.add('sticky', 'top-[44px]', 'bg-[#FAFAFA]', 'z-50')
         })
+        const h3s = document.querySelectorAll('h3')
+        h3s.forEach(h3 => {
+          h3.classList.add('sticky', 'top-[44px]', 'bg-[#FAFAFA]', 'z-50')
+        })
     }, [])
     
   return null

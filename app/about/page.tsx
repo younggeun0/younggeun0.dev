@@ -17,7 +17,7 @@ export default async function About() {
       <Opengraph title="About Young" description="young's resume" />
       <ReactMarkdown remarkPlugins={[remarkGfm, remarkPrism]}>{readme ?? ''}</ReactMarkdown>
 
-      <Image priority src="/profile.jpeg" height={480} width={320} alt={'profile'} />
+      <Image priority src="/profile.jpeg" height={480} width={320} alt={'profile'} className="pb-[7px]" />
 
       <StickyClassAdder />
     </>

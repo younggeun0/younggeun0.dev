@@ -99,6 +99,8 @@ div.remark-highlight pre {
   overflow-wrap: break-word;
   font-size: 0.8rem;
   overflow-x: auto; /* 필요시 가로 스크롤 허용 */
+  padding-top: 0;
+  margin-bottom: 50px
 }
 
 /* 코드 블럭 내 코드 요소에도 같은 설정 적용 */
@@ -111,12 +113,18 @@ div.remark-highlight pre code {
 
 h1 {
   font-size: 1.25rem;
+  font-weight: 600;
+  padding-left: 0.5rem;
 }
 
 h2 {
   font-size: 1.125rem;
+  font-weight: 600;
+  padding-left: 0.5rem;
 }
 
 h3 {
   font-size: 1rem;
+  font-weight: 600;
+  padding-left: 0.5rem;
 }
