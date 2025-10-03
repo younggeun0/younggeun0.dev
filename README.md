@@ -357,14 +357,14 @@ cafe24로 운영중인 여러 자사몰 상품들을 모아볼 수 있게 했습
 ```
 
 
-## [🧗 Pick Your Holds(2022)](https://github.com/younggeun0/PickYourHolds_React)
+## [🧗 Pick Your Holds(2022)](https://pick-your-holds.vercel.app/)
 
 ```
 사진 촬영 후 클라이밍 문제를 만들어 이미지를 공유할 수 있는 웹앱을 만들었습니다.
 
 🛠️ 사용
-⋅ vanilaJS(jQuery), React
+⋅ vanilaJS(jQuery) -> React
 
 🚀 배포
-⋅ 이전 블로그(github.io)에 배포
+⋅ vercel
 ```
