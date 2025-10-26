@@ -14,6 +14,7 @@ export default async function About() {
       <Header />
       <div className="py-10 grid text-center gap-2">
         <Link href="/about">/about</Link>
+        <Link href="/github">/햐소ㅕㅠ</Link>
       </div>
     </>
   )
