@@ -2,6 +2,9 @@
 import Head from 'next/head'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+
+export const description = '사용자 경험을 중시하는 프론트엔드 개발자 오영근입니다.'
+
 interface OpengraphProps {
   title?: string
   description?: string
@@ -10,7 +13,7 @@ interface OpengraphProps {
 
 export default function Opengraph({
   title = '(younggeun0: 🐢) => dev',
-  description = "developer young's webpage",
+  description,
   ogImg = '/images/opengraph.jpeg',
 }: OpengraphProps) {
   const pathname = usePathname()

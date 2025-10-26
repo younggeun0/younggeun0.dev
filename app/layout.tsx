@@ -1,12 +1,12 @@
 import { ReactNode } from 'react'
 
 import Footer from '@/app/Footer'
-import Header from '@/app/Header'
 import '@/styles/global.css'
+import { description } from '@/components/Opengraph'
 
 export const metadata = {
   title: 'younggeun0.dev',
-  description: "young's blog",
+  description,
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
