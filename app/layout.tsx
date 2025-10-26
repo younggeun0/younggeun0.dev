@@ -28,11 +28,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <div className="mx-auto w-full md:w-3/4 lg:w-[50%]">
-          <Header />
-          <div className="p-2">
-            <main>{children}</main>
-            <Footer />
-          </div>
+          <main>{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

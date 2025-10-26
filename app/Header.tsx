@@ -1,7 +1,12 @@
 import Link from 'next/link'
 
+interface HeaderProps {
+  argValue?: string
+  returnValue?: string
+  argType?: string
+}
 
-export default function Header() {
+export default function Header({ argValue = 'younggeun0', returnValue = 'dev', argType = '🐢' }: HeaderProps) {
   return (
     <header className="sticky z-50 flex justify-between items-center p-2 top-0 w-full text-lg">
       <Link href="/">
@@ -18,7 +23,7 @@ export default function Header() {
               color: 'var(--hue-5)',
             }}
           >
-            younggeun0
+            {argValue}
           </span>
           <span
             style={{
@@ -27,7 +32,7 @@ export default function Header() {
           >
             {': '}
           </span>
-          🐢
+          {argType}
           <span
             style={{
               color: 'var(--hue-6)',
@@ -47,7 +52,7 @@ export default function Header() {
               color: 'var(--hue-6-2)',
             }}
           >
-            dev
+            {returnValue}
           </span>
         </h1>
       </Link>
