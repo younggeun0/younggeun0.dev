@@ -4,6 +4,8 @@ import Footer from '@/app/Footer'
 import '@/styles/global.css'
 import { description } from '@/components/Opengraph'
 
+import GoogleAnalytics from './GoogleAnalytics'
+
 export const metadata = {
   title: 'younggeun0.dev',
   description,
@@ -27,6 +29,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="stylesheet" href="https://statics.goorm.io/fonts/GoormSans/v1.0.0/GoormSans.min.css" />
       </head>
       <body>
+        {process.env.NODE_ENV === 'production' && <GoogleAnalytics />}
+
         <div className="mx-auto w-full md:w-3/4 lg:w-[50%]">
           <main>{children}</main>
           <Footer />
