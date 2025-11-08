@@ -1,12 +1,13 @@
-import Opengraph from 'components/Opengraph'
 import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkPrism from 'remark-prism'
 
-import StickyClassAdder from '../../components/StickyClassAdder'
 
 import { getMarkmdown } from '@/lib/markdown'
+import Opengraph from 'components/Opengraph'
+
+import StickyClassAdder from '../../components/StickyClassAdder'
 
 import '../../styles/prism-one-light.css'
 

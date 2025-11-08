@@ -1,3 +1,4 @@
+import { buttonVariants, cn } from '@younggeun0/ui'
 import Link from 'next/link'
 
 interface HeaderProps {
@@ -9,7 +10,13 @@ interface HeaderProps {
 export default function Header({ argValue = 'younggeun0', returnValue = 'dev', argType = '🐢' }: HeaderProps) {
   return (
     <header className="sticky z-50 flex justify-between items-center p-2 top-0 w-full text-lg">
-      <Link href="/">
+      <Link
+        href="/"
+        className={cn(
+          buttonVariants({ variant: 'ghost' }),
+          'h-auto p-0 text-lg font-normal hover:bg-transparent hover:text-primary',
+        )}
+      >
         <h1>
           <span
             style={{

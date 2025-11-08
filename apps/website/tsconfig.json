@@ -30,6 +30,9 @@
       ],
       "@/assets/*": [
         "./public/*"
+      ],
+      "@younggeun0/ui": [
+        "../../packages/ui"
       ]
     },
     "plugins": [
