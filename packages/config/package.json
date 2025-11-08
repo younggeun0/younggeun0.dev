@@ -1,0 +1,25 @@
+{
+  "name": "@younggeun0/config",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "files": [
+    "eslint.js",
+    "prettier.js",
+    "typescript.json"
+  ],
+  "dependencies": {
+    "eslint-config-next": "^14.2.6",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.3",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^3.2.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "typescript": "^5.3.3"
+  }
+}
+
