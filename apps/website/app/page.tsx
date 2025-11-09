@@ -1,11 +1,9 @@
 import { Button } from '@younggeun0/ui'
 import Link from 'next/link'
 
-
 import Opengraph from '@/components/Opengraph'
 
 import Header from './Header'
-
 
 import '../styles/prism-one-light.css'
 

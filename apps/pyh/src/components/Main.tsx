@@ -1,11 +1,7 @@
-import React from 'react';
-import { Button } from '@younggeun0/ui';
+import React from 'react'
+import { Button } from '@younggeun0/ui'
 
-function Main({
-  onStart,
-}: {
-  onStart: React.MouseEventHandler<HTMLButtonElement>;
-}) {
+function Main({ onStart }: { onStart: React.MouseEventHandler<HTMLButtonElement> }) {
   return (
     <div className="flex flex-col items-center justify-center space-y-10">
       <div className="text-5xl">
@@ -14,38 +10,21 @@ function Main({
         <span className="text-red-400">HOLDS</span>
       </div>
       <div className="flex space-x-4">
-        <img
-          className="w-32 rounded-lg"
-          src="img/climber1.png"
-          alt="climber1"
-        />
-        <img
-          className="w-32 rounded-lg"
-          src="img/climber2.png"
-          alt="climber2"
-        />
+        <img className="w-32 rounded-lg" src="img/climber1.png" alt="climber1" />
+        <img className="w-32 rounded-lg" src="img/climber2.png" alt="climber2" />
       </div>
-      <Button
-        variant="ghost"
-        className="w-full font-concert text-6xl text-gray-200 hover:text-white"
-        onClick={onStart}
-      >
+      <Button variant="ghost" className="w-full font-concert text-6xl text-gray-200 hover:text-white" onClick={onStart}>
         START
       </Button>
       <div
         className="flex items-center cursor-pointer text-2xl no-underline text-gray-200 px-1 hover:text-white"
         onClick={() => {
-          location.href = 'https://github.com/younggeun0';
+          location.href = 'https://github.com/younggeun0'
         }}
       >
         <span className="mr-2">
           <div className="w-6 h-6 flex items-center justify-center">
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 98 96"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="100%" height="100%" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -58,7 +37,7 @@ function Main({
         <span>by younggeun0</span>
       </div>
     </div>
-  );
+  )
 }
 
-export default Main;
+export default Main
