@@ -6,6 +6,7 @@
   "files": [
     "eslint.js",
     "prettier.js",
+    "prettier.json",
     "typescript.json"
   ],
   "dependencies": {

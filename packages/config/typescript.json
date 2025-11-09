@@ -16,7 +16,9 @@
     "noEmit": true,
     "moduleResolution": "node",
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "./",
+    "sourceMap": true
   }
 }
 
