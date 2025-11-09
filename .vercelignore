@@ -1,6 +1,5 @@
 node_modules
 .turbo
-packages
 apps/*/node_modules
 apps/*/.next
 apps/*/out
