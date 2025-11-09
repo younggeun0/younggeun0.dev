@@ -1,9 +1,10 @@
 import { Button } from '@younggeun0/ui'
 import Link from 'next/link'
 
+import Header from './Header'
+
 import Opengraph from '@/components/Opengraph'
 
-import Header from './Header'
 
 import '../styles/prism-one-light.css'
 
@@ -17,6 +18,11 @@ export default async function About() {
         <Link href="/about">
           <Button variant="link">/about</Button>
         </Link>
+
+        <Link href="https://pyh.younggeun0.dev">
+          <Button variant="link">Pick Your Holds</Button>
+        </Link>
+
         <Link href="/github">
           <Button variant="link">/햐소ㅕㅠ</Button>
         </Link>

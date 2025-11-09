@@ -2,7 +2,7 @@
 
 React를 이용한 토이프로젝트
 
-## [ 클라이밍용 찍볼 웹앱 - 바로가기](https://pick-your-holds.vercel.app/)
+## [ 클라이밍용 찍볼 웹앱 - 바로가기](https://pyh.younggeun0.dev/)
 
 > **찍볼 == 찍어서 볼더링**
 

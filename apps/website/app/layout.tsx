@@ -2,9 +2,9 @@ import { ReactNode } from 'react'
 
 import Footer from '@/app/Footer'
 import '@/styles/global.css'
+import GoogleAnalytics from '@/app/GoogleAnalytics'
 import { description } from '@/components/Opengraph'
 
-import GoogleAnalytics from './GoogleAnalytics'
 
 export const metadata = {
   title: 'younggeun0.dev',
