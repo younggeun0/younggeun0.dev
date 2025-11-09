@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 
-import Opengraph from 'components/Opengraph'
+import GithubRedirectGuide from './GithubRedirectGuide'
 
 import StickyClassAdder from '../../components/StickyClassAdder'
-
 import '../../styles/prism-one-light.css'
-import GithubRedirectGuide from './GithubRedirectGuide'
+
+import Opengraph from '@/components/Opengraph'
 
 export const metadata: Metadata = {
   title: '햐소ㅕㅠ',

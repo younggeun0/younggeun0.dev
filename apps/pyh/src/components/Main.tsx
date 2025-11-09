@@ -1,5 +1,5 @@
-import React from 'react'
 import { Button } from '@younggeun0/ui'
+import React from 'react'
 
 function Main({ onStart }: { onStart: React.MouseEventHandler<HTMLButtonElement> }) {
   return (

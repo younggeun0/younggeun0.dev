@@ -5,7 +5,6 @@ import '@/styles/global.css'
 import GoogleAnalytics from '@/app/GoogleAnalytics'
 import { description } from '@/components/Opengraph'
 
-
 export const metadata = {
   title: 'younggeun0.dev',
   description,

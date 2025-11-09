@@ -8,13 +8,21 @@
         "groups": [
           "builtin",
           "external",
-          "internal",
-          "parent",
           "sibling",
+          "parent",
+          "internal",
           "index",
           "object",
           "type"
         ],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin", "external"],
         "newlines-between": "always",
         "alphabetize": { "order": "asc", "caseInsensitive": true }
       }

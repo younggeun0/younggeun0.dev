@@ -20,7 +20,7 @@ export default async function About() {
         </Link>
 
         <Link href="https://pyh.younggeun0.dev">
-          <Button variant="link">Pick Your Holds</Button>
+          <Button variant="link">/pick-your-holds</Button>
         </Link>
 
         <Link href="/github">
