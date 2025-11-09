@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-concert: 'Concert One', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-800 font-concert text-center;
+  }
+}
