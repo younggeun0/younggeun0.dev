@@ -10,7 +10,15 @@ import cupMTL from '../../../assets/3dmodel/coffee_cup.mtl?url'
 import cupOBJ from '../../../assets/3dmodel/coffee_cup.obj?url'
 
 // TODO, three-particle-fire 표시안되는 현상 수정
-particleFire.install({ THREE })
+// install을 한 번만 실행하도록 보장 (HMR 시 재실행 방지)
+if (typeof window !== 'undefined' && !(window as any).__particleFireInstalled) {
+  try {
+    particleFire.install({ THREE })
+    ;(window as any).__particleFireInstalled = true
+  } catch (error) {
+    console.warn('Failed to install three-particle-fire:', error)
+  }
+}
 
 function FireEffect({ parentGroup }: { parentGroup: any }) {
   const { camera, clock } = useThree()

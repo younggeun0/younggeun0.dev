@@ -1,22 +1,34 @@
 import { useThree } from '@react-three/fiber'
 import { useEffect } from 'react'
 
-interface CameraSetupProps {
-  isRest: boolean
+export interface CameraConfig {
+  position: [number, number, number]
+  lookAt: [number, number, number]
 }
 
-export default function CameraSetup({ isRest }: CameraSetupProps) {
+interface CameraSetupProps {
+  isRest: boolean
+  config?: CameraConfig
+}
+
+export const defaultWorkConfig: CameraConfig = {
+  position: [36, 20, -26],
+  lookAt: [0, 0, 0],
+}
+
+export const defaultRestConfig: CameraConfig = {
+  position: [50, 20, 5],
+  lookAt: [0, 0, 0],
+}
+
+export default function CameraSetup({ isRest, config }: CameraSetupProps) {
   const { camera } = useThree()
 
   useEffect(() => {
-    if (isRest) {
-      camera.position.set(40, 15, 0)
-      camera.lookAt(0, 10, 0)
-    } else {
-      camera.position.set(36, 36, 0)
-      camera.lookAt(0, 0, 0)
-    }
-  }, [camera, isRest])
+    const cameraConfig = config || (isRest ? defaultRestConfig : defaultWorkConfig)
+    camera.position.set(...cameraConfig.position)
+    camera.lookAt(...cameraConfig.lookAt)
+  }, [camera, isRest, config])
 
   return null
 }

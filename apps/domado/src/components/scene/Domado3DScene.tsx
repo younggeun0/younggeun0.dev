@@ -1,9 +1,10 @@
 /* eslint-disable react/no-unknown-property */
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { memo } from 'react'
+import { memo, useState } from 'react'
 
-import CameraSetup from './CameraSetup'
+// import CameraDevTools from './CameraDevTools'
+import CameraSetup, { type CameraConfig } from './CameraSetup'
 import CoffeeCupModel from './CoffeeCupModel'
 import TomatoModel from './TomatoModel'
 
@@ -16,19 +17,30 @@ function Domado3DScene({
   isRest,
   paused,
 }: Domado3DSceneProps) {
+  const [cameraConfig, _setCameraConfig] = useState<CameraConfig | undefined>(undefined)
+
+  // const handleConfigChange = (modeIsRest: boolean, config: CameraConfig) => {
+  //   if (modeIsRest === isRest) {
+  //     setCameraConfig(config)
+  //   }
+  // }
+
   return (
-    <Canvas
-      style={{ position: 'absolute', width: '100vw', height: '100vh', background: isRest ? 'black' : 'transparent' }}
-    >
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[5, 5, 5]} intensity={2.5} />
+    <>
+      <Canvas
+        style={{ position: 'absolute', width: '100vw', height: '100vh', background: isRest ? 'black' : 'transparent' }}
+      >
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[5, 5, 5]} intensity={2.5} />
 
-      {isRest ? <CoffeeCupModel /> : <TomatoModel paused={paused} />}
+        {isRest ? <CoffeeCupModel /> : <TomatoModel paused={paused} />}
 
-      <CameraSetup isRest={isRest} />
+        <CameraSetup isRest={isRest} config={cameraConfig} />
 
-      <OrbitControls />
-    </Canvas>
+        <OrbitControls />
+      </Canvas>
+      {/* <CameraDevTools isRest={isRest} onConfigChange={handleConfigChange} /> */}
+    </>
   )
 }
 

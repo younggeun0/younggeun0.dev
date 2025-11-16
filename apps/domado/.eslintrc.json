@@ -34,8 +34,9 @@
   },
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/no-explicit-any": "off",
     "import/no-named-as-default": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "off",
     "import/order": [
       "error",
       {
