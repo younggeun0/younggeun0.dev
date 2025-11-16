@@ -8,7 +8,7 @@ interface UseNotificationProps {
 
 export function useNotification({ enabled, title, options }: UseNotificationProps) {
   const permissionRef = useRef<NotificationPermission | null>(null)
-
+  
   useEffect(() => {
     if (!('Notification' in window)) {
       console.warn('This browser does not support desktop notification')

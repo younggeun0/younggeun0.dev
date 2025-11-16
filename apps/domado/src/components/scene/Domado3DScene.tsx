@@ -10,15 +10,11 @@ import TomatoModel from './TomatoModel'
 interface Domado3DSceneProps {
   isRest: boolean
   paused: boolean
-  remainingTime: number
-  pomodoroMinutes: number
 }
 
 function Domado3DScene({
   isRest,
   paused,
-  remainingTime,
-  pomodoroMinutes,
 }: Domado3DSceneProps) {
   return (
     <Canvas
@@ -29,20 +25,17 @@ function Domado3DScene({
 
       {isRest ? <CoffeeCupModel /> : <TomatoModel paused={paused} />}
 
-      <CameraSetup isRest={isRest} remainingTime={remainingTime} pomodoroMinutes={pomodoroMinutes} />
+      <CameraSetup isRest={isRest} />
 
       <OrbitControls />
     </Canvas>
   )
 }
 
-export default memo(Domado3DScene, (prevProps, nextProps) => {
-  // remainingTime은 CameraSetup의 useEffect에서만 사용되므로,
-  // remainingTime 변경 시에는 리렌더링하지 않음
+export default memo(Domado3DScene, (prevProps: Domado3DSceneProps, nextProps: Domado3DSceneProps) => {
   return (
     prevProps.isRest === nextProps.isRest &&
-    prevProps.paused === nextProps.paused &&
-    prevProps.pomodoroMinutes === nextProps.pomodoroMinutes
+    prevProps.paused === nextProps.paused
   )
 })
 

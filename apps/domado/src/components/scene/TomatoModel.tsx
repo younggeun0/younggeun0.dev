@@ -16,6 +16,7 @@ interface TomatoModelProps {
 
 export default function TomatoModel({ paused }: TomatoModelProps) {
   const groupRef = useRef<THREE.Group | null>(null)
+
   const tomatoMaterials = useLoader(MTLLoader, tomatoMTL) as any
   const tomatoObj = useLoader(OBJLoader, tomatoOBJ, loader => {
     tomatoMaterials.preload()

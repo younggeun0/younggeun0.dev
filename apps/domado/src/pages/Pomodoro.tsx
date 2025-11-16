@@ -63,8 +63,6 @@ export default function Pomodoro() {
       <Domado3DScene
         isRest={isRest}
         paused={status === 'paused'}
-        remainingTime={remainingTime}
-        pomodoroMinutes={pomodoroMinutes}
       />
 
       <div className="p-3 flex flex-1 flex-col items-center justify-center">
