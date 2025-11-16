@@ -58,30 +58,63 @@ export function usePomodoroTimer({ pomodoroMinutes, restMinutes }: UsePomodoroTi
   const [todayInfo, setTodayInfo] = useState(loadTodayInfo)
   const [remainingTime, setRemainingTime] = useState(initialTimeInfo.POMODORO_SEC)
 
+  // Date 기반 정확한 타이머를 위한 refs
+  const endTimeRef = useRef<number | null>(null) // 목표 종료 시간 (timestamp)
+  const pausedTimeRef = useRef<number>(0) // 일시정지 시점의 남은 시간
   const countInterval = useRef<NodeJS.Timeout | null>(null)
+
+  // 남은 시간을 Date 기반으로 계산하는 함수
+  const calculateRemainingTime = (): number => {
+    if (endTimeRef.current === null) {
+      return pausedTimeRef.current
+    }
+    const now = Date.now()
+    const remaining = Math.max(0, Math.ceil((endTimeRef.current - now) / 1000))
+    return remaining
+  }
 
   // 초기 시간 설정 및 설정 변경 시 업데이트
   useEffect(() => {
     const newTimeInfo = getTimeInfo(pomodoroMinutes, restMinutes)
     if (status === 'paused') {
-      setRemainingTime(newTimeInfo.POMODORO_SEC)
+      const newRemainingTime = isRest ? newTimeInfo.REST_SEC : newTimeInfo.POMODORO_SEC
+      setRemainingTime(newRemainingTime)
+      pausedTimeRef.current = newRemainingTime
+      endTimeRef.current = null
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pomodoroMinutes, restMinutes])
 
-  // 타이머 로직
+  // 타이머 시작/일시정지 처리
   useEffect(() => {
     if (status === 'running') {
+      // 타이머 시작: 현재 남은 시간을 기반으로 종료 시간 계산
+      // endTimeRef가 이미 설정되어 있으면 재설정하지 않음 (이미 실행 중인 타이머)
+      if (endTimeRef.current === null) {
+        const now = Date.now()
+        const currentRemaining = pausedTimeRef.current > 0 ? pausedTimeRef.current : remainingTime
+        endTimeRef.current = now + currentRemaining * 1000
+        pausedTimeRef.current = 0
+      }
+
+      // 주기적으로 남은 시간 업데이트 (Date 기반 계산)
       const interval = setInterval(() => {
-        setRemainingTime(prev => {
-          if (prev <= 0) {
-            return 0
-          }
-          return prev - 1
-        })
-      }, 1000)
+        const calculated = calculateRemainingTime()
+        setRemainingTime(calculated)
+        
+        if (calculated <= 0) {
+          endTimeRef.current = null
+        }
+      }, 100) // 100ms마다 업데이트하여 더 부드러운 UI 제공
+      
       countInterval.current = interval
     } else {
+      // 일시정지: 현재 남은 시간 저장
+      if (endTimeRef.current !== null) {
+        pausedTimeRef.current = calculateRemainingTime()
+        endTimeRef.current = null
+      }
+      
       if (countInterval.current) {
         clearInterval(countInterval.current)
         countInterval.current = null
@@ -93,11 +126,34 @@ export function usePomodoroTimer({ pomodoroMinutes, restMinutes }: UsePomodoroTi
         clearInterval(countInterval.current)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status])
+
+  // Page Visibility API: 탭이 다시 활성화될 때 시간 재계산
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && status === 'running' && endTimeRef.current !== null) {
+        // 탭이 다시 활성화되면 정확한 남은 시간으로 업데이트
+        const calculated = calculateRemainingTime()
+        setRemainingTime(calculated)
+        
+        // 만약 시간이 이미 지났다면 즉시 완료 처리
+        if (calculated <= 0) {
+          endTimeRef.current = null
+        }
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
   }, [status])
 
   // 타이머 완료 처리
   useEffect(() => {
     if (remainingTime <= 0 && status === 'running') {
+      endTimeRef.current = null
       setStatus('finish')
     }
   }, [remainingTime, status])
@@ -106,10 +162,12 @@ export function usePomodoroTimer({ pomodoroMinutes, restMinutes }: UsePomodoroTi
   useEffect(() => {
     if (status === 'finish') {
       const timeInfo = getTimeInfo(pomodoroMinutes, restMinutes)
-      if (isRest) {
-        setRemainingTime(timeInfo.POMODORO_SEC)
-      } else {
-        setRemainingTime(timeInfo.REST_SEC)
+      const newRemainingTime = isRest ? timeInfo.POMODORO_SEC : timeInfo.REST_SEC
+      setRemainingTime(newRemainingTime)
+      pausedTimeRef.current = newRemainingTime
+      endTimeRef.current = null
+      
+      if (!isRest) {
         setTodayInfo(prev => {
           const newCount = prev.count + 1
           saveTodayInfo(newCount)
