@@ -8,7 +8,6 @@ import StickyClassAdder from '../../components/StickyClassAdder'
 import Opengraph from '@/components/Opengraph'
 import { getMarkmdown } from '@/lib/markdown'
 
-
 import '../../styles/prism-one-light.css'
 
 export default async function About() {

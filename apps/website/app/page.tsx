@@ -5,7 +5,6 @@ import Header from './Header'
 
 import Opengraph from '@/components/Opengraph'
 
-
 import '../styles/prism-one-light.css'
 
 export default async function About() {
