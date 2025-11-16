@@ -1,153 +1,52 @@
-/* eslint-disable consistent-return */
-import { useEffect, useRef, useState } from 'react'
-
-import Domado from '../components/Domado'
+import BackgroundTimer from '../components/BackgroundTimer'
 import Footer from '../components/Footer'
-import { formatRemainingTime, getTimeInfo } from '../components/pomodoro'
-
-const STORAGE_KEY_POMODORO = 'domado_pomodoro_minutes'
-const STORAGE_KEY_REST = 'domado_rest_minutes'
+import RestTimeDisplay from '../components/RestTimeDisplay'
+import Domado3DScene from '../components/scene/Domado3DScene'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
+import { usePomodoroAnimation } from '../hooks/usePomodoroAnimation'
+import { usePomodoroSettings } from '../hooks/usePomodoroSettings'
+import { usePomodoroTimer } from '../hooks/usePomodoroTimer'
 
 export default function Pomodoro() {
-  const [todayInfo, setTodayInfo] = useState({ count: 0 })
-  const [status, setStatus] = useState<'restart' | 'running' | 'finish' | 'paused'>('paused')
-  const [isRest, setIsRest] = useState(false)
-  const [pomodoroMinutes, setPomodoroMinutes] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY_POMODORO)
-    return saved ? parseInt(saved, 10) : 25
+  const { pomodoroMinutes, restMinutes, updateSettings } = usePomodoroSettings()
+
+  const {
+    status,
+    isRest,
+    todayInfo,
+    remainingTime,
+    togglePlay,
+    setStatus,
+    setIsRest,
+    setTodayInfo,
+    durations,
+  } = usePomodoroTimer({ pomodoroMinutes, restMinutes })
+
+  usePomodoroAnimation({
+    isRest,
+    pomodoroDuration: durations.pomodoro,
+    restDuration: durations.rest,
+    status: status === 'running' ? 'running' : 'paused',
   })
-  const [restMinutes, setRestMinutes] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY_REST)
-    return saved ? parseInt(saved, 10) : 5
-  })
-  const timeInfo = getTimeInfo(pomodoroMinutes, restMinutes)
-  const [durations, setDurations] = useState({
-    pomodoro: timeInfo.POMODORO_SEC,
-    rest: timeInfo.REST_SEC,
-  })
-  const [remainingTime, setRemainingTime] = useState(durations.pomodoro)
 
-  useEffect(() => {
-    const newTimeInfo = getTimeInfo(pomodoroMinutes, restMinutes)
-    setDurations({
-      pomodoro: newTimeInfo.POMODORO_SEC,
-      rest: newTimeInfo.REST_SEC,
-    })
-    if (status === 'paused') {
-      setRemainingTime(newTimeInfo.POMODORO_SEC)
-    }
-  }, [pomodoroMinutes, restMinutes, status])
-  const countInterval = useRef<NodeJS.Timeout | null>(null)
-  const animationRef = useRef<Animation | null>(null)
-
-  useEffect(() => {
-    const bgTimer = document.getElementById('bg-timer')
-    if (!bgTimer || !window.KeyframeEffect) return
-
-    const animation = new Animation(
-      new KeyframeEffect(bgTimer, [{ height: isRest ? '0%' : '100%' }, { height: isRest ? '100%' : '0%' }], {
-        duration: isRest ? durations.rest * 1000 : durations.pomodoro * 1000,
-        fill: 'forwards',
-        easing: 'linear',
-      }),
-      document.timeline,
-    )
-
-    animationRef.current = animation
-  }, [animationRef, durations.pomodoro, durations.rest, isRest])
-
-  useEffect(() => {
-    function toggleAnimation() {
-      if (!animationRef.current) return
-
-      if (status === 'running') {
-        animationRef.current.play()
-      } else if (status === 'paused') {
-        animationRef.current.pause()
-      }
-    }
-
-    if (status === 'running') {
-      const interval = setInterval(() => {
-        setRemainingTime(prev => {
-          if (prev <= 0) {
-            return 0
-          }
-          return prev - 1
-        })
-      }, 1000)
-      countInterval.current = interval
-      toggleAnimation()
-    } else if (status === 'paused') {
-      clearInterval(countInterval.current)
-      toggleAnimation()
-    } else if (status === 'finish') {
-      if (isRest) {
-        setRemainingTime(durations.pomodoro)
-        setTodayInfo({
-          count: todayInfo.count,
-        })
-      } else {
-        setRemainingTime(durations.rest)
-        setTodayInfo({
-          count: todayInfo.count + 1,
-        })
-      }
-      setIsRest(prev => !prev)
-      setStatus('paused')
-      clearInterval(countInterval.current)
-    }
-
-    return () => {
-      clearInterval(countInterval.current)
-    }
-  }, [status, todayInfo, setTodayInfo, isRest, durations.rest, durations.pomodoro, countInterval, durations])
-
-  function togglePlay(event: React.MouseEvent<HTMLButtonElement> | null = null) {
-    setStatus(prev => {
-      return prev === 'paused' ? 'running' : 'paused'
-    })
-    ;(event?.target as HTMLElement).blur() // 마우스 클릭하여 시작 후 포커스가 머무르면 스페이스바 단축키 동작이 안돼 포커스 해제
-  }
-
-  useEffect(() => {
-    if (remainingTime <= 0) {
+  useKeyboardShortcuts({
+    onTogglePlay: togglePlay,
+    onIncrementCount: () => setTodayInfo(prev => ({ count: prev.count + 1 })),
+    onSkipToRest: () => {
+      setIsRest(true)
       setStatus('finish')
-    }
-  }, [remainingTime])
+    },
+  })
 
-  useEffect(() => {
-    function keydownHandler(e: KeyboardEvent) {
-      switch (e.key) {
-        case ' ':
-          togglePlay()
-          break
-        case 'a':
-          setTodayInfo(prevTodayInfo => ({
-            count: prevTodayInfo.count + 1,
-          }))
-          break
-        case 's':
-          setIsRest(true)
-          setStatus('finish')
-          break
-        case 'r':
-          window.location.reload()
-          break
-        default:
-          break
-      }
-    }
-
-    document.addEventListener('keydown', keydownHandler)
-    return () => {
-      document.removeEventListener('keydown', keydownHandler)
-    }
-  }, [])
+  useDocumentTitle({
+    count: todayInfo.count,
+    remainingTime,
+  })
 
   return (
     <div className="relative w-screen h-screen flex flex-col overflow-auto text-gray-600">
-      <Domado
+      <Domado3DScene
         isRest={isRest}
         paused={status === 'paused'}
         remainingTime={remainingTime}
@@ -155,47 +54,17 @@ export default function Pomodoro() {
       />
 
       <div className="p-3 flex flex-1 flex-col items-center justify-center">
-        {isRest && (
-          <div
-            className="absolute text-white/80"
-            style={{
-              top: '20%',
-              transform: 'translateY(-20%)',
-              fontSize: '12rem',
-              userSelect: 'none',
-            }}
-          >
-            {formatRemainingTime(remainingTime)}
-          </div>
-        )}
-        <div
-          id="bg-timer"
-          className="absolute bottom-0 w-full"
-          style={{
-            zIndex: '-1',
-            background: isRest ? '#6AFF88' : '#b22222',
-          }}
-        />
-
-        <div
-          className="absolute bg-gray-800 bottom-0 w-full h-full"
-          style={{
-            zIndex: '-2',
-          }}
-        />
+        {isRest && <RestTimeDisplay remainingTime={remainingTime} />}
+        <BackgroundTimer isRest={isRest} />
       </div>
+
       <Footer
         isRest={isRest}
         remainingTime={remainingTime}
         todayInfo={todayInfo}
         pomodoroMinutes={pomodoroMinutes}
         restMinutes={restMinutes}
-        onSettingsChange={(pomodoro, rest) => {
-          setPomodoroMinutes(pomodoro)
-          setRestMinutes(rest)
-          localStorage.setItem(STORAGE_KEY_POMODORO, pomodoro.toString())
-          localStorage.setItem(STORAGE_KEY_REST, rest.toString())
-        }}
+        onSettingsChange={updateSettings}
       />
     </div>
   )

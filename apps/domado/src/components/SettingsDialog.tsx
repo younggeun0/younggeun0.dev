@@ -65,8 +65,9 @@ export default function SettingsDialog({ onSave, currentPomodoroMinutes, current
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       </button>
+
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="bg-gray-800 text-white border-gray-700 !z-[100]">
+        <DialogContent className="bg-gray-800 text-white border-gray-700">
           <DialogHeader>
             <DialogTitle className="text-white">뽀모도로 설정</DialogTitle>
             <DialogDescription className="text-gray-400">뽀모도로 시간과 휴식 시간을 설정하세요.</DialogDescription>

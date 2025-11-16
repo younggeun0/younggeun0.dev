@@ -1,5 +1,5 @@
 import { formatRemainingTime } from './pomodoro'
-// import SettingsDialog from './SettingsDialog'
+import SettingsDialog from './SettingsDialog'
 
 interface FooterProps {
   isRest: boolean
@@ -14,9 +14,9 @@ export default function Footer({
   isRest,
   remainingTime,
   todayInfo,
-  // pomodoroMinutes,
-  // restMinutes,
-  // onSettingsChange,
+  pomodoroMinutes,
+  restMinutes,
+  onSettingsChange,
 }: FooterProps) {
   return (
     <div
@@ -40,11 +40,12 @@ export default function Footer({
           <span title="오늘의 기록" className="text-white">
             🍅 : {todayInfo.count}
           </span>
-          {/* <SettingsDialog
+
+          <SettingsDialog
             onSave={onSettingsChange}
             currentPomodoroMinutes={pomodoroMinutes}
             currentRestMinutes={restMinutes}
-          /> */}
+          />
         </div>
       </div>
 
@@ -54,7 +55,7 @@ export default function Footer({
           zIndex: '11',
         }}
       >
-        <button type="button" title="README" onClick={() => window.open('https://github.com/younggeun0/domado')}>
+        <button type="button" title="README" onClick={() => window.open('https://github.com/younggeun0/younggeun0.dev/tree/main/apps/domado')}>
           <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6" fill="white">
             <path
               fillRule="evenodd"
