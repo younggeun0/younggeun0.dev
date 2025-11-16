@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { memo, Suspense, useState } from 'react'
+import { memo, Suspense, useEffect, useRef, useState } from 'react'
 
 // import CameraDevTools from './CameraDevTools'
 // import FireDevTools from './FireDevTools'
@@ -17,6 +17,18 @@ interface Domado3DSceneProps {
 function Domado3DScene({ isRest, paused }: Domado3DSceneProps) {
   const [cameraConfig, _setCameraConfig] = useState<CameraConfig | undefined>(undefined)
   const [firePosition, _setFirePosition] = useState<FirePosition>(DEFAULT_FIRE_POSITION)
+  const cleanupRef = useRef<(() => void) | null>(null)
+
+  // WebGL 컨텍스트 손실 감지 및 복구 - cleanup 함수 실행
+  useEffect(() => {
+    return () => {
+      // 컴포넌트 언마운트 시 cleanup 함수 실행
+      if (cleanupRef.current) {
+        cleanupRef.current()
+        cleanupRef.current = null
+      }
+    }
+  }, [])
 
   // const handleConfigChange = (modeIsRest: boolean, config: CameraConfig) => {
   //   if (modeIsRest === isRest) {
@@ -50,8 +62,8 @@ function Domado3DScene({ isRest, paused }: Domado3DSceneProps) {
           canvas.addEventListener('webglcontextlost', handleContextLost)
           canvas.addEventListener('webglcontextrestored', handleContextRestored)
 
-          // cleanup 함수 반환하여 이벤트 리스너 정리
-          return () => {
+          // cleanup 함수를 ref에 저장하여 컴포넌트 언마운트 시 실행
+          cleanupRef.current = () => {
             canvas.removeEventListener('webglcontextlost', handleContextLost)
             canvas.removeEventListener('webglcontextrestored', handleContextRestored)
           }
