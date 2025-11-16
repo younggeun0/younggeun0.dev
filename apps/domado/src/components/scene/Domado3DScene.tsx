@@ -1,22 +1,25 @@
 /* eslint-disable react/no-unknown-property */
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { memo } from 'react'
 
 import CameraSetup from './CameraSetup'
 import CoffeeCupModel from './CoffeeCupModel'
 import TomatoModel from './TomatoModel'
 
-export default function Domado3DScene({
-  isRest,
-  paused,
-  remainingTime,
-  pomodoroMinutes,
-}: {
+interface Domado3DSceneProps {
   isRest: boolean
   paused: boolean
   remainingTime: number
   pomodoroMinutes: number
-}) {
+}
+
+function Domado3DScene({
+  isRest,
+  paused,
+  remainingTime,
+  pomodoroMinutes,
+}: Domado3DSceneProps) {
   return (
     <Canvas
       style={{ position: 'absolute', width: '100vw', height: '100vh', background: isRest ? 'black' : 'transparent' }}
@@ -28,8 +31,18 @@ export default function Domado3DScene({
 
       <CameraSetup isRest={isRest} remainingTime={remainingTime} pomodoroMinutes={pomodoroMinutes} />
 
-      {paused && !isRest && <OrbitControls />}
+      <OrbitControls />
     </Canvas>
   )
 }
+
+export default memo(Domado3DScene, (prevProps, nextProps) => {
+  // remainingTime은 CameraSetup의 useEffect에서만 사용되므로,
+  // remainingTime 변경 시에는 리렌더링하지 않음
+  return (
+    prevProps.isRest === nextProps.isRest &&
+    prevProps.paused === nextProps.paused &&
+    prevProps.pomodoroMinutes === nextProps.pomodoroMinutes
+  )
+})
 
