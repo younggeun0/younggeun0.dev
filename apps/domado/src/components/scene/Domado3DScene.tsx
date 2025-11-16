@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { memo, useState } from 'react'
+import { memo, Suspense, useState } from 'react'
 
 // import CameraDevTools from './CameraDevTools'
 import CameraSetup, { type CameraConfig } from './CameraSetup'
@@ -28,16 +28,33 @@ function Domado3DScene({
   return (
     <>
       <Canvas
+        key={`canvas-${isRest ? 'rest' : 'work'}`}
         style={{ position: 'absolute', width: '100vw', height: '100vh', background: isRest ? 'black' : 'transparent' }}
+        gl={{ preserveDrawingBuffer: true, antialias: true }}
+        onCreated={({ gl }) => {
+          // WebGL 컨텍스트 손실 감지 및 복구
+          const canvas = gl.domElement
+          canvas.addEventListener('webglcontextlost', (event) => {
+            event.preventDefault()
+            console.warn('WebGL context lost')
+          })
+          canvas.addEventListener('webglcontextrestored', () => {
+            console.log('WebGL context restored')
+            // 필요시 씬 재로드
+            window.location.reload()
+          })
+        }}
       >
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[5, 5, 5]} intensity={2.5} />
+        <Suspense fallback={null}>
+          <ambientLight intensity={0.8} />
+          <directionalLight position={[5, 5, 5]} intensity={2.5} />
 
-        {isRest ? <CoffeeCupModel /> : <TomatoModel paused={paused} />}
+          {isRest ? <CoffeeCupModel /> : <TomatoModel paused={paused} />}
 
-        <CameraSetup isRest={isRest} config={cameraConfig} />
+          <CameraSetup isRest={isRest} config={cameraConfig} />
 
-        <OrbitControls />
+          <OrbitControls />
+        </Suspense>
       </Canvas>
       {/* <CameraDevTools isRest={isRest} onConfigChange={handleConfigChange} /> */}
     </>
