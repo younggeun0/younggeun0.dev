@@ -11,7 +11,7 @@ export default function RestTimeDisplay({ remainingTime }: RestTimeDisplayProps)
       style={{
         top: '20%',
         transform: 'translateY(-20%)',
-        fontSize: '12rem',
+        fontSize: '6rem',
         userSelect: 'none',
       }}
     >
