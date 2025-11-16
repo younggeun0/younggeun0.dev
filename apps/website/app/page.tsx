@@ -22,8 +22,8 @@ export default async function About() {
           <Button variant="link">/pick-your-holds</Button>
         </Link>
 
-        <Link href="/github">
-          <Button variant="link">/햐소ㅕㅠ</Button>
+        <Link href="https://domado.younggeun0.dev">
+          <Button variant="link">/domado</Button>
         </Link>
       </div>
     </>
