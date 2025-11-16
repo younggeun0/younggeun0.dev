@@ -10,7 +10,7 @@ interface UseDocumentTitleProps {
 export function useDocumentTitle({ count, remainingTime }: UseDocumentTitleProps) {
   useEffect(() => {
     const formattedTime = formatRemainingTime(remainingTime)
-    document.title = `🍅 * ${count} - ${formattedTime}`
+    document.title = `${count} - ${formattedTime}`
   }, [count, remainingTime])
 }
 
