@@ -1,14 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { createRouter, RouterProvider } from '@tanstack/react-router'
 
-import './App.css'
-import Pomodoro from './pages/Pomodoro'
+import { routeTree } from './routeTree.gen'
+
+const router = createRouter({ routeTree })
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
 
 export default function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Pomodoro />} />
-      </Routes>
-    </Router>
-  )
+  return <RouterProvider router={router} />
 }

@@ -3,22 +3,20 @@
 
 import path from 'path'
 
+import tanstackRouter from '@tanstack/router-plugin/vite'
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig, PluginOption } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react() as unknown as PluginOption,
+    tanstackRouter() as unknown as PluginOption,
+  ],
   resolve: {
     alias: {
       assets: path.resolve(__dirname, './assets'),
     },
   },
   assetsInclude: ['**/*.obj', '**/*.mtl'],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
-    css: true,
-  },
 })

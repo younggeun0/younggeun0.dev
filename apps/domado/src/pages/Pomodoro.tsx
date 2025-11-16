@@ -10,7 +10,7 @@ import { usePomodoroSettings } from '../hooks/usePomodoroSettings'
 import { usePomodoroTimer } from '../hooks/usePomodoroTimer'
 
 export default function Pomodoro() {
-  const { pomodoroMinutes, restMinutes, updateSettings } = usePomodoroSettings()
+  const { pomodoroMinutes, restMinutes } = usePomodoroSettings()
 
   const {
     status,
@@ -76,9 +76,6 @@ export default function Pomodoro() {
         isRest={isRest}
         remainingTime={remainingTime}
         todayInfo={todayInfo}
-        pomodoroMinutes={pomodoroMinutes}
-        restMinutes={restMinutes}
-        onSettingsChange={updateSettings}
       />
     </div>
   )
