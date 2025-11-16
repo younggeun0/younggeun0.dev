@@ -25,7 +25,7 @@ export default function Pomodoro() {
 
   useKeyboardShortcuts({
     onTogglePlay: togglePlay,
-    onIncrementCount: () => setTodayInfo(prev => ({ count: prev.count + 1 })),
+    onIncrementCount: () => setTodayInfo(prev => ({ ...prev, count: prev.count + 1 })),
     onSkipToRest: () => {
       setIsRest(true)
       setStatus('finish')
