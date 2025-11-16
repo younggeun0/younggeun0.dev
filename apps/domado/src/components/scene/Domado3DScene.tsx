@@ -13,10 +13,7 @@ interface Domado3DSceneProps {
   paused: boolean
 }
 
-function Domado3DScene({
-  isRest,
-  paused,
-}: Domado3DSceneProps) {
+function Domado3DScene({ isRest, paused }: Domado3DSceneProps) {
   const [cameraConfig, _setCameraConfig] = useState<CameraConfig | undefined>(undefined)
 
   // const handleConfigChange = (modeIsRest: boolean, config: CameraConfig) => {
@@ -28,21 +25,34 @@ function Domado3DScene({
   return (
     <>
       <Canvas
-        key={`canvas-${isRest ? 'rest' : 'work'}`}
         style={{ position: 'absolute', width: '100vw', height: '100vh', background: isRest ? 'black' : 'transparent' }}
         gl={{ preserveDrawingBuffer: true, antialias: true }}
         onCreated={({ gl }) => {
-          // WebGL 컨텍스트 손실 감지 및 복구
+          // WebGL 컨텍스트 손실 감지 및 복구 (실제 예기치 않은 손실만 감지)
           const canvas = gl.domElement
-          canvas.addEventListener('webglcontextlost', (event) => {
+
+          const handleContextLost = (event: Event) => {
             event.preventDefault()
-            console.warn('WebGL context lost')
-          })
-          canvas.addEventListener('webglcontextrestored', () => {
+            // Canvas가 DOM에 연결되어 있는 경우에만 경고 (정상적인 언마운트는 무시)
+            if (canvas.isConnected) {
+              console.warn('WebGL context lost unexpectedly')
+            }
+          }
+
+          const handleContextRestored = () => {
             console.log('WebGL context restored')
             // 필요시 씬 재로드
             window.location.reload()
-          })
+          }
+
+          canvas.addEventListener('webglcontextlost', handleContextLost)
+          canvas.addEventListener('webglcontextrestored', handleContextRestored)
+
+          // cleanup 함수 반환하여 이벤트 리스너 정리
+          return () => {
+            canvas.removeEventListener('webglcontextlost', handleContextLost)
+            canvas.removeEventListener('webglcontextrestored', handleContextRestored)
+          }
         }}
       >
         <Suspense fallback={null}>
@@ -62,9 +72,5 @@ function Domado3DScene({
 }
 
 export default memo(Domado3DScene, (prevProps: Domado3DSceneProps, nextProps: Domado3DSceneProps) => {
-  return (
-    prevProps.isRest === nextProps.isRest &&
-    prevProps.paused === nextProps.paused
-  )
+  return prevProps.isRest === nextProps.isRest && prevProps.paused === nextProps.paused
 })
-
