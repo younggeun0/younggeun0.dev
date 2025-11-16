@@ -5,7 +5,6 @@ import Domado3DScene from '../components/scene/Domado3DScene'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
 import { useNotification } from '../hooks/useNotification'
-import { usePomodoroAnimation } from '../hooks/usePomodoroAnimation'
 import { usePomodoroSettings } from '../hooks/usePomodoroSettings'
 import { usePomodoroTimer } from '../hooks/usePomodoroTimer'
 
@@ -23,13 +22,6 @@ export default function Pomodoro() {
     setTodayInfo,
     durations,
   } = usePomodoroTimer({ pomodoroMinutes, restMinutes })
-
-  usePomodoroAnimation({
-    isRest,
-    pomodoroDuration: durations.pomodoro,
-    restDuration: durations.rest,
-    status: status === 'running' ? 'running' : 'paused',
-  })
 
   useKeyboardShortcuts({
     onTogglePlay: togglePlay,
@@ -67,7 +59,13 @@ export default function Pomodoro() {
 
       <div className="p-3 flex flex-1 flex-col items-center justify-center">
         {isRest && <RestTimeDisplay remainingTime={remainingTime} />}
-        <BackgroundTimer isRest={isRest} />
+
+        <BackgroundTimer
+          isRest={isRest}
+          pomodoroDuration={durations.pomodoro}
+          restDuration={durations.rest}
+          status={status === 'running' ? 'running' : 'paused'}
+        />
       </div>
 
       <Footer
