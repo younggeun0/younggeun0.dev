@@ -4,8 +4,9 @@ import { Canvas } from '@react-three/fiber'
 import { memo, Suspense, useState } from 'react'
 
 // import CameraDevTools from './CameraDevTools'
+// import FireDevTools from './FireDevTools'
 import CameraSetup, { type CameraConfig } from './CameraSetup'
-import CoffeeCupModel from './CoffeeCupModel'
+import CoffeeCupModel, { DEFAULT_FIRE_POSITION, type FirePosition } from './CoffeeCupModel'
 import TomatoModel from './TomatoModel'
 
 interface Domado3DSceneProps {
@@ -15,6 +16,7 @@ interface Domado3DSceneProps {
 
 function Domado3DScene({ isRest, paused }: Domado3DSceneProps) {
   const [cameraConfig, _setCameraConfig] = useState<CameraConfig | undefined>(undefined)
+  const [firePosition, _setFirePosition] = useState<FirePosition>(DEFAULT_FIRE_POSITION)
 
   // const handleConfigChange = (modeIsRest: boolean, config: CameraConfig) => {
   //   if (modeIsRest === isRest) {
@@ -59,13 +61,14 @@ function Domado3DScene({ isRest, paused }: Domado3DSceneProps) {
           <ambientLight intensity={0.8} />
           <directionalLight position={[5, 5, 5]} intensity={2.5} />
 
-          {isRest ? <CoffeeCupModel /> : <TomatoModel paused={paused} />}
+          {isRest ? <CoffeeCupModel firePosition={firePosition} /> : <TomatoModel paused={paused} />}
 
           <CameraSetup isRest={isRest} config={cameraConfig} />
 
           <OrbitControls />
         </Suspense>
       </Canvas>
+      {/* {isRest && <FireDevTools position={firePosition} onPositionChange={setFirePosition} />} */}
       {/* <CameraDevTools isRest={isRest} onConfigChange={handleConfigChange} /> */}
     </>
   )

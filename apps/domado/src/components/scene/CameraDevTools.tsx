@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { defaultRestConfig, defaultWorkConfig, type CameraConfig } from './CameraSetup'
+import { DEFAULT_REST_CONFIG, DEFAULT_WORK_CONFIG, type CameraConfig } from './CameraSetup'
 
 interface CameraDevToolsProps {
   isRest: boolean
@@ -9,8 +9,8 @@ interface CameraDevToolsProps {
 
 export default function CameraDevTools({ isRest, onConfigChange }: CameraDevToolsProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [workConfig, setWorkConfig] = useState<CameraConfig>(defaultWorkConfig)
-  const [restConfig, setRestConfig] = useState<CameraConfig>(defaultRestConfig)
+  const [workConfig, setWorkConfig] = useState<CameraConfig>(DEFAULT_WORK_CONFIG)
+  const [restConfig, setRestConfig] = useState<CameraConfig>(DEFAULT_REST_CONFIG)
 
   const currentConfig = isRest ? restConfig : workConfig
   const setCurrentConfig = isRest ? setRestConfig : setWorkConfig

@@ -11,12 +11,12 @@ interface CameraSetupProps {
   config?: CameraConfig
 }
 
-export const defaultWorkConfig: CameraConfig = {
+export const DEFAULT_WORK_CONFIG: CameraConfig = {
   position: [36, 20, -26],
   lookAt: [0, 0, 0],
 }
 
-export const defaultRestConfig: CameraConfig = {
+export const DEFAULT_REST_CONFIG: CameraConfig = {
   position: [50, 20, 5],
   lookAt: [0, 0, 0],
 }
@@ -25,7 +25,7 @@ export default function CameraSetup({ isRest, config }: CameraSetupProps) {
   const { camera } = useThree()
 
   useEffect(() => {
-    const cameraConfig = config || (isRest ? defaultRestConfig : defaultWorkConfig)
+    const cameraConfig = config || (isRest ? DEFAULT_REST_CONFIG : DEFAULT_WORK_CONFIG)
     camera.position.set(...cameraConfig.position)
     camera.lookAt(...cameraConfig.lookAt)
   }, [camera, isRest, config])
