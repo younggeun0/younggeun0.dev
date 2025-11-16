@@ -23,8 +23,11 @@ export default function Domado3DScene({
     >
       <ambientLight intensity={0.8} />
       <directionalLight position={[5, 5, 5]} intensity={2.5} />
+
       {isRest ? <CoffeeCupModel /> : <TomatoModel paused={paused} />}
+
       <CameraSetup isRest={isRest} remainingTime={remainingTime} pomodoroMinutes={pomodoroMinutes} />
+
       {paused && !isRest && <OrbitControls />}
     </Canvas>
   )
