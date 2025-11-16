@@ -11,17 +11,8 @@ import { usePomodoroTimer } from '../hooks/usePomodoroTimer'
 export default function Pomodoro() {
   const { pomodoroMinutes, restMinutes } = usePomodoroSettings()
 
-  const {
-    status,
-    isRest,
-    todayInfo,
-    remainingTime,
-    togglePlay,
-    setStatus,
-    setIsRest,
-    setTodayInfo,
-    durations,
-  } = usePomodoroTimer({ pomodoroMinutes, restMinutes })
+  const { status, isRest, todayInfo, remainingTime, togglePlay, setStatus, setIsRest, setTodayInfo, durations } =
+    usePomodoroTimer({ pomodoroMinutes, restMinutes })
 
   useKeyboardShortcuts({
     onTogglePlay: togglePlay,
@@ -35,6 +26,7 @@ export default function Pomodoro() {
   useDocumentTitle({
     count: todayInfo.count,
     remainingTime,
+    isRest,
   })
 
   // 타이머 완료 시 알림 표시 (remainingTime이 0이고 running 상태였을 때)
@@ -52,10 +44,7 @@ export default function Pomodoro() {
 
   return (
     <div className="relative w-screen h-dvh flex flex-col overflow-auto text-gray-600">
-      <Domado3DScene
-        isRest={isRest}
-        paused={status === 'paused'}
-      />
+      <Domado3DScene isRest={isRest} paused={status === 'paused'} />
 
       <div className="p-3 flex flex-1 flex-col items-center justify-center">
         {isRest && <RestTimeDisplay remainingTime={remainingTime} />}
