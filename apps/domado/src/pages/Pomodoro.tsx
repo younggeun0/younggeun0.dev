@@ -59,7 +59,7 @@ export default function Pomodoro() {
   })
 
   return (
-    <div className="relative w-screen h-screen flex flex-col overflow-auto text-gray-600">
+    <div className="relative w-screen h-dvh flex flex-col overflow-auto text-gray-600">
       <Domado3DScene
         isRest={isRest}
         paused={status === 'paused'}
@@ -76,6 +76,8 @@ export default function Pomodoro() {
         isRest={isRest}
         remainingTime={remainingTime}
         todayInfo={todayInfo}
+        status={status}
+        onTogglePlay={togglePlay}
       />
     </div>
   )

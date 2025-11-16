@@ -26,7 +26,7 @@ export default function Settings() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4">
+    <div className="h-dvh bg-gray-900 text-white flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-gray-800 rounded-lg border border-gray-700 p-6 space-y-6">
         <div>
           <h1 className="text-2xl font-bold text-white mb-2">domado 설정</h1>
@@ -46,7 +46,7 @@ export default function Settings() {
               min="1"
               value={pomodoroMinutesInput}
               onChange={e => setPomodoroMinutesInput(e.target.value)}
-              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 ps-2"
+              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 ps-2 text-base"
             />
           </div>
 
@@ -60,7 +60,7 @@ export default function Settings() {
               min="1"
               value={restMinutesInput}
               onChange={e => setRestMinutesInput(e.target.value)}
-              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 ps-2"
+              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 ps-2 text-base"
             />
           </div>
         </div>

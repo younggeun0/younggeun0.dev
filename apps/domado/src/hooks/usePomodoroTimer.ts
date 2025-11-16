@@ -24,7 +24,8 @@ export function usePomodoroTimer({ pomodoroMinutes, restMinutes }: UsePomodoroTi
     if (status === 'paused') {
       setRemainingTime(newTimeInfo.POMODORO_SEC)
     }
-  }, [pomodoroMinutes, restMinutes, status])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pomodoroMinutes, restMinutes])
 
   // 타이머 로직
   useEffect(() => {

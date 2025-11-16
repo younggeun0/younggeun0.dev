@@ -6,12 +6,16 @@ interface FooterProps {
   isRest: boolean
   remainingTime: number
   todayInfo: { count: number }
+  status: 'restart' | 'running' | 'finish' | 'paused'
+  onTogglePlay: () => void
 }
 
 export default function Footer({
   isRest,
   remainingTime,
   todayInfo,
+  status,
+  onTogglePlay,
 }: FooterProps) {
   return (
     <div
@@ -35,6 +39,39 @@ export default function Footer({
           <span title="오늘의 기록" className="text-white">
             🍅 : {todayInfo.count}
           </span>
+
+          <button
+            type="button"
+            onClick={onTogglePlay}
+            className="text-white/60 hover:text-white/80 transition-colors"
+            title={status === 'running' ? '일시정지' : '재생'}
+            style={{ zIndex: '11', pointerEvents: 'auto' }}
+          >
+            {status === 'running' ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            )}
+          </button>
 
           <Link
             to="/settings"
