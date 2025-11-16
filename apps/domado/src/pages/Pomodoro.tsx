@@ -4,6 +4,7 @@ import RestTimeDisplay from '../components/RestTimeDisplay'
 import Domado3DScene from '../components/scene/Domado3DScene'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
+import { useNotification } from '../hooks/useNotification'
 import { usePomodoroAnimation } from '../hooks/usePomodoroAnimation'
 import { usePomodoroSettings } from '../hooks/usePomodoroSettings'
 import { usePomodoroTimer } from '../hooks/usePomodoroTimer'
@@ -42,6 +43,19 @@ export default function Pomodoro() {
   useDocumentTitle({
     count: todayInfo.count,
     remainingTime,
+  })
+
+  // 타이머 완료 시 알림 표시 (remainingTime이 0이고 running 상태였을 때)
+  const isTimerFinished = remainingTime === 0 && status === 'running'
+  useNotification({
+    enabled: isTimerFinished,
+    title: isRest ? '휴식 시간이 끝났습니다! 🍅' : '뽀모도로가 완료되었습니다! 🎉',
+    options: {
+      body: isRest
+        ? '다시 집중할 시간입니다. 새로운 뽀모도로를 시작하세요!'
+        : `오늘 ${todayInfo.count + 1}개의 뽀모도로를 완료했습니다! 휴식을 취하세요.`,
+      tag: 'pomodoro-timer',
+    },
   })
 
   return (
