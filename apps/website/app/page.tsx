@@ -14,7 +14,7 @@ export default async function About() {
 
       <Header />
 
-      <div className="py-10 grid text-center gap-2">
+      <div className="grid text-center gap-2 h-[30vh] items-center justify-center">
         <Link href="/about" className={buttonVariants({ variant: 'link' })}>
           /about
         </Link>
