@@ -2,7 +2,6 @@ import Image from 'next/image'
 import React from 'react'
 
 import StickyClassAdder from '../../components/StickyClassAdder'
-import Header from '../Header'
 
 import MDXContent from '@/components/MDXContent'
 import Opengraph from '@/components/Opengraph'
