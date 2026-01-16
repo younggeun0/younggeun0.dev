@@ -48,6 +48,23 @@ module.exports = {
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            fontSize: '0.875rem',
+            h2: {
+              fontSize: '1rem',
+              fontWeight: '600',
+            },
+            'pre code': {
+              fontSize: '0.75rem',
+            },
+            code: {
+              fontSize: '0.75rem',
+            },
+          },
+        },
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

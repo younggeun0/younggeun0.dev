@@ -16,7 +16,7 @@ interface MDXContentProps {
 
 export default async function MDXContent({ source }: MDXContentProps) {
   return (
-    <div className="prose prose-slate dark:prose-invert max-w-none">
+    <div className="prose prose-sm prose-slate dark:prose-invert max-w-none">
       <MDXRemote
         source={source}
         components={components}
