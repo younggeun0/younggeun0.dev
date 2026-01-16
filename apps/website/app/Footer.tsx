@@ -1,28 +1,22 @@
-'use client'
-import { useRouter } from 'next/navigation'
-
 import GithubIcon from '@/assets/icon/github-mark.svg'
 
 export default function Footer() {
-  const router = useRouter()
 
   return (
     <footer className="py-10 grid text-center">
       <div className="flex justify-center items-center gap-2">
-        <button
-          onClick={() => {
-            router.push('mailto:dureng5@gmail.com')
-          }}
-        >
-          📨
-        </button>
+        <a href="mailto:dureng5@gmail.com" aria-label="Send email to dureng5@gmail.com">
+          <span className="text-xl">📨</span>
+        </a>
         <div style={{ width: '21px' }}>
-          <GithubIcon
-            role="button"
-            onClick={() => {
-              router.push('https://github.com/younggeun0')
-            }}
-          />
+          <a
+            href="https://github.com/younggeun0"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit GitHub Profile"
+          >
+            <GithubIcon role="img" aria-hidden="true" />
+          </a>
         </div>
       </div>
 
