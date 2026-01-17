@@ -323,7 +323,8 @@ nugu 몰 UI 고도화
 ⋅ vitest, react testing library로 리팩터링 진행한 일부 컴포넌트들 TDD 진행: 테스트 코드 작성으로 컴포넌트 안정성 확보
 
 nugu 기획전 퍼블리싱
-⋅ 디자인 요구사항에 맞춰 flex, grid를 이용하여 다양한 레이아웃 구성, 영상, 애니메이션 등 요구사항을 맞추기 위해 vimeo sdk, aos 등 모듈을 사용
+⋅ 디자인 요구사항에 맞춰 flex, grid를 이용하여 다양한 레이아웃 구성
+⋅ 영상, 애니메이션 등 요구사항을 맞추기 위해 vimeo sdk, aos 등 모듈을 사용
 
 nugu 몰, 어드민(Back Office) 개발
 ⋅ cafe24 몰과 어드민을 자사 몰, 어드민으로 이관: cafe24 종속성 제거

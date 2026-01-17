@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         {process.env.NODE_ENV === 'production' && <GoogleAnalytics />}
 
-        <div className="mx-auto w-full md:w-3/4 lg:w-[50%]">
+        <div className="mx-auto w-full md:w-3/4 lg:w-[55%]">
           <main>{children}</main>
           <Footer />
         </div>
