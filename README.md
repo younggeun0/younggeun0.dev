@@ -1,7 +1,4 @@
 # younggeun0.dev
 
-[/about](./apps/website/README.md)
+[/about](https://younggeun0.dev/about)
 
-[/pick-your-holds](./apps/pyh/README.md)
-
-[/domado](./apps/domado/README.md)
